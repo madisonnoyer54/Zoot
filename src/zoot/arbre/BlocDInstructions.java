@@ -25,12 +25,17 @@ public class BlocDInstructions extends ArbreAbstrait {
 
     @Override
     public void verifier() {
-        throw new UnsupportedOperationException("fonction verifier non définie ") ;
+        //throw new UnsupportedOperationException("fonction verifier non définie ") ;
     }
     
     @Override
     public String toMIPS() {
-        throw new UnsupportedOperationException("fonction toMips non définie ") ;
+        String code = "";
+        for (Instruction instruction : programme) {
+            code+=instruction.toMIPS();
+        }
+        return code;
+        //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
     @Override

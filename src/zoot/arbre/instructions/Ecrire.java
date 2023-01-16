@@ -13,12 +13,13 @@ public class Ecrire extends Instruction {
 
     @Override
     public void verifier() {
-        throw new UnsupportedOperationException("fonction verfier non définie ") ;
+        //throw new UnsupportedOperationException("fonction verfier non définie ") ;
     }
 
     @Override
     public String toMIPS() {
-        throw new UnsupportedOperationException("fonction toMips non définie ") ;
+        return exp.toMIPS();
+        //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
 }
