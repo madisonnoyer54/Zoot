@@ -13,6 +13,7 @@ public class Zoot {
     
     public Zoot(String nomFichier) {
         try {
+
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(nomFichier)));
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 
