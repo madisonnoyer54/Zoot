@@ -18,7 +18,13 @@ public class Ecrire extends Instruction {
 
     @Override
     public String toMIPS() {
-        return exp.toMIPS();
+        String code;
+
+        code = exp.toMIPS()//"lw $v0,"+ exp.toMIPS()+"\n"+
+                +"\tmove $a0, $v0  # Copie de la valeur de v0 dans a0\n"
+                +"\tli $v0, 1  # v0 <-- 1 (code du print entier)\n"
+                +"\tsyscall  # Afficher\n\n";
+        return code;
         //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
