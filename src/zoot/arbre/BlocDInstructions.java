@@ -32,7 +32,7 @@ public class BlocDInstructions extends ArbreAbstrait {
     public String toMIPS() {
         String code;
         code =  ".text\n\n"+
-                "main :\n";
+                "main :\n\n";
 
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();

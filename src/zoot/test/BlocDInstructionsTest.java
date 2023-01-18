@@ -2,10 +2,10 @@ package zoot.test;
 
 import org.junit.jupiter.api.Test;
 import zoot.arbre.BlocDInstructions;
-import zoot.arbre.instructions.Instruction;
+
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.testng.AssertJUnit.assertEquals;
+
 
 class BlocDInstructionsTest {
 

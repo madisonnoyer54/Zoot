@@ -5,7 +5,7 @@ import zoot.arbre.expressions.Expression;
 import zoot.arbre.instructions.Ecrire;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.testng.AssertJUnit.assertEquals;
+
 
 class EcrireTest {
 
