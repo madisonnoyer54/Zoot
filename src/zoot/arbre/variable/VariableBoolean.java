@@ -1,6 +1,8 @@
-package zoot.arbre.expressions;
+package zoot.arbre.variable;
 
-public class VariableBoolean extends Variable{
+import zoot.arbre.variable.Variable;
+
+public class VariableBoolean extends Variable {
     protected VariableBoolean(int n) {
         super(n);
     }

@@ -1,6 +1,8 @@
-package zoot.arbre.expressions;
+package zoot.arbre.variable;
 
-public class VariableEntiere extends Variable{
+import zoot.arbre.variable.Variable;
+
+public class VariableEntiere extends Variable {
     protected VariableEntiere(int n) {
         super(n);
     }
