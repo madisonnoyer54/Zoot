@@ -56,8 +56,8 @@ parser code {:
    
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    DEBUT, FIN, POINTVIRGULE, ECRIRE ;
-terminal String    CSTENTIERE ;
+terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE ;
+terminal String    IDF, CSTENTIERE ;
    
 /* Non terminals used in the grammar section.  */
 
@@ -65,11 +65,12 @@ non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
 
+
 /* ----------------------------Grammar Section-------------------- */
  
 start with PROG ;
 
-PROG    ::=     DEBUT  LINST:li  FIN
+PROG    ::=    PROGRAMME IDF DEBUT  LINST:li  FIN
                 {: RESULT = li ; :}
                 ;
 

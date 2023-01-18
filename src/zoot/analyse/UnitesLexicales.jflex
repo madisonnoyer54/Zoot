@@ -31,9 +31,11 @@ import zoot.exceptions.AnalyseLexicaleException;
   }
 %}
 
+idf = [A-Za-z_][A-Za-z_0-9]*
 csteE = [0-9]+
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
+type = entier | boolean
 
 %%
 "//".*                                    { /* DO NOTHING */ }
@@ -45,7 +47,11 @@ espace = {finDeLigne}  | [ \t\f]
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 
+{type}                 { return symbol(CodesLexicaux.DECLARATION); }
+
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
+
+{idf}                   { return symbol(CodesLexicaux.IDF, yytext()); }
 
 {espace}               { }
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
