@@ -35,7 +35,7 @@ idf = [A-Za-z_][A-Za-z_0-9]*
 csteE = [0-9]+
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
-type = entier | boolean
+type = entier | booleen
 
 %%
 "//".*                                    { /* DO NOTHING */ }
@@ -46,8 +46,9 @@ type = entier | boolean
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
+"="                    { return symbol(CodesLexicaux.AFFECTATION); }
 
-{type}                 { return symbol(CodesLexicaux.DECLARATION); }
+{type}                 { return symbol(CodesLexicaux.DECLARATION,yytext()); }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
