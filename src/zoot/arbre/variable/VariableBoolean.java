@@ -3,17 +3,15 @@ package zoot.arbre.variable;
 import zoot.arbre.variable.Variable;
 
 public class VariableBoolean extends Variable {
-    protected VariableBoolean(int n) {
-        super(n);
+    protected VariableBoolean(String texte,int n) {
+        super(texte,n);
     }
 
-    @Override
-    public void verifier() {
-
-    }
 
     @Override
     public String toMIPS() {
+
+        String varaibleBool = variable;
         return null;
     }
 }

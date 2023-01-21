@@ -31,7 +31,11 @@ public class BlocDInstructions extends ArbreAbstrait {
     @Override
     public String toMIPS() {
         String code;
-        code =  ".text\n\n"+
+        code =
+               ".data\n"+
+                       "str: 	.asciiz\n"+
+                       "lus:	.space 256\n"+
+                ".text\n\n"+
                 "main :\n\n";
 
         for (Instruction instruction : programme) {

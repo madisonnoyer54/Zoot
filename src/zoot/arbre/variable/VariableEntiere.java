@@ -3,17 +3,14 @@ package zoot.arbre.variable;
 import zoot.arbre.variable.Variable;
 
 public class VariableEntiere extends Variable {
-    protected VariableEntiere(int n) {
-        super(n);
+    protected VariableEntiere(String texte, int n) {
+        super(texte, n);
     }
 
-    @Override
-    public void verifier() {
-
-    }
 
     @Override
     public String toMIPS() {
+        String varaibleEntiere = variable;
         return null;
     }
 }
