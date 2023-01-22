@@ -58,7 +58,7 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    PROGRAMME, DEBUT, FIN, POINTVIRGULE, ECRIRE,AFFECTATION ;
-terminal String    IDF, CSTENTIERE ;
+terminal String    IDF, CSTENTIERE,CSTBOOLEENNE, BOOLEEN, ENTIER ;
    
 /* Non terminals used in the grammar section.  */
 

@@ -33,9 +33,9 @@ import zoot.exceptions.AnalyseLexicaleException;
 
 idf = [A-Za-z_][A-Za-z_0-9]*
 csteE = [0-9]+
+csteB = (vrai|faux)
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
-type = entier | booleen
 
 %%
 "//".*                                    { /* DO NOTHING */ }
@@ -48,7 +48,8 @@ type = entier | booleen
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.AFFECTATION); }
 
-{type}                 { return symbol(CodesLexicaux.DECLARATION,yytext()); }
+"entier"               { return symbol(CodesLexicaux.ENTIER); }
+"booleen"              { return symbol(CodesLexicaux.BOOLEEN); }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
