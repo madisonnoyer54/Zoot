@@ -71,7 +71,7 @@ non terminal Expression EXP ;
  
 start with PROG ;
 
-PROG    ::=    PROGRAMME IDF DEBUT  LINST:li  FIN
+PROG    ::=     DEBUT  LINST:li  FIN
                 {: RESULT = li ; :}
                 ;
 
