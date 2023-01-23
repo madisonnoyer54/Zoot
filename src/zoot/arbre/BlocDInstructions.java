@@ -34,7 +34,6 @@ public class BlocDInstructions extends ArbreAbstrait {
         code =
                ".data\n"+
                        "str: 	.asciiz\n"+
-                       "lus:	.space 256\n"+
                 ".text\n\n"+
                 "main :\n\n";
 
