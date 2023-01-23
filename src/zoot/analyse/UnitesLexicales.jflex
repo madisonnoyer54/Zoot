@@ -2,15 +2,15 @@ package zoot.analyse ;
 
 import java_cup.runtime.*;
 import zoot.exceptions.AnalyseLexicaleException;
-      
+
 %%
-   
+
 %class AnalyseurLexical
 %public
 
 %line
 %column
-    
+
 %type Symbol
 %eofval{
         return symbol(CodesLexicaux.EOF) ;
@@ -31,30 +31,22 @@ import zoot.exceptions.AnalyseLexicaleException;
   }
 %}
 
-idf = [A-Za-z_][A-Za-z_0-9]*
 csteE = [0-9]+
-csteB = (vrai|faux)
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
 %%
 "//".*                                    { /* DO NOTHING */ }
 
+"variables"            { return symbol(CodesLexicaux.VARIABLES); }
 "debut"                { return symbol(CodesLexicaux.DEBUT); }
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
 
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
-"="                    { return symbol(CodesLexicaux.AFFECTATION); }
-
-"entier"               { return symbol(CodesLexicaux.ENTIER); }
-"booleen"              { return symbol(CodesLexicaux.BOOLEEN); }
 
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 
-{idf}                   { return symbol(CodesLexicaux.IDF, yytext()); }
-
 {espace}               { }
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
-
