@@ -38,6 +38,7 @@ espace = {finDeLigne}  | [ \t\f]
 %%
 "//".*                                    { /* DO NOTHING */ }
 
+
 "variables"            { return symbol(CodesLexicaux.VARIABLES); }
 "debut"                { return symbol(CodesLexicaux.DEBUT); }
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
@@ -50,3 +51,4 @@ espace = {finDeLigne}  | [ \t\f]
 
 {espace}               { }
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }
+

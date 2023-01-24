@@ -59,6 +59,7 @@ parser code {:
 
 terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE ;
 terminal String    CSTENTIERE ;
+
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait PROG, LINST ;
