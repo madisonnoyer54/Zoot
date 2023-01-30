@@ -101,3 +101,4 @@ DCL    ::=     TYPE:t IDF:id POINTVIRGULE
 EXP    ::=     CSTENTIERE:c
                 {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
                 ;
+
