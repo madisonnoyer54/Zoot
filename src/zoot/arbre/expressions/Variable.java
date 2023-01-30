@@ -1,9 +1,6 @@
-package zoot.arbre.variable;
+package zoot.arbre.expressions;
 
-import zoot.arbre.ArbreAbstrait;
-import zoot.arbre.expressions.Expression;
-
-public abstract class Variable extends Expression {
+public class Variable extends Expression {
 
     protected String variable;
     protected Variable(String texte, int n) {
@@ -14,6 +11,11 @@ public abstract class Variable extends Expression {
     @Override
     public void verifier() {
         throw new UnsupportedOperationException("fonction verfier non définie ") ;
+    }
+
+    @Override
+    public String toMIPS() {
+        return null;
     }
 
 }
