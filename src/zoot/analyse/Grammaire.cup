@@ -85,6 +85,9 @@ LINST   ::=     LINST:li  INST:i
 
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}
+                |
+                IDF:i EGALE EXP:e
+                {: RESULT = new Affectation(e, eleft + 1); :}
                 ;
 
 
@@ -92,9 +95,10 @@ LDCL   ::=      LDCL DCL | DCL;
 
 
 
-DCL    ::=     TYPE:t IDF:id POINTVIRGULE
+DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
 
+                    TDS.getInstance().ajouter(new Variable(idf, idfleft +1), new Symbole(t, 0)) ;
 
                 :}
                 ;
