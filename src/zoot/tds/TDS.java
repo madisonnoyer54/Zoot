@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TDS {
     private int compteurDeplace;
-    private Map<Entree, Symbole> tableDesSymboles;
+    private Map<String, Symbole> tableDesSymboles; //à revoir
     private static TDS instance = new TDS();
 
     public TDS() {
@@ -16,9 +16,9 @@ public class TDS {
         return instance;
     }
 
-    public void ajouter (Entree e, Symbole s){
+    public void ajouter (String idf, Symbole s){
 
     }
 
-    public void identifier(Entree e){}
+    public void identifier(String idf){}
 }
