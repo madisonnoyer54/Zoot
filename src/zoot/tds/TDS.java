@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TDS {
     private int compteurDeplace;
-    private Map<String, Symbole> tableDesSymboles; //à revoir
+    private HashMap<String, Symbole> tableDesSymboles; //à revoir
     private static TDS instance = new TDS();
 
     public TDS() {
