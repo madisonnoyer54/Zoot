@@ -28,6 +28,6 @@ public class TDS {
         return this.tableDesSymboles.get(idf);
     }
     public int getTailleZoneVariable(){
-        return 0;éci
+        return 0;
     }
 }
