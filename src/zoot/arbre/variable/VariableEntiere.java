@@ -1,6 +1,6 @@
 package zoot.arbre.variable;
 
-import zoot.arbre.variable.Variable;
+import zoot.arbre.expressions.Variable;
 
 public class VariableEntiere extends Variable {
     protected VariableEntiere(String texte, int n) {

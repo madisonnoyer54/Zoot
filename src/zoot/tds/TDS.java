@@ -17,8 +17,14 @@ public class TDS {
     }
 
     public void ajouter (String idf, Symbole s){
-
+        if (this.tableDesSymboles.containsKey(idf)) { // variable existe déjà double déclaration exception!!
+        }
+        this.tableDesSymboles.put(idf, s);
     }
 
-    public void identifier(String idf){}
+    public Symbole identifier(String idf){
+        if (!this.tableDesSymboles.containsKey(idf)) { //à générer exception variable non déclarée
+        }
+        return this.tableDesSymboles.get(idf);
+    }
 }

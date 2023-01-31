@@ -1,6 +1,6 @@
 package zoot.arbre.variable;
 
-import zoot.arbre.variable.Variable;
+import zoot.arbre.expressions.Variable;
 
 public class VariableBoolean extends Variable {
     protected VariableBoolean(String texte,int n) {
