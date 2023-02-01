@@ -1,14 +1,15 @@
 package zoot.arbre.instructions;
 
 import zoot.arbre.expressions.Expression;
-import zoot.arbre.expressions.Variable;
+import zoot.arbre.expressions.Idf;
 
 public class Affectation extends Instruction{
     protected Expression exp ;
-    protected Variable variable;
+    protected Idf variable;
 
-    public Affectation(Expression e,int n) {
+    public Affectation(String idf,Expression e,int n) {
         super(n);
+        variable = new Idf(idf,n);
         exp = e;
     }
 

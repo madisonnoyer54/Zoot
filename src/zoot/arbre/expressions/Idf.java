@@ -1,9 +1,9 @@
 package zoot.arbre.expressions;
 
-public class Variable extends Expression {
+public class Idf extends Expression {
 
     protected String variable;
-    protected Variable(String texte, int n) {
+    public Idf(String texte, int n) {
         super(n);
         variable = texte;
     }
