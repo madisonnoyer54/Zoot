@@ -6,16 +6,31 @@ public class Ecrire extends Instruction {
 
     protected Expression exp ;
 
+
+    /**
+     * Constructeur
+     * @param e
+     * @param n
+     */
     public Ecrire (Expression e, int n) {
         super(n) ;
         exp = e ;
     }
 
+
+    /**
+     * Fonction verifier, permet de verifier les informations
+     */
     @Override
     public void verifier() {
         //throw new UnsupportedOperationException("fonction verfier non définie ") ;
     }
 
+
+    /**
+     * Fonction toMips, traduction en mips
+     * @return
+     */
     @Override
     public String toMIPS() {
         String code;

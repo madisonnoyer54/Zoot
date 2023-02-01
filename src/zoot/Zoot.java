@@ -11,6 +11,11 @@ import java.util.logging.Logger;
 
 public class Zoot {
 
+
+    /**
+     * Constructeur
+     * @param nomFichier
+     */
     public Zoot(String nomFichier) {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(nomFichier)));
@@ -35,6 +40,10 @@ public class Zoot {
         }
     }
 
+    /**
+     * Main
+     * @param args
+     */
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("Nombre incorrect d'arguments") ;

@@ -1,11 +1,21 @@
 package zoot.arbre.expressions;
 
 public class ConstanteEntiere extends Constante {
-    
+
+    /**
+     * Constructeur
+     * @param texte
+     * @param n
+     */
     public ConstanteEntiere(String texte, int n) {
         super(texte, n) ;
     }
 
+
+    /**
+     * Fonction toMips, traduction en mips
+     * @return
+     */
     @Override
     public String toMIPS() {
         String ConstanteEntiere = cste;
