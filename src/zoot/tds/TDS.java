@@ -16,16 +16,16 @@ public class TDS {
         return instance;
     }
 
-    public void ajouter (String idf, Symbole s){
-        if (this.tableDesSymboles.containsKey(idf)) { // variable existe déjà double déclaration exception!!
+    public void ajouter (Entree e, Symbole s){
+        if (this.tableDesSymboles.containsKey(e)) { // variable existe déjà double déclaration exception!!
         }
-        this.tableDesSymboles.put(idf, s);
+        this.tableDesSymboles.put(e, s);
     }
 
-    public Symbole identifier(String idf){
-        if (!this.tableDesSymboles.containsKey(idf)) { //à générer exception variable non déclarée
+    public Symbole identifier(Entree e){
+        if (!this.tableDesSymboles.containsKey(e)) { //à générer exception variable non déclarée
         }
-        return this.tableDesSymboles.get(idf);
+        return this.tableDesSymboles.get(e);
     }
     public int getTailleZoneVariable(){
         return 0;

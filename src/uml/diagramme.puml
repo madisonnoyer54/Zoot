@@ -75,11 +75,10 @@ class ConstanteBooleenne {
 
 class TDS {
 int compteurDeplace
-Map<String, Symbole> tableDesSymboles
 TDS instance
 TDS getInstance()
-void ajouter (String idf, Symbole s)
-Symbole identifier(String idf)
+void ajouter (Entree e, Symbole s)
+Symbole identifier(Entree e)
 int getTailleZoneVariable()
 }
 
@@ -90,6 +89,8 @@ String getType()
 int getDeplacement()
 void setType(String type)
 }
+
+TDS --"*" Symbole
 
 ConstanteEntiere  -up-|> Constante
 ConstanteBooleenne  -up-|> Constante
