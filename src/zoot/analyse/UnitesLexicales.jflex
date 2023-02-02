@@ -32,7 +32,7 @@ import zoot.exceptions.AnalyseLexicaleException;
 %}
 
 csteE = [0-9]+
-idf = [a-zA-Z]+
+idf = [a-zA-Z0-9_]+
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 type = (entier)|(booleen)
