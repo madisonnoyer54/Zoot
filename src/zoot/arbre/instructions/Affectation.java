@@ -36,6 +36,11 @@ public class Affectation extends Instruction{
      */
     @Override
     public String toMIPS() {
-        return null;
+        String code;
+
+        code = "# "+variable.toString()+"="+exp.toString()+"\n";
+
+
+        return code;
     }
 }
