@@ -7,11 +7,9 @@ public class Symbole {
     /**
      * Constructeur
      * @param type
-     * @param depl
      */
-    public Symbole(String type, int depl) {
+    public Symbole(String type) {
         this.type = type;
-        this.deplacement = depl;
     }
 
     /**

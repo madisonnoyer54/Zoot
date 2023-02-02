@@ -35,7 +35,7 @@ csteE = [0-9]+
 idf = [a-zA-Z]+
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
-type = entier | booleen
+type = (entier)|(booleen)
 
 %%
 "//".*                                    { /* DO NOTHING */ }
@@ -52,10 +52,10 @@ type = entier | booleen
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.EGALE); }
 
+{type}                 { return symbol(CodesLexicaux.TYPE, yytext());}
+
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 {idf}                  { return symbol(CodesLexicaux.IDF, yytext());}
-
-{type}                 { return symbol(CodesLexicaux.TYPE, yytext());}
 
 {espace}               { }
 .                      { throw new AnalyseLexicaleException(yyline, yycolumn, yytext()) ; }

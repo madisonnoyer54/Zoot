@@ -3,6 +3,7 @@ package zoot.analyse ;
 import java.util.*;
 import zoot.arbre.* ;
 import zoot.arbre.expressions.* ;
+import zoot.tds.*;
 import zoot.arbre.instructions.* ;
 import zoot.exceptions.AnalyseSyntaxiqueException;
 
@@ -101,12 +102,12 @@ LDCL   ::=      LDCL DCL | DCL;
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
-                    RESULT = new TDS();
+                    TDS.getInstance().ajouter(new Entree(idf), new Symbole(t));
                 :}
                 ;
 
-
 EXP    ::=     CSTENTIERE:c
                 {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
+
                 ;
 
