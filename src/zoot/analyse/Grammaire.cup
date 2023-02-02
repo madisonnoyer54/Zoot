@@ -74,13 +74,17 @@ PROG    ::=     VARIABLES LDCL DEBUT LINST:li FIN
                 ;
 
 LINST   ::=     LINST:li  INST:i
-                {: ((BlocDInstructions)li).ajouter(i) ;
-                   RESULT = li ; :}
+                {:
+                    ((BlocDInstructions)li).ajouter(i) ;
+                    RESULT = li ;
+                :}
         |
                 INST:i
-                {: BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
-                   b.ajouter(i) ;
-                   RESULT = b ; :}
+                {:
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    b.ajouter(i) ;
+                    RESULT = b ;
+                :}
                 ;
 
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
@@ -97,7 +101,7 @@ LDCL   ::=      LDCL DCL | DCL;
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
-
+                    RESULT = new TDS();
                 :}
                 ;
 
