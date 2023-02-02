@@ -1,8 +1,13 @@
 package zoot.arbre.expressions;
 
+import zoot.tds.Entree;
+import zoot.tds.TDS;
+
 public class Idf extends Expression {
 
+
     protected String variable;
+    private int depl;
 
     /**
      * Constructeur
@@ -13,7 +18,6 @@ public class Idf extends Expression {
         super(n);
         variable = texte;
     }
-
 
     /**
      * Fonction verifier, permet de verifier les informations
@@ -30,8 +34,6 @@ public class Idf extends Expression {
      */
     @Override
     public String toMIPS() {
-        return null;
+        return this.depl + "($s7)";
     }
-
-
 }
