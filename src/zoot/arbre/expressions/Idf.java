@@ -17,6 +17,7 @@ public class Idf extends Expression {
     public Idf(String texte, int n) {
         super(n);
         variable = texte;
+        depl = TDS.getInstance().getTailleZoneVariable() * 4;
     }
 
     /**
@@ -35,5 +36,10 @@ public class Idf extends Expression {
     @Override
     public String toMIPS() {
         return this.depl + "($s7)";
+    }
+
+    @Override
+    public String toString() {
+        return variable;
     }
 }

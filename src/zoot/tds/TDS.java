@@ -31,7 +31,6 @@ public class TDS {
      * @param s
      */
     public void ajouter (Entree e, Symbole s){
-
         // variable existe déjà double déclaration exception!!
         if (this.tableDesSymboles.containsKey(e)) {
         }
@@ -45,7 +44,6 @@ public class TDS {
      * @return symbole
      */
     public Symbole identifier(Entree e){
-
         //à générer exception variable non déclarée
         if (!this.tableDesSymboles.containsKey(e)) {
         }

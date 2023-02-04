@@ -36,10 +36,13 @@ public class Affectation extends Instruction{
      */
     @Override
     public String toMIPS() {
-        String code;
+        // On met dans v0
+        String code = "";
 
-        code = //"# "+variable.toString()+"="+exp.toString()+"\n" +
-        exp.toMIPS()+ "\nsw $v0, "+variable.toMIPS()+"\n";
+
+        code += "# Affectation (" + variable.toString() +" = "+ exp.toString()+")\n"+
+                exp.toMIPS()+
+                "\tsw, $v0, "+ variable.toMIPS()+"\n\n";
 
         return code;
     }
