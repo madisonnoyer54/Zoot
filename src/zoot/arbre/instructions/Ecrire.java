@@ -41,7 +41,7 @@ public class Ecrire extends Instruction {
                 +"\tli $v0, 1  # v0 <-- 1 (code du print)\n"
                 +"\tsyscall  # Afficher\n\n" +
 
-                "# Ecrire une chaîne de caractères\n"+
+                "# Ecrire un saut de ligne\n"+
                 "\tla $a0, str # $a0 <- adresse de la chaîne à écrire\n" +
                 "\tli $v0,4 # $v0 <- code du print\n" +
                 "\tsyscall # afficher\n\n";
