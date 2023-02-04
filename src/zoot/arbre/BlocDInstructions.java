@@ -1,6 +1,7 @@
 package zoot.arbre;
 
 import zoot.arbre.instructions.Instruction;
+import zoot.tds.TDS;
 
 import java.util.ArrayList;
 
@@ -50,20 +51,29 @@ public class BlocDInstructions extends ArbreAbstrait {
     @Override
     public String toMIPS() {
         String code;
+
+        // Début du programme + str( permet le saut de ligne)
         code =
                ".data\n"+
                        "str: 	.asciiz\n"+
                 ".text\n\n"+
                 "main :\n\n";
 
+        // Les déclaration des variables
+        code = code + "# Reserve la place des variables\n"+
+                "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
+
+        // Les Instructions
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();
         }
+
+        // Fin du programme
         code =  code +"\nend :\n" +
                 "\tli $v0, 10\n" +
                 "\tsyscall";
         return code;
-        //throw new UnsupportedOperationException("fonction toMips non définie ") ;
+
     }
 
     @Override

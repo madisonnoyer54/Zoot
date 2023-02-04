@@ -38,7 +38,7 @@ public class Affectation extends Instruction{
     public String toMIPS() {
         String code;
 
-        code = "# "+variable.toString()+"="+exp.toString()+"\n" +
+        code = //"# "+variable.toString()+"="+exp.toString()+"\n" +
         exp.toMIPS()+ "\nsw $v0, "+variable.toMIPS()+"\n";
 
         return code;

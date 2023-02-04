@@ -52,6 +52,6 @@ public class TDS {
         return this.tableDesSymboles.get(e);
     }
     public int getTailleZoneVariable(){
-        return 0;
+        return tableDesSymboles.size();
     }
 }
