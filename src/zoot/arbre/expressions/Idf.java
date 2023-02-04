@@ -1,13 +1,14 @@
 package zoot.arbre.expressions;
 
 import zoot.tds.Entree;
+import zoot.tds.Symbole;
 import zoot.tds.TDS;
+
+import java.util.HashMap;
 
 public class Idf extends Expression {
 
-
     protected String variable;
-    private int depl;
 
     /**
      * Constructeur
@@ -17,7 +18,7 @@ public class Idf extends Expression {
     public Idf(String texte, int n) {
         super(n);
         variable = texte;
-        depl = TDS.getInstance().getTailleZoneVariable() * 4;
+
     }
 
     /**
@@ -35,7 +36,19 @@ public class Idf extends Expression {
      */
     @Override
     public String toMIPS() {
-        return this.depl + "($s7)";
+        return getSymbole().getDeplacement() + "($s7)";
+    }
+
+    public Symbole getSymbole(){
+        Symbole symbole = null;
+        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        for (Entree et : list.keySet()) {
+            if(et.getIdf().equals(variable)){
+                symbole = TDS.getInstance().identifier(et);
+            }
+        }
+
+        return symbole;
     }
 
     @Override

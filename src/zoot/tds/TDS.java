@@ -13,6 +13,7 @@ public class TDS {
      */
     public TDS() {
         this.tableDesSymboles = new HashMap<>();
+        compteurDeplace =0;
     }
 
 
@@ -35,6 +36,8 @@ public class TDS {
         if (this.tableDesSymboles.containsKey(e)) {
         }
         this.tableDesSymboles.put(e, s);
+        s.setDeplacement(compteurDeplace);
+        compteurDeplace-= 4;
     }
 
 
@@ -49,7 +52,29 @@ public class TDS {
         }
         return this.tableDesSymboles.get(e);
     }
+
+
+    /**
+     * Getteur
+     * @return taille de la list
+     */
     public int getTailleZoneVariable(){
         return tableDesSymboles.size();
+    }
+
+    public int getCompteurDeplace() {
+        return compteurDeplace;
+    }
+
+    public void setCompteurDeplace(int compteurDeplace) {
+        this.compteurDeplace = compteurDeplace;
+    }
+
+    public HashMap<Entree, Symbole> getTableDesSymboles() {
+        return tableDesSymboles;
+    }
+
+    public void setTableDesSymboles(HashMap<Entree, Symbole> tableDesSymboles) {
+        this.tableDesSymboles = tableDesSymboles;
     }
 }

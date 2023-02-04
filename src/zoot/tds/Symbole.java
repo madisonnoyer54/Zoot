@@ -10,6 +10,7 @@ public class Symbole {
      */
     public Symbole(String type) {
         this.type = Type.ENTIER.quelleType(type);
+        deplacement = 0;
     }
 
     /**
@@ -46,4 +47,6 @@ public class Symbole {
     public void setDeplacement(int deplacement) {
         this.deplacement = deplacement;
     }
+
+
 }
