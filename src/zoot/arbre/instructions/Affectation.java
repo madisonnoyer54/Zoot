@@ -38,8 +38,6 @@ public class Affectation extends Instruction{
     public String toMIPS() {
         // On met dans v0
         String code = "";
-
-
         code += "# Affectation (" + variable.toString() +" = "+ exp.toString()+")\n"+
                 exp.toMIPS()+
                 "\tsw, $v0, "+ variable.toMIPS()+"\n\n";

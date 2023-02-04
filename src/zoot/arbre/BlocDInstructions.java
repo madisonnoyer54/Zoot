@@ -55,12 +55,15 @@ public class BlocDInstructions extends ArbreAbstrait {
         // Début du programme + str( permet le saut de ligne)
         code =
                ".data\n"+
-                       "str: 	.asciiz\n"+
+                       "str: 	.asciiz \"\n\"\n"+
                 ".text\n\n"+
                 "main :\n\n";
 
         // Les déclaration des variables
-        code = code + "# Reserve la place des variables\n"+
+        code = code +
+                "# Initialiser $s7 avec $sp\n"+
+                "\tmove $s7,$sp\n"+
+                "# Reserve la place des variables\n"+
                 "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
 
         // Les Instructions
