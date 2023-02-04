@@ -26,4 +26,8 @@ public class ConstanteBooleenne extends Constante {
     public Type getType(){
         return Type.BOOLEEN;
     }
+
+    public boolean estVariable(){
+        return false;
+    }
     }

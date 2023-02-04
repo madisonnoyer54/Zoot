@@ -1,6 +1,12 @@
 package zoot.arbre.instructions;
 
 import zoot.arbre.expressions.Expression;
+import zoot.exceptions.AnalyseVariableNonDeclare;
+import zoot.tds.Entree;
+import zoot.tds.Symbole;
+import zoot.tds.TDS;
+
+import java.util.HashMap;
 
 public class Ecrire extends Instruction {
 
@@ -23,7 +29,22 @@ public class Ecrire extends Instruction {
      */
     @Override
     public void verifier() {
-        //throw new UnsupportedOperationException("fonction verfier non définie ") ;
+        if(exp.estVariable()){
+            // Vérifie que la variable à étais initialiser
+            boolean rep = false;
+            HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
+            for (Entree et : list.keySet()) {
+                if(et.getIdf().toString().equals(exp.toString())){
+                    rep = true;
+                }
+            }
+            if(!rep){
+                throw new AnalyseVariableNonDeclare("La variable dans ecrire "+ exp.toString()+ " n'a pas été déclarer");
+            }
+
+            // Vérifier que la vériable à reçu une affectation
+        }
+
     }
 
 

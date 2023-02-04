@@ -40,7 +40,10 @@ public class BlocDInstructions extends ArbreAbstrait {
      */
     @Override
     public void verifier() {
-        //throw new UnsupportedOperationException("fonction verifier non définie ") ;
+        // Les Instructions
+        for (Instruction instruction : programme) {
+            instruction.verifier();
+        }
     }
 
 

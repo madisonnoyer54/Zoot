@@ -17,4 +17,8 @@ public abstract class Expression extends ArbreAbstrait {
     public Type getType(){
         return null;
     }
+
+    public boolean estVariable(){
+        return false;
+    }
 }

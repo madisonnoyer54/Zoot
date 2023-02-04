@@ -55,4 +55,8 @@ public class Idf extends Expression {
     public String toString() {
         return variable;
     }
+
+    public boolean estVariable(){
+        return true;
+    }
 }

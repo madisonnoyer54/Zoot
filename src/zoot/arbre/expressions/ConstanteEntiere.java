@@ -29,5 +29,8 @@ public class ConstanteEntiere extends Constante {
     public Type getType(){
         return Type.ENTIER;
     }
+    public boolean estVariable(){
+        return false;
+    }
 }
 

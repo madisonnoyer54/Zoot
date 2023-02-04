@@ -39,4 +39,8 @@ public abstract class Constante extends Expression {
         return null;
     }
 
+    public boolean estVariable(){
+        return false;
+    }
+
 }
