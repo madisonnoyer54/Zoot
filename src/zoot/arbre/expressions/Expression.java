@@ -1,6 +1,7 @@
 package zoot.arbre.expressions;
 
 import zoot.arbre.ArbreAbstrait;
+import zoot.tds.Type;
 
 public abstract class Expression extends ArbreAbstrait {
 
@@ -12,4 +13,8 @@ public abstract class Expression extends ArbreAbstrait {
         super(n) ;
     }
 
+
+    public Type getType(){
+        return null;
+    }
 }

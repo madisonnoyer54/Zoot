@@ -32,6 +32,7 @@ import zoot.exceptions.AnalyseLexicaleException;
 %}
 
 csteE = [0-9]+
+csteB = (vrai)|(faux)
 idf = [a-zA-Z0-9_]+
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
@@ -54,6 +55,7 @@ type = (entier)|(booleen)
 
 {type}                 { return symbol(CodesLexicaux.TYPE, yytext());}
 
+{csteB}                { return symbol(CodesLexicaux.CSTBOOLEEN, yytext()); }
 {csteE}      	       { return symbol(CodesLexicaux.CSTENTIERE, yytext()); }
 {idf}                  { return symbol(CodesLexicaux.IDF, yytext());}
 

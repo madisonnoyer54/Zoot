@@ -39,9 +39,16 @@ public enum Type {
      * @return
      */
     public Type quelleType(String type){
-        if(type == "entier"){
+        if(type.equals("entier")){
             return Type.ENTIER;
         }
         return Type.BOOLEEN;
+    }
+
+    public Boolean concordance(Type type){
+        if(this.equals(type)){
+            return true;
+        }
+        return false;
     }
 }

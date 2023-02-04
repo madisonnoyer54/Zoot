@@ -58,7 +58,7 @@ parser code {:
 /* Terminals (tokens returned by the scanner).  */
 
 terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE;
-terminal String    CSTENTIERE, IDF, TYPE ;
+terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
 non terminal LDCL, DCL;
@@ -107,9 +107,12 @@ DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 ;
 
 EXP    ::=     CSTENTIERE:c
-                {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
+               {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
                |
                IDF:i
                {: RESULT = new Idf(i, ileft + 1); :}
+               |
+               CSTBOOLEEN:b
+               {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
                 ;
 

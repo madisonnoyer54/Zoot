@@ -1,5 +1,8 @@
 package zoot.arbre.expressions;
-    public class ConstanteBooleenne extends Constante {
+
+import zoot.tds.Type;
+
+public class ConstanteBooleenne extends Constante {
 
         /**
          * Contructeur
@@ -19,4 +22,8 @@ package zoot.arbre.expressions;
         public String toMIPS() {
             return null;
         }
+
+    public Type getType(){
+        return Type.BOOLEEN;
+    }
     }

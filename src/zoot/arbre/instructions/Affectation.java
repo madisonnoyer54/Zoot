@@ -2,6 +2,8 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
+import zoot.exceptions.AnalyseException;
+import zoot.exceptions.AnalyseSyntaxiqueException;
 
 public class Affectation extends Instruction{
     protected Expression exp ;
@@ -18,6 +20,7 @@ public class Affectation extends Instruction{
         super(n);
         variable = new Idf(idf,n);
         exp = e;
+        verifier();
     }
 
 
@@ -26,7 +29,9 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
-
+        if(!variable.getSymbole().getType().concordance(exp.getType())){
+            throw new AnalyseSyntaxiqueException("Le type de la variable"+ variable.toString()+"n'est pas le même type de l'expression");
+        }
     }
 
 

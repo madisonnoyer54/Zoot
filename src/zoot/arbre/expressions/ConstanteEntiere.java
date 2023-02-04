@@ -1,5 +1,7 @@
 package zoot.arbre.expressions;
 
+import zoot.tds.Type;
+
 public class ConstanteEntiere extends Constante {
 
     /**
@@ -24,5 +26,8 @@ public class ConstanteEntiere extends Constante {
         //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
+    public Type getType(){
+        return Type.ENTIER;
+    }
 }
 

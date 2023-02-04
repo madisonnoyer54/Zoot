@@ -1,5 +1,7 @@
 package zoot.arbre.expressions;
 
+import zoot.tds.Type;
+
 public abstract class Constante extends Expression {
 
     protected String cste ;
@@ -31,6 +33,10 @@ public abstract class Constante extends Expression {
     @Override
     public String toString() {
         return cste ;
+    }
+
+    public Type getType(){
+        return null;
     }
 
 }
