@@ -40,7 +40,7 @@ public class Affectation extends Instruction{
         String code = "";
         code += "# Affectation (" + variable.toString() +" = "+ exp.toString()+")\n"+
                 exp.toMIPS()+
-                "\tsw, $v0, "+ variable.toMIPS()+"\n\n";
+                "\tsw $v0, "+ variable.getSymbole().getDeplacement()+"($s7)" +"\n\n";
 
         return code;
     }

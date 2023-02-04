@@ -55,8 +55,8 @@ public class BlocDInstructions extends ArbreAbstrait {
         // Début du programme + str( permet le saut de ligne)
         code =
                ".data\n"+
-                       "str: 	.asciiz \"\n\"\n"+
-                ".text\n\n"+
+                       "str: 	.asciiz \"\\n\"\n"+
+                       ".text\n\n"+
                 "main :\n\n";
 
         // Les déclaration des variables
