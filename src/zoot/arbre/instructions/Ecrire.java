@@ -41,8 +41,6 @@ public class Ecrire extends Instruction {
             if(!rep){
                 throw new AnalyseVariableNonDeclare("La variable dans ecrire "+ exp.toString()+ " n'a pas été déclarer");
             }
-
-            // Vérifier que la vériable à reçu une affectation
         }
 
     }
