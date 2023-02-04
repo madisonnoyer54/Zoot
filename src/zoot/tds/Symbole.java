@@ -1,7 +1,7 @@
 package zoot.tds;
 
 public class Symbole {
-    private String type;
+    private Type type;
     private int deplacement;
 
     /**
@@ -9,14 +9,14 @@ public class Symbole {
      * @param type
      */
     public Symbole(String type) {
-        this.type = type;
+        this.type = Type.ENTIER.quelleType(type);
     }
 
     /**
      * Getteur
      * @return le type
      */
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
@@ -34,7 +34,7 @@ public class Symbole {
      * Setteur
      * @param type
      */
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
