@@ -1,5 +1,6 @@
 package zoot.arbre.expressions;
 
+import zoot.exceptions.AnalyseVaribleNomDejaPris;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
@@ -18,6 +19,7 @@ public class Idf extends Expression {
     public Idf(String texte, int n) {
         super(n);
         variable = texte;
+        verifier();
 
     }
 
@@ -26,7 +28,17 @@ public class Idf extends Expression {
      */
     @Override
     public void verifier() {
-        throw new UnsupportedOperationException("fonction verfier non définie ") ;
+        int result = 0;
+        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        for (Entree et : list.keySet()) {
+            if(et.getIdf().toString().equals(variable.toString())){
+               result += 1;
+            }
+        }
+
+        if( result>=2){
+            throw new AnalyseVaribleNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ variable.toString());
+        }
     }
 
 
