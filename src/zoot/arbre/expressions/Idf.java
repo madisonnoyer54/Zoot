@@ -68,6 +68,10 @@ public class Idf extends Expression {
         return variable;
     }
 
+    /**
+     * Getteur
+     * @return booleen est une variable
+     */
     public boolean estVariable(){
         return true;
     }

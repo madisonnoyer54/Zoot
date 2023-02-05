@@ -62,18 +62,35 @@ public class TDS {
         return tableDesSymboles.size();
     }
 
+    /**
+     * Getteur
+     * @return compteur deplacement
+     */
     public int getCompteurDeplace() {
         return compteurDeplace;
     }
 
+
+    /**
+     * Setteur
+     * @param compteurDeplace
+     */
     public void setCompteurDeplace(int compteurDeplace) {
         this.compteurDeplace = compteurDeplace;
     }
 
+    /**
+     * Getteur
+     * @return Hashmap table des symboles
+     */
     public HashMap<Entree, Symbole> getTableDesSymboles() {
         return tableDesSymboles;
     }
 
+    /**
+     * Setteur
+     * @param tableDesSymboles
+     */
     public void setTableDesSymboles(HashMap<Entree, Symbole> tableDesSymboles) {
         this.tableDesSymboles = tableDesSymboles;
     }

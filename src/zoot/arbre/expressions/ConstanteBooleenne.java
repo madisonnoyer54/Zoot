@@ -23,10 +23,18 @@ public class ConstanteBooleenne extends Constante {
             return null;
         }
 
+    /**
+     * Getteur
+     * @return type de la constante
+     */
     public Type getType(){
         return Type.BOOLEEN;
     }
 
+    /**
+     * Getteur
+     * @return booleen est une variable
+     */
     public boolean estVariable(){
         return false;
     }

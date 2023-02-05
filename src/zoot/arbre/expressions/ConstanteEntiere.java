@@ -26,9 +26,18 @@ public class ConstanteEntiere extends Constante {
         //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
+    /**
+     * Getteur
+     * @return type de la constante
+     */
     public Type getType(){
         return Type.ENTIER;
     }
+
+    /**
+     * Getteur
+     * @return booleen est une variable
+     */
     public boolean estVariable(){
         return false;
     }

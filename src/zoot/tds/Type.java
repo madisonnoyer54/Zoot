@@ -45,10 +45,12 @@ public enum Type {
         return Type.BOOLEEN;
     }
 
+    /**
+     * Fonction concordance
+     * @param type
+     * @return
+     */
     public Boolean concordance(Type type){
-        if(this.equals(type)){
-            return true;
-        }
-        return false;
+        return this.equals(type);
     }
 }

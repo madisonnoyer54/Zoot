@@ -14,10 +14,18 @@ public abstract class Expression extends ArbreAbstrait {
     }
 
 
+    /**
+     * Getteur
+     * @return type expression
+     */
     public Type getType(){
         return null;
     }
 
+    /**
+     * Getteur
+     * @return booleen est une variable
+     */
     public boolean estVariable(){
         return false;
     }
