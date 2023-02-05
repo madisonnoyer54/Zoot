@@ -15,12 +15,12 @@ public class ConstanteBooleenne extends Constante {
 
 
         /**
-         * Fonction toMips, traduction en mips
+         * Fonction toMips, traduction en mips si la constante vaut vrai on stock 1 sinon on stock 0
          * @return
          */
         @Override
         public String toMIPS() {
-            return null;
+            return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
         }
 
     /**
