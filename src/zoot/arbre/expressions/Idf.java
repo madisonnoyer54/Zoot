@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class Idf extends Expression {
 
     protected String variable;
+    private Symbole symbole;
 
     /**
      * Constructeur
@@ -33,6 +34,7 @@ public class Idf extends Expression {
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(variable.toString())){
                result += 1;
+                this.symbole = TDS.getInstance().identifier(et);
             }
         }
 
@@ -74,5 +76,10 @@ public class Idf extends Expression {
      */
     public boolean estVariable(){
         return true;
+    }
+
+    @Override
+    public boolean estBool() {
+        return (symbole.getType().getType().equals("booleen"));
     }
 }

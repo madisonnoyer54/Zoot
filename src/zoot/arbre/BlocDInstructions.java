@@ -59,6 +59,10 @@ public class BlocDInstructions extends ArbreAbstrait {
         code =
                ".data\n"+
                        "str: 	.asciiz \"\\n\"\n"+
+                       "vrai:\t.word 1\n"+
+                       "faux:\t.word 0\n"+
+                       "vraiAff:\t.asciiz \"vrai\"\n"+
+                       "fauxAff:\t.asciiz \"faux\"\n"+
                        ".text\n\n"+
                 "main :\n\n";
 

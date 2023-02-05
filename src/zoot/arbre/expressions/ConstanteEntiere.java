@@ -41,5 +41,13 @@ public class ConstanteEntiere extends Constante {
     public boolean estVariable(){
         return false;
     }
+
+    /**
+     * Fonction qui indique si la constante est booléene
+     * @return
+     */
+    public boolean estBool() {
+        return false;
+    }
 }
 

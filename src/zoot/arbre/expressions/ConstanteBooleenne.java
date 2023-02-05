@@ -13,6 +13,14 @@ public class ConstanteBooleenne extends Constante {
             super(texte, n);
         }
 
+        /**
+         * Fonction qui indique si la constante est booléene
+         * @return
+         */
+        public boolean estBool() {
+                return true;
+        }
+
 
         /**
          * Fonction toMips, traduction en mips si la constante vaut vrai on stock 1 sinon on stock 0

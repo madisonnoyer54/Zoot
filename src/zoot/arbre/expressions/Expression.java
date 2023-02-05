@@ -29,4 +29,5 @@ public abstract class Expression extends ArbreAbstrait {
     public boolean estVariable(){
         return false;
     }
+    public abstract boolean estBool();
 }
