@@ -1,5 +1,7 @@
 package zoot.tds;
 
+import zoot.exceptions.AnalyseVariableNomDejaPris;
+
 import java.util.HashMap;
 
 public class TDS {
@@ -33,8 +35,15 @@ public class TDS {
      */
     public void ajouter (Entree e, Symbole s){
         // variable existe déjà double déclaration exception!!
-        if (this.tableDesSymboles.containsKey(e)) {
+        int result = 0;
+        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        for (Entree et : list.keySet()) {
+            if(et.getIdf().toString().equals(e.idf.toString())){
+                throw new AnalyseVariableNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ e.idf.toString());
+
+            }
         }
+
         this.tableDesSymboles.put(e, s);
         s.setDeplacement(compteurDeplace);
         compteurDeplace-= 4;
