@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class Idf extends Expression {
 
     protected String variable;
-    private Symbole symbole;
+
 
     /**
      * Constructeur
@@ -26,6 +26,7 @@ public class Idf extends Expression {
 
     }
 
+
     /**
      * Fonction verifier, permet de verifier les informations
      */
@@ -36,7 +37,6 @@ public class Idf extends Expression {
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(variable.toString())){
                result += 1;
-                this.symbole = TDS.getInstance().identifier(et);
             }
         }
 
@@ -49,13 +49,18 @@ public class Idf extends Expression {
 
     /**
      * Fonction toMips, traduction en mips
-     * @return
+     * @return le mips en string
      */
     @Override
     public String toMIPS() {
         return "\tlw $v0,"+getSymbole().getDeplacement() + "($s7)\n";
     }
 
+
+    /**
+     * Getteur
+     * @return le symbole
+     */
     public Symbole getSymbole(){
         Symbole symbole = null;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
@@ -68,15 +73,18 @@ public class Idf extends Expression {
         return symbole;
     }
 
+
     @Override
     public String toString() {
         return variable;
     }
 
+
     @Override
     public Type getType() {
-        return symbole.getType();
+        return getSymbole().getType();
     }
+
 
     /**
      * Getteur
@@ -86,8 +94,9 @@ public class Idf extends Expression {
         return true;
     }
 
+
     @Override
     public boolean estBool() {
-        return (symbole.getType().getType().equals("booleen"));
+        return (getSymbole().getType().getType().equals("booleen"));
     }
 }

@@ -2,6 +2,7 @@ package zoot.exceptions;
 
 public abstract class AnalyseException extends RuntimeException {
 
+
     /**
      * Constructeur
      * @param m

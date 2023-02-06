@@ -14,6 +14,7 @@ public abstract class ArbreAbstrait {
         noLigne = n ;
     }
 
+
     /**
      * Getteur
      * @return numéro de ligne du début de l'instruction

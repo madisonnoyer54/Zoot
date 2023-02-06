@@ -16,7 +16,6 @@ public abstract class Expression extends ArbreAbstrait {
 
     /**
      * Getteur
-     *
      * @return type expression
      */
     public abstract Type getType();
@@ -28,5 +27,10 @@ public abstract class Expression extends ArbreAbstrait {
     public boolean estVariable(){
         return false;
     }
+
+    /**
+     * Fonction qui permet de savoir si l'expression est booleen.
+     * @return vrai si la constante est booleen, faux sinon
+     */
     public abstract boolean estBool();
 }

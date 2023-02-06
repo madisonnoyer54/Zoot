@@ -16,7 +16,7 @@ public class ConstanteEntiere extends Constante {
 
     /**
      * Fonction toMips, traduction en mips
-     * @return
+     * @return le mips
      */
     @Override
     public String toMIPS() {
@@ -26,6 +26,7 @@ public class ConstanteEntiere extends Constante {
         //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
+
     /**
      * Getteur
      * @return type de la constante
@@ -33,6 +34,7 @@ public class ConstanteEntiere extends Constante {
     public Type getType(){
         return Type.ENTIER;
     }
+
 
     /**
      * Getteur
@@ -42,9 +44,10 @@ public class ConstanteEntiere extends Constante {
         return false;
     }
 
+
     /**
      * Fonction qui indique si la constante est booléene
-     * @return
+     * @return vrai si la constante est booleen, faux sinon
      */
     public boolean estBool() {
         return false;

@@ -52,7 +52,7 @@ public class Ecrire extends Instruction {
 
     /**
      * Fonction toMips, traduction en mips
-     * @return
+     * @return le mips en string
      */
     @Override
     public String toMIPS() {

@@ -81,6 +81,7 @@ public class TDS {
         return tableDesSymboles.size();
     }
 
+
     /**
      * Getteur
      * @return compteur deplacement
@@ -98,6 +99,7 @@ public class TDS {
         this.compteurDeplace = compteurDeplace;
     }
 
+
     /**
      * Getteur
      * @return Hashmap table des symboles
@@ -105,6 +107,7 @@ public class TDS {
     public HashMap<Entree, Symbole> getTableDesSymboles() {
         return tableDesSymboles;
     }
+
 
     /**
      * Setteur

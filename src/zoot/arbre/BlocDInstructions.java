@@ -49,7 +49,7 @@ public class BlocDInstructions extends ArbreAbstrait {
 
     /**
      * Fonction toMips, traduction en mips
-     * @return
+     * @return le mips en string
      */
     @Override
     public String toMIPS() {
@@ -85,6 +85,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         return code;
 
     }
+
 
     @Override
     public String toString() {

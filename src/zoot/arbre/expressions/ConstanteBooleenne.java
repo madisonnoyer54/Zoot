@@ -13,9 +13,10 @@ public class ConstanteBooleenne extends Constante {
             super(texte, n);
         }
 
+
         /**
          * Fonction qui indique si la constante est booléene
-         * @return
+         * @return vrai si la constante est booleene, faux sinon
          */
         public boolean estBool() {
                 return true;
@@ -24,12 +25,13 @@ public class ConstanteBooleenne extends Constante {
 
         /**
          * Fonction toMips, traduction en mips si la constante vaut vrai on stock 1 sinon on stock 0
-         * @return
+         * @return le code mips en string
          */
         @Override
         public String toMIPS() {
             return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
         }
+
 
         /**
          * Getteur
@@ -38,6 +40,7 @@ public class ConstanteBooleenne extends Constante {
         public Type getType(){
             return Type.BOOLEEN;
         }
+
 
         /**
          * Getteur

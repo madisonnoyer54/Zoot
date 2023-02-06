@@ -28,15 +28,25 @@ public abstract class Constante extends Expression {
 
     /**
      * Fonction toString
-     * @return
+     * @return la constante
      */
     @Override
     public String toString() {
         return cste ;
     }
 
+
+    /**
+     * Getteur
+     * @return le type
+     */
     public abstract Type getType();
 
+
+    /**
+     * Fonction qui permet de savoir si l'expression est une variable
+     * @return vrai si c'est une variable, faux sinon
+     */
     public boolean estVariable(){
         return false;
     }

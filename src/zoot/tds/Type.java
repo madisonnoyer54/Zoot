@@ -36,7 +36,7 @@ public enum Type {
     /**
      * Fonction qui permet de savoir le type du string donner
      * @param type
-     * @return
+     * @return le type
      */
     public Type quelleType(String type){
         if(type.equals("entier")){
@@ -44,6 +44,7 @@ public enum Type {
         }
         return Type.BOOLEEN;
     }
+
 
     /**
      * Fonction concordance

@@ -4,6 +4,7 @@ public class Symbole {
     private Type type;
     private int deplacement;
 
+
     /**
      * Constructeur
      * @param type
@@ -12,6 +13,7 @@ public class Symbole {
         this.type = Type.ENTIER.quelleType(type);
         deplacement = 0;
     }
+
 
     /**
      * Getteur

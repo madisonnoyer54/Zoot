@@ -45,10 +45,10 @@ public class Affectation extends Instruction{
         // Test si la variable a été déclarer
         if (result == 0){
             Analyse.getInstance().ajouteIDF(variable.toString());
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException("L'affectation " + variable.toString() +"=" + exp.toString() + " ne peux pas être effectué, car la variable (" + variable.toString() + ") n'est pas déclaré."));
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException("L'affectation " + variable.toString() +"=" + exp.toString() + " ne peux pas être effectué, car la variable (" + variable.toString() + ") n'est pas déclaré. L"+ noLigne));
         }else{
             if(!variable.getSymbole().getType().concordance(exp.getType())){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+"). L"+ noLigne));
             }
         }
     }
@@ -56,7 +56,7 @@ public class Affectation extends Instruction{
 
     /**
      * Fonction toMips, traduction en mips
-     * @return
+     * @return le mips en string
      */
     @Override
     public String toMIPS() {

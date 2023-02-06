@@ -11,6 +11,7 @@ public class Entree {
         this.idf = idf;
     }
 
+
     /**
      * Getteur
      * @return String nom idf
@@ -18,6 +19,7 @@ public class Entree {
     public String getIdf() {
         return idf;
     }
+
 
     /**
      * Setteur
