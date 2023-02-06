@@ -26,7 +26,7 @@ public class Zoot {
 
             arbre.verifier() ;
             if(!Analyse.getInstance().getList().isEmpty() ){
-                String m="";
+                String m="\n";
 
 
                 for (int i = 0; i < Analyse.getInstance().getList().size() ; i++){
