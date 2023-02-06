@@ -21,7 +21,7 @@ public class ConstanteEntiere extends Constante {
     @Override
     public String toMIPS() {
         String ConstanteEntiere = cste;
-                String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
+        String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
         return code;
         //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
