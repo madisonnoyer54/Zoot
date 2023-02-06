@@ -35,7 +35,7 @@ class EcrireTest {
         code.append("\tla $a0, vraiAff\n");
         code.append("\tli $v0, 4\n");
         code.append("\tsyscall\n");
-        code.append("\tFinSi").append(numero).append("\n");
+        code.append("\tb FinSi").append(numero).append("\n");
         code.append("\tSinon").append(numero).append(":").append("\n");
         code.append("\tla $a0, fauxAff\n");
         code.append("\tli $v0, 4\n");
@@ -45,6 +45,6 @@ class EcrireTest {
                 "\tla $a0, str # $a0 <- adresse de la chaîne à écrire\n" +
                 "\tli $v0,4 # $v0 <- code du print\n" +
                 "\tsyscall # afficher\n\n");
-        assertEquals(code, ecrire.toMIPS());
+        assertEquals(code.toString(), ecrire.toMIPS().toString());
     }
 }
