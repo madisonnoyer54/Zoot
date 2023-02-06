@@ -31,19 +31,19 @@ public class ConstanteBooleenne extends Constante {
             return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
         }
 
-    /**
-     * Getteur
-     * @return type de la constante
-     */
-    public Type getType(){
-        return Type.BOOLEEN;
-    }
+        /**
+         * Getteur
+         * @return type de la constante
+         */
+        public Type getType(){
+            return Type.BOOLEEN;
+        }
 
-    /**
-     * Getteur
-     * @return booleen est une variable
-     */
-    public boolean estVariable(){
-        return false;
-    }
-    }
+        /**
+         * Getteur
+         * @return booleen est une variable
+         */
+        public boolean estVariable(){
+            return false;
+        }
+        }
