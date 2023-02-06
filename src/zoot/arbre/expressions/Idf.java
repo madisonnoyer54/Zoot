@@ -1,6 +1,6 @@
 package zoot.arbre.expressions;
 
-import zoot.exceptions.AnalyseVaribleNomDejaPris;
+import zoot.exceptions.AnalyseVariableNomDejaPris;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
@@ -29,6 +29,7 @@ public class Idf extends Expression {
      */
     @Override
     public void verifier() {
+        // Test si le nom de variable est déja utiliser
         int result = 0;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
@@ -39,7 +40,11 @@ public class Idf extends Expression {
         }
 
         if( result>=2){
-            throw new AnalyseVaribleNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ variable.toString());
+            throw new AnalyseVariableNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ variable.toString());
+        }
+
+        if (result == 0){
+            throw new AnalyseVariableNomDejaPris(" La variable "+ variable.toString()+ " n'arrive pas à être identifié");
         }
     }
 
