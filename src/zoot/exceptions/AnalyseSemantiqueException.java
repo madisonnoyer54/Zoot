@@ -8,6 +8,6 @@ public class AnalyseSemantiqueException extends AnalyseException{
      * @param m
      */
     public AnalyseSemantiqueException(String m) {
-        super( m);
+        super("ERREUR SEMANTIQUE : "+ m);
     }
 }
