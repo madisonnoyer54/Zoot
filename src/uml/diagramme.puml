@@ -18,9 +18,17 @@ AnalyseException -up-|> RuntimeException
 
 AnalyseLexicaleException -up-|> AnalyseException
 AnalyseSyntaxiqueException -up-|> AnalyseException
-AnalyseTypeExeption -up-|> AnalyseException
-AnalyseVariableNonDeclare -up-|> AnalyseException
-AnalyseVariableNomDejaPris -up-|> AnalyseException
+AnalyseSemantiqueException -up-|> AnalyseException
+
+class Analyse {
+  -list: ArrayList<AnalyseSemantiqueException>
+  -instance: Analyse
+  Analyse()
+  Analyse getInstance()
+  ajoute(e: AnalyseSemantiqueException)
+  ArrayList<AnalyseSemantiqueException> getList()
+  setList(list: ArrayList<AnalyseSemantiqueException>)
+}
 
 abstract class ArbreAbstrait {
    int noLigne
@@ -94,11 +102,11 @@ Symbole identifier(Entree e)
 int getTailleZoneVariable()
 }
 class FabriqueNumero {
-  +int nb
-  +FabriqueNumero instance
-  +FabriqueNumero()
-  +FabriqueNumero getInstance()
-  +int genererNombre()
+  int nb
+  FabriqueNumero instance
+  FabriqueNumero()
+  FabriqueNumero getInstance()
+  int genererNombre()
 }
 
 class Symbole{
