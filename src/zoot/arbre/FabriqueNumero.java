@@ -2,6 +2,7 @@ package zoot.arbre;
 
 public class FabriqueNumero {
         private int nb;
+        private static final FabriqueNumero instance = new FabriqueNumero();
 
         /**
          * Constructeur singleton FabriqueNumero.
@@ -9,8 +10,6 @@ public class FabriqueNumero {
         private FabriqueNumero() {
             this.nb = 0;
         }
-
-        private static final FabriqueNumero instance = new FabriqueNumero();
 
         /**
          * Fonction qui retourne une instance de FabriqueNumero.

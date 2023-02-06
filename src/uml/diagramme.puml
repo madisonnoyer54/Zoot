@@ -54,9 +54,9 @@ Ecrire  -up-|> Instruction
 
 abstract class Expression {
    protected Expression(int n)
-   public Type getType()
-   public boolean estVariable()
-   public boolean estBool()
+   Type getType()
+   boolean estVariable()
+   boolean estBool()
 }
 
 Expression  -up-|> ArbreAbstrait
@@ -75,14 +75,14 @@ class ConstanteEntiere {
    ConstanteEntiere(String texte, int n)
    String toMIPS()
    boolean estVariable()
-   public boolean estBool()
+   boolean estBool()
 }
 
 class ConstanteBooleenne {
    ConstanteBooleenne(String texte, int n)
    String toMIPS()
    boolean estVariable()
-   public boolean estBool()
+   boolean estBool()
 }
 
 class TDS {
@@ -94,9 +94,9 @@ Symbole identifier(Entree e)
 int getTailleZoneVariable()
 }
 class FabriqueNumero {
-  int nb
+  +int nb
+  +FabriqueNumero instance
   +FabriqueNumero()
-  +instance: FabriqueNumero
   +FabriqueNumero getInstance()
   +int genererNombre()
 }
