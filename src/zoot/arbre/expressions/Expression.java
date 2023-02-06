@@ -16,11 +16,10 @@ public abstract class Expression extends ArbreAbstrait {
 
     /**
      * Getteur
+     *
      * @return type expression
      */
-    public Type getType(){
-        return null;
-    }
+    public abstract Type getType();
 
     /**
      * Getteur
