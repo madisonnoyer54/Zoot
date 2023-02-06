@@ -27,4 +27,7 @@ public class FabriqueNumero {
         public int genererNombre() {
                 return nb++;
         }
+        public void restNombre(){
+                this.nb=1;
+        }
 }
