@@ -36,6 +36,7 @@ class IdfTest {
     @Test
     void toMIPS() {
         assertNotNull(idf.toMIPS());
+        assertEquals(idf.toMIPS(),"\tlw $v0,"+idf.getSymbole().getDeplacement() + "($s7)\n");
     }
 
     @Test

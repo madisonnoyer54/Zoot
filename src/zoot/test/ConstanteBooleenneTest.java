@@ -39,6 +39,5 @@ class ConstanteBooleenneTest {
     void getType() {
         assertEquals(constanteBooleenneV.getType().getType(),"booleen");
         assertEquals(constanteBooleenneF.getType().getType(),"booleen");
-
     }
 }
