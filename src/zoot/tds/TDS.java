@@ -67,7 +67,7 @@ public class TDS {
             }
         }
         if(!rep){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Variable "+ e.getIdf()+ "non déclaré"));
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Variable "+ e.getIdf()+ " non déclaré"));
         }
 
         return this.tableDesSymboles.get(e);

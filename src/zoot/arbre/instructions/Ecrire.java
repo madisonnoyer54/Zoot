@@ -33,20 +33,7 @@ public class Ecrire extends Instruction {
      */
     @Override
     public void verifier() {
-        if(exp.estVariable()){
-            // Vérifie que la variable à étais initialiser
-            boolean rep = false;
-            HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
-            for (Entree et : list.keySet()) {
-                if(et.getIdf().toString().equals(exp.toString())){
-                    rep = true;
-                }
-            }
-            if(!rep){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(exp.getNoLigne() +" : ecrire "+ exp + " ne peux pas être effectué, car la variable ("+ exp.toString()+ ") n'est pas déclaré"));
-            }
-        }
-
+        exp.verifier();
     }
 
 

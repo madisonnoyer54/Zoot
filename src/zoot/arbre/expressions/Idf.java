@@ -32,19 +32,9 @@ public class Idf extends Expression {
      */
     @Override
     public void verifier() {
-        int result = 0;
-        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
-        for (Entree et : list.keySet()) {
-            if(et.getIdf().toString().equals(variable.toString())){
-               result += 1;
-            }
-        }
 
-        // Test si la variable n'a pas été déclarer
-        if (result == 0){
-           // Analyse.getInstance().ajoute(new AnalyseSemantiqueException(.getNoLigne() +" : Variable "+ e.getIdf()+ "non déclaré"));
+        Symbole symbole = TDS.getInstance().identifier(new Entree(variable, noLigne));
 
-        }
     }
 
 

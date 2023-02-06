@@ -33,6 +33,7 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
+
         int result = 0;
         HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
@@ -41,16 +42,14 @@ public class Affectation extends Instruction{
 
             }
         }
-
         // Test si la variable a été déclarer
-        if (result == 0){
-         //   Analyse.getInstance().ajoute(new AnalyseSemantiqueException(variable.getNoLigne() +" : Variable "+ variable+ "non déclaré"));
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'affectation " + variable.toString() +"=" + exp.toString() + " ne peux pas être effectué, car la variable (" + variable.toString() + ") n'est pas déclaré."));
-        }else{
+        if (result != 0){
             if(!variable.getSymbole().getType().concordance(exp.getType())){
                 Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
             }
         }
+
+        Symbole symbole =  TDS.getInstance().identifier(new Entree(variable.toString(), noLigne));
     }
 
 
