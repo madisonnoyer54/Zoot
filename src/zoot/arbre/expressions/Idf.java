@@ -39,6 +39,7 @@ public class Idf extends Expression {
             }
         }
 
+
         /*
         if( result>=2){
             throw new AnalyseVariableNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ variable.toString());
@@ -47,7 +48,7 @@ public class Idf extends Expression {
          */
 
         if (result == 0){
-            throw new AnalyseVariableNomDejaPris(" La variable "+ variable.toString()+ " n'arrive pas à être identifié");
+            throw new AnalyseVariableNomDejaPris(" La variable "+ variable.toString()+ " n'arrive pas à être identifié, elle n'est pas déclaré");
         }
     }
 

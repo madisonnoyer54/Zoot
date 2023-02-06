@@ -1,6 +1,7 @@
 package zoot.tds;
 
 import zoot.exceptions.AnalyseVariableNomDejaPris;
+import zoot.exceptions.AnalyseVariableNonDeclare;
 
 import java.util.HashMap;
 
@@ -56,9 +57,22 @@ public class TDS {
      * @return symbole
      */
     public Symbole identifier(Entree e){
-        //à générer exception variable non déclarée
-        if (!this.tableDesSymboles.containsKey(e)) {
+
+        // Vérifie que la variable à étais initialiser sa a été verifier dans IDF
+        /*
+        boolean rep = false;
+        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        for (Entree et : list.keySet()) {
+            if(et.getIdf().toString().equals(e.idf.toString())){
+                rep = true;
+            }
         }
+        if(!rep){
+            throw new AnalyseVariableNonDeclare("La variable "+ e.idf.toString()+ " n'a pas été déclaré ");
+        }
+
+         */
+
         return this.tableDesSymboles.get(e);
     }
 

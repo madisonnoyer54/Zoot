@@ -33,6 +33,7 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
+        /*
         // Vérifie que la variable à étais initialiser
         boolean rep = false;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
@@ -44,6 +45,8 @@ public class Affectation extends Instruction{
        if(!rep){
            throw new AnalyseVariableNonDeclare("La variable dans l'Affectation "+ variable.toString()+ " = "+ exp.toString()+ " n'a pas été déclaré");
        }
+
+         */
 
         // Vérifie que le coter gauche et droit sont du même type
         if(!variable.getSymbole().getType().concordance(exp.getType())){
