@@ -2,13 +2,8 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
-import zoot.exceptions.AnalyseTypeException;
-import zoot.exceptions.AnalyseVariableNonDeclare;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
-
-import java.util.HashMap;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 
 public class Affectation extends Instruction{
     protected Expression exp ;
@@ -50,7 +45,7 @@ public class Affectation extends Instruction{
 
         // Vérifie que le coter gauche et droit sont du même type
         if(!variable.getSymbole().getType().concordance(exp.getType())){
-            throw new AnalyseTypeException("Le type de la variable "+ variable.toString()+" n'est pas de même type de l'expression voulant étre affecter");
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Le type de la variable "+ variable.toString()+" n'est pas de même type de l'expression voulant étre affecter"));
         }
     }
 

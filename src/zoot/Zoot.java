@@ -3,11 +3,16 @@ package zoot;
 import zoot.analyse.AnalyseurLexical;
 import zoot.analyse.AnalyseurSyntaxique;
 import zoot.arbre.ArbreAbstrait;
+import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseException;
+import zoot.exceptions.AnalyseSemantiqueException;
 
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static java.lang.System.exit;
+
 
 public class Zoot {
 
@@ -22,6 +27,15 @@ public class Zoot {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 
             arbre.verifier() ;
+            if(!Analyse.getInstance().getList().isEmpty()){
+                String m = "ERREUR SEMANTIQUE:\n";
+                for (int i = 0; i < Analyse.getInstance().getList().size() ; i++){
+                     m = m + "-" + Analyse.getInstance().getList().get(i).getMessage() + "\n";
+
+                }
+                System.out.println(m);
+                exit (0);
+            }
             System.out.println("COMPILATION OK") ;
 
             String nomSortie = nomFichier.replaceAll("[.]zoot", ".mips") ;
@@ -48,9 +62,10 @@ public class Zoot {
         if (args.length != 1) {
             System.err.println("Nombre incorrect d'arguments") ;
             System.err.println("\tjava -jar zoot.jar <fichierSource.zoot>") ;
-            System.exit(1) ;
+            exit(1) ;
         }
         new Zoot(args[0]) ;
+
     }
 
 }

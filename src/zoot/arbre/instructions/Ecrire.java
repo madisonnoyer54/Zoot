@@ -2,7 +2,8 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.FabriqueNumero;
 import zoot.arbre.expressions.Expression;
-import zoot.exceptions.AnalyseVariableNonDeclare;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
@@ -42,7 +43,7 @@ public class Ecrire extends Instruction {
                 }
             }
             if(!rep){
-                throw new AnalyseVariableNonDeclare("La variable dans ecrire "+ exp.toString()+ " n'a pas été déclarer");
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("La variable dans ecrire "+ exp.toString()+ " n'a pas été déclarer"));
             }
         }
 

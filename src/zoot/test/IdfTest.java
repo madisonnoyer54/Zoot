@@ -3,11 +3,10 @@ package zoot.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zoot.arbre.expressions.Idf;
-import zoot.exceptions.AnalyseVariableNomDejaPris;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
-import zoot.tds.Type;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +26,7 @@ class IdfTest {
         try {
             idf.verifier();
             assertTrue(true);
-        } catch (AnalyseVariableNomDejaPris e) {
+        } catch (AnalyseSemantiqueException e) {
             fail("La méthode verifier() a levé une exception pour une variable valide");
         }
 
