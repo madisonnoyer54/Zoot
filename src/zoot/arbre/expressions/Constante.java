@@ -35,9 +35,7 @@ public abstract class Constante extends Expression {
         return cste ;
     }
 
-    public Type getType(){
-        return null;
-    }
+    public abstract Type getType();
 
     public boolean estVariable(){
         return false;

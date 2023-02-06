@@ -40,7 +40,7 @@ public class TDS {
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(e.idf.toString())){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Deux variable ne peuvent pas etre déclarer avec le même nom "+ e.idf.toString()));
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
 
             }
         }
@@ -66,7 +66,7 @@ public class TDS {
             }
         }
         if(!rep){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException("La variable "+ e.idf.toString()+ " n'a pas été déclaré "));
+            Analyse.getInstance().ajouteIDF(e.idf);
         }
 
         return this.tableDesSymboles.get(e);

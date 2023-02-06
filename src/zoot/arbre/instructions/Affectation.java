@@ -4,7 +4,11 @@ import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
+import zoot.tds.Entree;
+import zoot.tds.Symbole;
 import zoot.tds.TDS;
+
+import java.util.HashMap;
 
 public class Affectation extends Instruction{
     protected Expression exp ;
@@ -29,28 +33,24 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
-        /*
-        // Vérifie que la variable à étais initialiser
-        boolean rep = false;
-        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        int result = 0;
+        HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(variable.toString())){
-                rep = true;
+                result += 1;
+
             }
         }
-       if(!rep){
-           throw new AnalyseVariableNonDeclare("La variable dans l'Affectation "+ variable.toString()+ " = "+ exp.toString()+ " n'a pas été déclaré");
-       }
 
-         */
-
-        // Vérifie que le coter gauche et droit sont du même type
-        if(TDS.getInstance().getTailleZoneVariable()!=0){
+        // Test si la variable a été déclarer
+        if (result == 0){
+            Analyse.getInstance().ajouteIDF(variable.toString());
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException("L'affectation " + variable.toString() +"=" + exp.toString() + " ne peux pas être effectué, car la variable (" + variable.toString() + ") n'est pas déclaré."));
+        }else{
             if(!variable.getSymbole().getType().concordance(exp.getType())){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Le type de la variable "+ variable.toString()+" n'est pas de même type de l'expression voulant étre affecter"));
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
             }
         }
-
     }
 
 

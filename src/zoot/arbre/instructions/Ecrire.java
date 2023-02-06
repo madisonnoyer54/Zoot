@@ -43,7 +43,7 @@ public class Ecrire extends Instruction {
                 }
             }
             if(!rep){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("La variable dans ecrire "+ exp.toString()+ " n'a pas été déclarer"));
+                Analyse.getInstance().ajouteIDF(exp.toString());
             }
         }
 

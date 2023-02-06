@@ -25,12 +25,23 @@ public class Zoot {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 
             arbre.verifier() ;
-            if(!Analyse.getInstance().getList().isEmpty()){
+            if(!Analyse.getInstance().getList().isEmpty() || !Analyse.getInstance().getListVariable().isEmpty()){
                 String m = "ERREUR SEMANTIQUE:\n";
+
+
                 for (int i = 0; i < Analyse.getInstance().getList().size() ; i++){
                      m = m + "-" + Analyse.getInstance().getList().get(i).getMessage() + "\n";
 
                 }
+                if(!Analyse.getInstance().getListVariable().isEmpty()){
+                    m = m + "\nVariable(s) non déclaré :\n";
+                }
+                // Liste des variables non déclaré
+                for (int i = 0; i < Analyse.getInstance().getListVariable().size() ; i++){
+                    m = m + "-" + Analyse.getInstance().getListVariable().get(i).toString() + "\n";
+
+                }
+
                 System.out.println(m);
                 exit (0);
             }

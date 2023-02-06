@@ -42,7 +42,7 @@ public class Idf extends Expression {
 
         // Test si la variable a été déclarer
         if (result == 0){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(" La variable "+ variable.toString()+ " n'est pas déclaré"));
+            Analyse.getInstance().ajouteIDF(variable);
         }
     }
 
