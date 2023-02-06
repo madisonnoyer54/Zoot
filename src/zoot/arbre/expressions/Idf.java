@@ -5,6 +5,7 @@ import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
+import zoot.tds.Type;
 
 import java.util.HashMap;
 
@@ -78,6 +79,11 @@ public class Idf extends Expression {
     @Override
     public String toString() {
         return variable;
+    }
+
+    @Override
+    public Type getType() {
+        return symbole.getType();
     }
 
     /**

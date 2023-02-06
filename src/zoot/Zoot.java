@@ -5,8 +5,6 @@ import zoot.analyse.AnalyseurSyntaxique;
 import zoot.arbre.ArbreAbstrait;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseException;
-import zoot.exceptions.AnalyseSemantiqueException;
-
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
