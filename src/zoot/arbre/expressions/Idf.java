@@ -31,7 +31,6 @@ public class Idf extends Expression {
      */
     @Override
     public void verifier() {
-        // Test si le nom de variable est déja utiliser
         int result = 0;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
@@ -41,16 +40,9 @@ public class Idf extends Expression {
             }
         }
 
-
-        /*
-        if( result>=2){
-            throw new AnalyseVariableNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ variable.toString());
-        }
-
-         */
-
+        // Test si la variable a été déclarer
         if (result == 0){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(" La variable "+ variable.toString()+ " n'arrive pas à être identifié, elle n'est pas déclaré"));
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(" La variable "+ variable.toString()+ " n'est pas déclaré"));
         }
     }
 

@@ -72,6 +72,9 @@ start with PROG ;
 
 PROG    ::=     VARIABLES LDCL DEBUT LINST:li FIN
                 {: RESULT = li ; :}
+                |
+                VARIABLES DEBUT LINST:li FIN
+                {: RESULT = li ; :}
                 ;
 
 LINST   ::=     LINST:li  INST:i

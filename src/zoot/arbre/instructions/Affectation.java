@@ -4,6 +4,7 @@ import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
+import zoot.tds.TDS;
 
 public class Affectation extends Instruction{
     protected Expression exp ;
@@ -44,9 +45,12 @@ public class Affectation extends Instruction{
          */
 
         // Vérifie que le coter gauche et droit sont du même type
-        if(!variable.getSymbole().getType().concordance(exp.getType())){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Le type de la variable "+ variable.toString()+" n'est pas de même type de l'expression voulant étre affecter"));
+        if(TDS.getInstance().getTailleZoneVariable()!=0){
+            if(!variable.getSymbole().getType().concordance(exp.getType())){
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Le type de la variable "+ variable.toString()+" n'est pas de même type de l'expression voulant étre affecter"));
+            }
         }
+
     }
 
 
