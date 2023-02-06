@@ -1,7 +1,7 @@
 package zoot.tds;
 
-import zoot.exceptions.AnalyseVariableNomDejaPris;
-import zoot.exceptions.AnalyseVariableNonDeclare;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 
 import java.util.HashMap;
 
@@ -40,7 +40,7 @@ public class TDS {
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(e.idf.toString())){
-                throw new AnalyseVariableNomDejaPris(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ e.idf.toString());
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(" Deux variable ne peuvent pas etre déclarer avec le même nom "+ e.idf.toString()));
 
             }
         }

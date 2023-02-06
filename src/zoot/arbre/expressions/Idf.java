@@ -1,6 +1,7 @@
 package zoot.arbre.expressions;
 
-import zoot.exceptions.AnalyseVariableNomDejaPris;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
@@ -48,7 +49,7 @@ public class Idf extends Expression {
          */
 
         if (result == 0){
-            throw new AnalyseVariableNomDejaPris(" La variable "+ variable.toString()+ " n'arrive pas à être identifié, elle n'est pas déclaré");
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(" La variable "+ variable.toString()+ " n'arrive pas à être identifié, elle n'est pas déclaré"));
         }
     }
 

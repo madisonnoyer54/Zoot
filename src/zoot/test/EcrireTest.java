@@ -7,14 +7,10 @@ import zoot.arbre.expressions.ConstanteEntiere;
 import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.arbre.instructions.Ecrire;
-import zoot.exceptions.AnalyseVariableNomDejaPris;
-import zoot.exceptions.AnalyseVariableNonDeclare;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
-import zoot.tds.Type;
-
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -67,6 +63,6 @@ class EcrireTest {
         idf.verifier();
         TDS.getInstance().getTableDesSymboles().remove(entree,symbole); //variable non déclarée
         Ecrire ecrire = new Ecrire(idf,0);
-        assertThrows(AnalyseVariableNonDeclare.class,ecrire::verifier);
+        assertThrows(AnalyseSemantiqueException.class,ecrire::verifier);
     }
 }
