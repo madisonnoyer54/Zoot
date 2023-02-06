@@ -1,10 +1,18 @@
 package zoot.test;
 
+import org.junit.jupiter.api.Test;
 import zoot.arbre.FabriqueNumero;
 import zoot.arbre.expressions.ConstanteBooleenne;
 import zoot.arbre.expressions.ConstanteEntiere;
 import zoot.arbre.expressions.Expression;
+import zoot.arbre.expressions.Idf;
 import zoot.arbre.instructions.Ecrire;
+import zoot.exceptions.AnalyseVariableNomDejaPris;
+import zoot.exceptions.AnalyseVariableNonDeclare;
+import zoot.tds.Entree;
+import zoot.tds.Symbole;
+import zoot.tds.TDS;
+import zoot.tds.Type;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,5 +54,10 @@ class EcrireTest {
                 "\tli $v0,4 # $v0 <- code du print\n" +
                 "\tsyscall # afficher\n\n");
         assertEquals(code.toString(), ecrire.toMIPS().toString());
+    }
+
+    @Test
+    void verifier() {
+
     }
 }
