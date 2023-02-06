@@ -36,11 +36,12 @@ public class TDS {
      */
     public void ajouter (Entree e, Symbole s){
         // variable existe déjà double déclaration exception!!
+
         int result = 0;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(e.idf.toString())){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException("Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
 
             }
         }
@@ -57,7 +58,7 @@ public class TDS {
      * @return symbole
      */
     public Symbole identifier(Entree e){
-        // Vérifie que la variable à étais initialiser sa a été verifier dans IDF
+        // Vérifie que la variable à étais déclarer sa a été verifier dans IDF
         boolean rep = false;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
@@ -66,7 +67,7 @@ public class TDS {
             }
         }
         if(!rep){
-            Analyse.getInstance().ajouteIDF(e.idf);
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Variable "+ e.getIdf()+ "non déclaré"));
         }
 
         return this.tableDesSymboles.get(e);

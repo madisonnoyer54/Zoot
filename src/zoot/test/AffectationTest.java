@@ -20,7 +20,7 @@ class AffectationTest {
     private Entree entree;
     @BeforeEach
     void setUp() {
-        entree = new Entree("var");
+        entree = new Entree("var",0);
         symbole = new Symbole("entier");
         TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         express = new ConstanteEntiere("nb",7);

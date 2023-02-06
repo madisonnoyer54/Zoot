@@ -43,7 +43,7 @@ public class Ecrire extends Instruction {
                 }
             }
             if(!rep){
-                Analyse.getInstance().ajouteIDF(exp.toString());
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(exp.getNoLigne() +" : ecrire "+ exp + " ne peux pas être effectué, car la variable ("+ exp.toString()+ ") n'est pas déclaré"));
             }
         }
 

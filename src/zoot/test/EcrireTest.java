@@ -56,7 +56,7 @@ class EcrireTest {
 
     @Test
     void verifier() {
-        Entree entree = new Entree("var");
+        Entree entree = new Entree("var",0);
         Symbole symbole = new Symbole("entier");
         TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         Idf idf = new Idf("var",1);

@@ -40,9 +40,10 @@ public class Idf extends Expression {
             }
         }
 
-        // Test si la variable a été déclarer
+        // Test si la variable n'a pas été déclarer
         if (result == 0){
-            Analyse.getInstance().ajouteIDF(variable);
+           // Analyse.getInstance().ajoute(new AnalyseSemantiqueException(.getNoLigne() +" : Variable "+ e.getIdf()+ "non déclaré"));
+
         }
     }
 
