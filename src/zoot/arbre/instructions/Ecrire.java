@@ -65,7 +65,7 @@ public class Ecrire extends Instruction {
                     code.append("\tla $a0, vraiAff\n");
                     code.append("\tli $v0, 4\n");
                     code.append("\tsyscall\n");
-                    code.append("\tb FinSi").append(this.numero).append("\n");
+                    code.append("\tFinSi").append(this.numero).append("\n");
                     code.append("\tSinon").append(this.numero).append(":").append("\n");
                     code.append("\tla $a0, fauxAff\n");
                     code.append("\tli $v0, 4\n");
