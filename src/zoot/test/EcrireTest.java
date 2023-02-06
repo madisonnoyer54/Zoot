@@ -13,10 +13,14 @@ class EcrireTest {
     void testToMIPS() {
         Expression expTest = new ConstanteEntiere("7",7);
         Ecrire ecrire = new Ecrire(expTest, 0);
-        String expectedCode = expTest.toMIPS()
+        String expectedCode = "# Ecrire "+expTest+"\n"+expTest.toMIPS()
                 + "\tmove $a0, $v0  # Copie de la valeur de v0 dans a0\n"
-                + "\tli $v0, 1  # v0 <-- 1 (code du print)\n"
-                + "\tsyscall  # Afficher\n\n";
+                + "\tli $v0, 1\n"
+                + "\tsyscall\n"
+                +"# Ecrire un saut de ligne\n"+
+                "\tla $a0, str # $a0 <- adresse de la chaîne à écrire\n" +
+                "\tli $v0,4 # $v0 <- code du print\n" +
+                "\tsyscall # afficher\n\n";
         assertEquals(expectedCode, ecrire.toMIPS());
     }
 }
