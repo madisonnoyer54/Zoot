@@ -7,6 +7,7 @@ import zoot.arbre.expressions.ConstanteEntiere;
 import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.arbre.instructions.Ecrire;
+import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
@@ -30,6 +31,7 @@ class EcrireTest {
                 "\tli $v0,4 # $v0 <- code du print\n" +
                 "\tsyscall # afficher\n\n";
         assertEquals(expectedCode, ecrire.toMIPS());
+
         expTest = new ConstanteBooleenne("a",0);
         ecrire = new Ecrire(expTest, 0);
         StringBuilder code = new StringBuilder();
@@ -51,8 +53,8 @@ class EcrireTest {
                 "\tla $a0, str # $a0 <- adresse de la chaîne à écrire\n" +
                 "\tli $v0,4 # $v0 <- code du print\n" +
                 "\tsyscall # afficher\n\n");
-        System.out.println(ecrire.toMIPS().toString());
-      //  assertEquals(code.toString(), ecrire.toMIPS().toString());
+
+        assertEquals(code.toString(), ecrire.toMIPS().toString());
     }
 
     @Test
@@ -64,6 +66,6 @@ class EcrireTest {
         idf.verifier();
         TDS.getInstance().getTableDesSymboles().remove(entree,symbole); //variable non déclarée
         Ecrire ecrire = new Ecrire(idf,0);
-     //   assertThrows(AnalyseSemantiqueException.class,ecrire::verifier);
+       assert(Analyse.getInstance().getList().isEmpty());
     }
 }
