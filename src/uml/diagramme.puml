@@ -21,7 +21,6 @@ AnalyseSyntaxiqueException -up-|> AnalyseException
 AnalyseSemantiqueException -up-|> AnalyseException
 
 class Analyse {
-  -list: ArrayList<AnalyseSemantiqueException>
   -instance: Analyse
   Analyse()
   Analyse getInstance()
@@ -29,6 +28,9 @@ class Analyse {
   ArrayList<AnalyseSemantiqueException> getList()
   setList(list: ArrayList<AnalyseSemantiqueException>)
 }
+Analyse --"1" Analyse
+Analyse --"*" AnalyseSemantiqueException
+
 
 abstract class ArbreAbstrait {
    int noLigne
@@ -64,7 +66,7 @@ abstract class Expression {
    protected Expression(int n)
    Type getType()
    boolean estVariable()
-   boolean estBool()
+   abstract boolean estBool()
 }
 
 Expression  -up-|> ArbreAbstrait
@@ -108,6 +110,7 @@ class FabriqueNumero {
   FabriqueNumero getInstance()
   int genererNombre()
 }
+FabriqueNumero --"1" FabriqueNumero
 
 class Symbole{
 String type
@@ -134,7 +137,8 @@ Boolean concordance(Type type)
 
 class Entree{
 String idf
-Entree(String idf)
+int noLigne
+Entree(String idf,int l)
 }
 
 class Affectation {
@@ -153,6 +157,7 @@ void verifier()
 String toMIPS()
 Symbole getSymbole()
 boolean estVariable()
+boolean estBool()
 }
 Idf --|> Expression
 @enduml
