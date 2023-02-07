@@ -36,8 +36,6 @@ public class TDS {
      */
     public void ajouter (Entree e, Symbole s){
         // variable existe déjà double déclaration exception!!
-
-        int result = 0;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().toString().equals(e.idf.toString())){

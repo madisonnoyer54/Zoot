@@ -1,7 +1,6 @@
 package zoot.exceptions;
 
-import zoot.arbre.FabriqueNumero;
-import zoot.arbre.expressions.Idf;
+
 
 import java.util.ArrayList;
 

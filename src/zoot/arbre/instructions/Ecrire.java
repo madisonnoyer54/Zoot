@@ -2,13 +2,7 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.FabriqueNumero;
 import zoot.arbre.expressions.Expression;
-import zoot.exceptions.Analyse;
-import zoot.exceptions.AnalyseSemantiqueException;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
 
-import java.util.HashMap;
 
 public class Ecrire extends Instruction {
 

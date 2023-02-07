@@ -1,7 +1,6 @@
 package zoot.arbre.expressions;
 
-import zoot.exceptions.Analyse;
-import zoot.exceptions.AnalyseSemantiqueException;
+
 import zoot.tds.Entree;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;

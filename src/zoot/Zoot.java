@@ -25,6 +25,8 @@ public class Zoot {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 
             arbre.verifier() ;
+
+            // Les erreur Sémantique
             if(!Analyse.getInstance().getList().isEmpty() ){
                 String m="\n";
 
@@ -37,6 +39,7 @@ public class Zoot {
                 System.out.println(m);
                 exit (0);
             }
+
             System.out.println("COMPILATION OK") ;
 
             String nomSortie = nomFichier.replaceAll("[.]zoot", ".mips") ;

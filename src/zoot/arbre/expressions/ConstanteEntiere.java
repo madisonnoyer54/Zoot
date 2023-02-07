@@ -23,7 +23,6 @@ public class ConstanteEntiere extends Constante {
         String ConstanteEntiere = cste;
         String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
         return code;
-        //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
 
