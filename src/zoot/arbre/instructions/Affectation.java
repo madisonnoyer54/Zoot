@@ -49,7 +49,7 @@ public class Affectation extends Instruction{
             }
         }
 
-        Symbole symbole =  TDS.getInstance().identifier(new Entree(variable.toString(), noLigne));
+       Symbole symbole =  TDS.getInstance().identifier(new Entree(variable.toString(), noLigne));
     }
 
 

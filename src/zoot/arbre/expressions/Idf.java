@@ -31,8 +31,7 @@ public class Idf extends Expression {
      */
     @Override
     public void verifier() {
-
-        Symbole symbole = TDS.getInstance().identifier(new Entree(variable, noLigne));
+      // Symbole symbole = TDS.getInstance().identifier(new Entree(variable, noLigne));
 
     }
 
@@ -56,7 +55,7 @@ public class Idf extends Expression {
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().equals(variable)){
-                symbole = TDS.getInstance().identifier(et);
+                symbole = TDS.getInstance().getTableDesSymboles().get(et) ;
             }
         }
 
