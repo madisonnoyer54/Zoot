@@ -71,6 +71,19 @@ public class TDS {
         return this.tableDesSymboles.get(e);
     }
 
+    /**
+     * Fonction qui permet d'indiquer l'entree dans un bloc d'instruction
+     */
+    public void entreeBloc(){
+
+    }
+
+    /**
+     * Fonction qui permet d'indiquer la sortie d'un bloc d'instruction
+     */
+    public void sortieBloc(){
+
+     }
 
     /**
      * Getteur
