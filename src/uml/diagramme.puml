@@ -102,6 +102,8 @@ TDS getInstance()
 void ajouter (Entree e, Symbole s)
 Symbole identifier(Entree e)
 int getTailleZoneVariable()
+void entreeBloc()
+void sortieBloc()
 }
 class FabriqueNumero {
   int nb
