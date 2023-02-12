@@ -3,12 +3,17 @@ package zoot.tds;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class TDS {
     private int compteurDeplace;
     private HashMap<Entree, Symbole> tableDesSymboles;
     private static TDS instance = new TDS();
+    private List<HashMap<Entree, Symbole>> blocs;
+    private int noActuBloc = 0;
+    private int noPrecBloc = 0;
 
 
     /**
@@ -17,6 +22,8 @@ public class TDS {
     public TDS() {
         this.tableDesSymboles = new HashMap<>();
         compteurDeplace =0;
+        this.blocs = new ArrayList<>();
+        this.blocs.add(new HashMap<>());
     }
 
 
@@ -75,14 +82,17 @@ public class TDS {
      * Fonction qui permet d'indiquer l'entree dans un bloc d'instruction
      */
     public void entreeBloc(){
-
+        if (noActuBloc == 0) {
+            this.blocs.add(new HashMap<>());
+        }
+        this.noActuBloc = this.blocs.size() - 1;
     }
 
     /**
      * Fonction qui permet d'indiquer la sortie d'un bloc d'instruction
      */
     public void sortieBloc(){
-
+        this.noActuBloc = 0;
      }
 
     /**
