@@ -29,13 +29,10 @@ public class Zoot {
             // Les erreur Sémantique
             if(!Analyse.getInstance().getList().isEmpty() ){
                 String m="\n";
-
-
                 for (int i = 0; i < Analyse.getInstance().getList().size() ; i++){
                      m = m  + Analyse.getInstance().getList().get(i).getMessage() + "\n\n";
 
                 }
-
                 System.out.println(m);
                 exit (0);
             }

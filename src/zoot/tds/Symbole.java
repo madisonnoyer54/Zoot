@@ -1,6 +1,6 @@
 package zoot.tds;
 
-public class Symbole {
+public abstract class Symbole{
     private Type type;
     private int deplacement;
 

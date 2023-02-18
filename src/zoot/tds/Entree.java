@@ -1,6 +1,6 @@
 package zoot.tds;
 
-public class Entree {
+public abstract class Entree {
     public String idf;
     public int noLigne;
 
