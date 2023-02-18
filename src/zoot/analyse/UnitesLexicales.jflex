@@ -43,13 +43,14 @@ type = (entier)|(booleen)
 
 
 "variables"            { return symbol(CodesLexicaux.VARIABLES); }
+"fonctions"            { return symbol(CodesLexicaux.FONCTIONS); }
 "debut"                { return symbol(CodesLexicaux.DEBUT); }
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
 
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
 
-
+"( )"                    { return symbol(CodesLexicaux.PARENTHESE); }
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.EGALE); }
 

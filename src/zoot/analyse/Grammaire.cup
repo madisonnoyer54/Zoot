@@ -57,11 +57,11 @@ parser code {:
 
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE;
+terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS, PARENTHESE;
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT ;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -70,10 +70,14 @@ non terminal Expression EXP ;
 
 start with PROG ;
 
-PROG    ::=     VARIABLES LDCL DEBUT LINST:li FIN
+PROG    ::=     VARIABLES LDCL FONCTIONS LFONC DEBUT LINST:li FIN
                 {: RESULT = li ; :}
-
                 ;
+
+PROGFONCT    ::=     VARIABLES LDCL DEBUT LINST:li FIN
+                {: RESULT = li ; :}
+                ;
+
 
 LINST   ::=     LINST:li  INST:i
                 {:
@@ -96,6 +100,12 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Affectation(idf,e, eleft + 1); :}
                 ;
 
+LFONC  ::=      LFONC FONC | FONC;
+
+FONC   ::=      TYPE:t IDF:idf PARENTHESE PROGFONCT {:
+
+                :}
+                ;
 
 LDCL   ::=      LDCL DCL | DCL;
 
