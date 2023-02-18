@@ -6,9 +6,7 @@ import zoot.arbre.expressions.ConstanteEntiere;
 import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.arbre.instructions.Affectation;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
+import zoot.tds.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,8 +18,8 @@ class AffectationTest {
     private Entree entree;
     @BeforeEach
     void setUp() {
-        entree = new Entree("var",0);
-        symbole = new Symbole("entier");
+        entree = new EntreeVariable("var",0);
+        symbole = new SymboleVariable("entier");
         TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         express = new ConstanteEntiere("nb",7);
         idf = new Idf("var",7);

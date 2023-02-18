@@ -4,9 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zoot.arbre.expressions.Idf;
 import zoot.exceptions.AnalyseSemantiqueException;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
+import zoot.tds.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,8 +13,8 @@ class IdfTest {
 
     @BeforeEach
     void setUp() {
-        Entree entree = new Entree("variable1",0);
-        Symbole symbole = new Symbole("entier");
+        Entree entree = new EntreeVariable("variable1",0);
+        Symbole symbole = new SymboleVariable("entier");
         TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         idf = new Idf("variable1", 1);
         assertNotNull(idf);

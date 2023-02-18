@@ -45,8 +45,8 @@ type = (entier)|(booleen)
 "variables"            { return symbol(CodesLexicaux.VARIABLES); }
 "fonctions"            { return symbol(CodesLexicaux.FONCTIONS); }
 "debut"                { return symbol(CodesLexicaux.DEBUT); }
+"retourne"             { return symbol(CodesLexicaux.RETOURNE); }
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
-
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
 

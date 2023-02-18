@@ -57,11 +57,11 @@ parser code {:
 
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS, PARENTHESE;
+terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS, PARENTHESE, RETOURNE;
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT ;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET ;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -74,10 +74,14 @@ PROG    ::=     VARIABLES LDCL FONCTIONS LFONC DEBUT LINST:li FIN
                 {: RESULT = li ; :}
                 ;
 
-PROGFONCT    ::=     VARIABLES LDCL DEBUT LINST:li FIN
+PROGFONCT    ::=     VARIABLES LDCL DEBUT LINST:li RET FIN
                 {: RESULT = li ; :}
                 ;
 
+
+RET     ::=    RETOURNE IDF:idf POINTVIRGULE
+                {:
+                :};
 
 LINST   ::=     LINST:li  INST:i
                 {:
@@ -113,7 +117,7 @@ LDCL   ::=      LDCL DCL | DCL;
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
-                    TDS.getInstance().ajouter(new Entree(idf, idfleft+1), new Symbole(t));
+                    TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1), new SymboleVariable(t));
                 :}
                 ;
 

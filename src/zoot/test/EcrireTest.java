@@ -9,9 +9,7 @@ import zoot.arbre.expressions.Idf;
 import zoot.arbre.instructions.Ecrire;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
+import zoot.tds.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,8 +57,8 @@ class EcrireTest {
 
     @Test
     void verifier() {
-        Entree entree = new Entree("var",0);
-        Symbole symbole = new Symbole("entier");
+        Entree entree = new EntreeVariable("var",0);
+        Symbole symbole = new SymboleVariable("entier");
         TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         Idf idf = new Idf("var",1);
         idf.verifier();

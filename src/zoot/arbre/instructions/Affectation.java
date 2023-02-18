@@ -5,6 +5,7 @@ import zoot.arbre.expressions.Idf;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Entree;
+import zoot.tds.EntreeVariable;
 import zoot.tds.Symbole;
 import zoot.tds.TDS;
 
@@ -49,7 +50,7 @@ public class Affectation extends Instruction{
             }
         }
 
-       Symbole symbole =  TDS.getInstance().identifier(new Entree(variable.toString(), noLigne));
+       Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne));
     }
 
 
