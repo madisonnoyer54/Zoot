@@ -74,7 +74,7 @@ PROG    ::=     VARIABLES LDCL FONCTIONS LFONC DEBUT LINST:li FIN
                 {: RESULT = li ; :}
                 ;
 
-PROGFONCT    ::=     VARIABLES LDCL DEBUT LINST:li RET FIN
+PROGFONCT    ::=   LDCL DEBUT LINST:li RET FIN
                 {: RESULT = li ; :}
                 ;
 
@@ -82,6 +82,8 @@ PROGFONCT    ::=     VARIABLES LDCL DEBUT LINST:li RET FIN
 RET     ::=    RETOURNE IDF:idf POINTVIRGULE
                 {:
                 :};
+
+
 
 LINST   ::=     LINST:li  INST:i
                 {:
