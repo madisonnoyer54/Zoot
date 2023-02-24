@@ -109,7 +109,7 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
 LFONC  ::=      LFONC FONC | FONC;
 
 FONC   ::=      TYPE:t IDF:idf PARENTHESE PROGFONCT {:
-
+                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t));
                 :}
                 ;
 
@@ -130,8 +130,7 @@ EXP    ::=     CSTENTIERE:c
                {: RESULT = new Idf(i, ileft + 1); :}
                |
                IDF:i PARENTHESE
-               {: RESULT = new AppelFonction(i, ileft+1); :}
-               |
+               {: RESULT = new AppelFonction(ileft+1,i) ; :}               |
                CSTBOOLEEN:b
                {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
                 ;
