@@ -74,7 +74,7 @@ PROG    ::=     VARIABLES LDCL FONCTIONS LFONC DEBUT LINST:li FIN
                 {: RESULT = li ; :}
                 ;
 
-PROGFONCT    ::=   LDCL DEBUT LINST:li RET FIN
+PROGFONCT    ::=  VARIABLES LDCL DEBUT LINST:li RET FIN
                 {: RESULT = li ; :}
                 ;
 
