@@ -129,6 +129,9 @@ EXP    ::=     CSTENTIERE:c
                IDF:i
                {: RESULT = new Idf(i, ileft + 1); :}
                |
+               IDF:i PARENTHESE
+               {: RESULT = new AppelFonction(i, ileft+1); :}
+               |
                CSTBOOLEEN:b
                {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
                 ;
