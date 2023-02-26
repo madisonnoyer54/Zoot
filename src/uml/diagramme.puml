@@ -44,9 +44,15 @@ class BlocDInstructions {
    void ajouter(Instruction i)
    void verifier()
    String toMIPS()
+   Boolean contientRetourner()
 }
+class BlocFonctions {
+}
+class BlocMain{}
 
 BlocDInstructions -up-|> ArbreAbstrait
+BlocFonctions -up-|> BlocDInstructions
+BlocMain -up-|> BlocDInstructions
 BlocDInstructions -up- "*" Instruction
 
 abstract class Instruction {
