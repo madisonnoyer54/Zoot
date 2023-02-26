@@ -47,15 +47,28 @@ public class TDS {
         // variable existe déjà double déclaration exception!!
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
-            et.estFonction();
+            entre2 = et.estFonction();
 
-            // double décla fonction ??
-            if(!entre1.equals(entre2) && entre1 == false){
+                // DOuble decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
                 if(et.getIdf().toString().equals(e.idf.toString()) ){
-                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+
+                    // Deux variable avec le meme nom
+                    if(entre1.equals(entre2) && entre1 == false) {
+                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+
+                        // Fonction avec le meme nombre de paramêtre
+                    }else if (entre1.equals(entre2) && entre1 == true) {
+                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
+
+                    }
+                    // Variable et fonction avec le meme nom
+                    else {
+                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Une variables et une fonction ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+
+                    }
 
                 }
-            }
+
 
         }
 
