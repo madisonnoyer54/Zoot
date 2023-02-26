@@ -1,9 +1,10 @@
 package zoot.tds;
 
 import zoot.arbre.ArbreAbstrait;
+import zoot.arbre.BlocDInstructions;
 
 public class SymboleFonction extends Symbole{
-    private ArbreAbstrait arbreAbstrait;
+    private BlocDInstructions blocDInstructions;
     /**
      * Constructeur
      *
@@ -11,7 +12,7 @@ public class SymboleFonction extends Symbole{
      */
     public SymboleFonction(String type, ArbreAbstrait li) {
         super(type);
-        arbreAbstrait = li;
+        blocDInstructions = (BlocDInstructions)li;
     }
 
     /**
@@ -20,5 +21,9 @@ public class SymboleFonction extends Symbole{
      */
     public boolean estFonction(){
         return true;
+    }
+
+    public BlocDInstructions getBlocDInstructions() {
+        return blocDInstructions;
     }
 }

@@ -1,9 +1,15 @@
 package zoot.arbre;
 
 import zoot.arbre.instructions.Instruction;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
+import zoot.tds.Entree;
+import zoot.tds.Symbole;
+import zoot.tds.SymboleFonction;
 import zoot.tds.TDS;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 21 novembre 2018
@@ -43,8 +49,27 @@ public class BlocDInstructions extends ArbreAbstrait {
         // Les Instructions
         for (Instruction instruction : programme) {
             instruction.verifier();
-            System.out.println(instruction.noLigne);
+
         }
+
+        // On verifie les sous programmes
+        HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
+        for (Entree et : list.keySet()) {
+           if(et.estFonction()){
+               SymboleFonction s = (SymboleFonction) list.get(et);
+
+               for (Instruction instruction : s.getBlocDInstructions().programme) {
+                   instruction.verifier();
+
+               }
+
+               if(!s.getBlocDInstructions().contientRetourner()){
+                   Analyse.getInstance().ajoute(new AnalyseSemantiqueException( et.getNoLigne()+" : Le BlocFonction dois contenir un retourne ("+et.getIdf()+")"));
+
+               }
+           }
+        }
+
 
     }
 

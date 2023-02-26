@@ -24,7 +24,7 @@ public class Fonction extends Instruction {
 
     @Override
     public void verifier() {
-        System.out.println("cc");
+
         Boolean result = false;
         for (Instruction instruction : il.programme) {
            // instruction.verifier();
