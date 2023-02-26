@@ -73,4 +73,8 @@ public class Ecrire extends Instruction {
         //throw new UnsupportedOperationException("fonction toMips non définie ") ;
     }
 
+    @Override
+    public boolean estRetourner() {
+        return false;
+    }
 }

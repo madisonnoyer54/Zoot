@@ -42,13 +42,21 @@ public class TDS {
      * @param s
      */
     public void ajouter (Entree e, Symbole s){
+        Boolean entre1 = e.estFonction();
+        Boolean entre2 = null;
         // variable existe déjà double déclaration exception!!
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
-            if(et.getIdf().toString().equals(e.idf.toString())){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+            et.estFonction();
 
+            // double décla fonction ??
+            if(!entre1.equals(entre2) && entre1 == false){
+                if(et.getIdf().toString().equals(e.idf.toString()) ){
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+
+                }
             }
+
         }
 
         this.tableDesSymboles.put(e, s);

@@ -72,4 +72,9 @@ public class Affectation extends Instruction{
 
         return code;
     }
+
+    @Override
+    public boolean estRetourner() {
+        return false;
+    }
 }

@@ -44,6 +44,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         for (Instruction instruction : programme) {
             instruction.verifier();
         }
+
     }
 
 
@@ -86,6 +87,15 @@ public class BlocDInstructions extends ArbreAbstrait {
 
     }
 
+    public Boolean contientRetourner(){
+        boolean finale = false;
+        for (Instruction instruction : programme) {
+            if(instruction.estRetourner()){
+              finale =  true;
+            }
+        }
+        return  finale;
+    }
 
     @Override
     public String toString() {

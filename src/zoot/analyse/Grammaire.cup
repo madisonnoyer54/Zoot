@@ -74,16 +74,6 @@ PROG    ::=     VARIABLES LDCL FONCTIONS LFONC DEBUT LINST:li FIN
                 {: RESULT = li ; :}
                 ;
 
-PROGFONCT    ::=  DEBUT LINST:li RET FIN
-                {: RESULT = li ; :}
-                ;
-
-
-RET     ::=    RETOURNE EXP:e POINTVIRGULE
-                {:
-                :};
-
-
 
 LINST   ::=     LINST:li  INST:i
                 {:
@@ -99,22 +89,28 @@ LINST   ::=     LINST:li  INST:i
                 :}
                 ;
 
+
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1) ; :}
                 |
                 IDF:idf EGALE EXP:e  POINTVIRGULE
                 {: RESULT = new Affectation(idf,e, eleft + 1); :}
+                |
+                RETOURNE EXP:e POINTVIRGULE
+                {: RESULT = new Retourne(e, eleft + 1); :}
                 ;
+
 
 LFONC  ::=      LFONC FONC | FONC;
 
-FONC   ::=      TYPE:t IDF:idf PARENTHESE PROGFONCT {:
-                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t));
+
+FONC   ::=      TYPE:t IDF:idf PARENTHESE DEBUT LINST:li FIN {:
+                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
                 :}
                 ;
 
-LDCL   ::=      LDCL DCL | DCL;
 
+LDCL   ::=      LDCL DCL | DCL;
 
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
@@ -130,7 +126,10 @@ EXP    ::=     CSTENTIERE:c
                {: RESULT = new AppelFonction(i, ileft + 1); :}
                |
                IDF:i
-               {: RESULT = new Idf(i,ileft+1) ; :}               |
+               {: RESULT = new Idf(i,ileft+1) ; :}
+               |
                CSTBOOLEEN:b
                {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
+               |
+
                 ;
