@@ -3,8 +3,11 @@ package zoot;
 import zoot.analyse.AnalyseurLexical;
 import zoot.analyse.AnalyseurSyntaxique;
 import zoot.arbre.ArbreAbstrait;
+import zoot.arbre.BlocDInstructions;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseException;
+import zoot.exceptions.AnalyseSemantiqueException;
+
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +26,14 @@ public class Zoot {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(nomFichier)));
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
+
+
+            // Test du retourne dans le main
+            BlocDInstructions blocMain = (BlocDInstructions) arbre;
+            if (blocMain.contientRetourner()){
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(blocMain.numLigneRetourner() +" : Le BlocMain ne dois pas contenir de retourne"));
+            }
+
 
             arbre.verifier() ;
 

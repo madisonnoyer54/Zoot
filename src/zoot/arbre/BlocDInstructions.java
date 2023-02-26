@@ -43,6 +43,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         // Les Instructions
         for (Instruction instruction : programme) {
             instruction.verifier();
+            System.out.println(instruction.noLigne);
         }
 
     }
@@ -97,6 +98,15 @@ public class BlocDInstructions extends ArbreAbstrait {
         return  finale;
     }
 
+    public int numLigneRetourner(){
+        int finale = 0;
+        for (Instruction instruction : programme) {
+            if(instruction.estRetourner()){
+                finale =  instruction.noLigne;
+            }
+        }
+        return  finale;
+    }
     @Override
     public String toString() {
         return programme.toString() ;

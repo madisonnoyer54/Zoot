@@ -22,7 +22,23 @@ public class AppelFonction extends Expression{
 
     @Override
     public String toMIPS() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+
+        /*
+
+        sb.append("    #Appel de fonction\n");
+        sb.append("    #On alloue la valeur de retour\n");
+        sb.append("    add $sp, $sp, -4\n\n");
+        sb.append("    #Jump" + idf + "\n");
+        sb.append("    jal " + label + "\n\n");
+        sb.append("    #on depile dans $v0\n" );
+        sb.append("    add $sp, $sp, 4\n");
+        sb.append("    lw $v0, 0($sp)\n\n");
+
+         */
+
+
+        return sb.toString();
     }
 
     /**
