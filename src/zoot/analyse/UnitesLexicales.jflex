@@ -50,7 +50,7 @@ type = (entier)|(booleen)
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
 
-"( )"                    { return symbol(CodesLexicaux.PARENTHESE); }
+"()"                    { return symbol(CodesLexicaux.PARENTHESE); }
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.EGALE); }
 

@@ -10,4 +10,13 @@ public class EntreeVariable extends Entree{
     public EntreeVariable(String idf, int l) {
         super(idf, l);
     }
+
+
+    /**
+     * Getteur
+     * @return booleen est n'est pas une fonction
+     */
+    public boolean estFonction(){
+        return false;
+    }
 }

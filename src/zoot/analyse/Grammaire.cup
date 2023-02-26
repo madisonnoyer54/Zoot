@@ -134,4 +134,3 @@ EXP    ::=     CSTENTIERE:c
                CSTBOOLEEN:b
                {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
                 ;
-

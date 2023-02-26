@@ -1,12 +1,10 @@
 package zoot.arbre.expressions;
 
-import zoot.tds.Entree;
-import zoot.tds.EntreeFonction;
-import zoot.tds.TDS;
-import zoot.tds.Type;
+import zoot.tds.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class AppelFonction extends Expression{
     private String idf;
@@ -28,11 +26,28 @@ public class AppelFonction extends Expression{
         return null;
     }
 
+    /**
+     * Getteur
+     * @return le symbole
+     */
+    public Symbole getSymbole(){
+        Symbole symbole = null;
+        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        for (Entree et : list.keySet()) {
+            if(et.getIdf().equals(idf) && et.estFonction()){
+                symbole = TDS.getInstance().getTableDesSymboles().get(et) ;
+            }
+        }
+
+        return symbole;
+    }
+
     @Override
     public Type getType() {
         //On récupère le type de retour de la fonction
-        return TDS.getInstance().identifier(new EntreeFonction(this.idf,this.n)).getType();
+        return getSymbole().getType();
     }
+
 
     @Override
     public boolean estBool() {
