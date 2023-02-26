@@ -57,6 +57,7 @@ BlocDInstructions -up- "*" Instruction
 
 abstract class Instruction {
    protected Instruction(int n)
+   boolean estRetourner()
 }
 
 Instruction -up-|> ArbreAbstrait
@@ -64,15 +65,25 @@ class Ecrire {
    Ecrire(int n)
    void verifier()
    String toMIPS()
+   boolean estRetourner()
+}
+class Retourne{
+   Retourne(Expression e, int n)
+   void verifier()
+   String toMIPS()
+   boolean estRetourner()
 }
 
 Ecrire  -up-|> Instruction
+Retourne  -up-|> Instruction
 
 abstract class Expression {
    protected Expression(int n)
    Type getType()
    boolean estVariable()
-   abstract boolean estBool()
+   boolean estBool()
+   boolean estFonction()
+   String getIdf()
 }
 
 Expression  -up-|> ArbreAbstrait
@@ -83,6 +94,9 @@ abstract class Constante {
    protected Constante(String texte, int n)
    void verfier()
    boolean estVariable()
+   Symbole getSymbole()
+   Type getType()
+   String getIdf()
 }
 
 Constante  -up-|> Expression
@@ -92,6 +106,8 @@ class ConstanteEntiere {
    String toMIPS()
    boolean estVariable()
    boolean estBool()
+   boolean estFonction()
+   Type getType()
 }
 
 class ConstanteBooleenne {
@@ -99,10 +115,25 @@ class ConstanteBooleenne {
    String toMIPS()
    boolean estVariable()
    boolean estBool()
+   boolean estFonction()
+   Type getType()
 }
-
+class AppelFonction {
+   String idf;
+   AppelFonction(String idf,int n)
+   String toMIPS()
+   boolean estVariable()
+   boolean estBool()
+   boolean estFonction()
+   Symbole getSymbole()
+   Type getType()
+   String getIdf()
+}
+AppelFonction  -up-|> Expression
 class TDS {
 int compteurDeplace
+int noActuBloc
+int noPrecBloc
 TDS instance
 TDS getInstance()
 void ajouter (Entree e, Symbole s)
@@ -120,16 +151,32 @@ class FabriqueNumero {
 }
 FabriqueNumero --"1" FabriqueNumero
 
-class Symbole{
+abstract class Symbole{
 String type
 int deplacement
 String getType()
 int getDeplacement()
 void setType(String type)
+boolean estFonction()
+}
+class SymboleFonction{
+ SymboleFonction(String type, ArbreAbstrait li)
+ boolean estFonction()
+}
+
+SymboleFonction--"1"ArbreAbstrait
+
+class SymboleVariable{
+ SymboleVariable(String type)
+ boolean estFonction()
 }
 
 TDS --"*" Symbole
 Type --"1" Symbole
+
+SymboleFonction  -up-|> Symbole
+SymboleVariable  -up-|> Symbole
+
 
 ConstanteEntiere  -up-|> Constante
 ConstanteBooleenne  -up-|> Constante
@@ -143,16 +190,30 @@ Type quelleType(String type)
 Boolean concordance(Type type)
 }
 
-class Entree{
+abstract class Entree{
 String idf
 int noLigne
 Entree(String idf,int l)
 }
+class EntreeFonction{
+EntreeFonction(String idf, int l)
+boolean estFonction()
+}
+class EntreeVariable{
+EntreeVariable(String idf, int l)
+boolean estFonction()
+}
+
+EntreeVariable  -up-|> Entree
+EntreeFonction  -up-|> Entree
+
+
 
 class Affectation {
 Affectation(String idf, Expression e, int n)
 void verifier()
 String toMIPS()
+boolean estRetourner()
 }
 Affectation --"1" Idf
 Affectation --"1" Expression
@@ -166,6 +227,8 @@ String toMIPS()
 Symbole getSymbole()
 boolean estVariable()
 boolean estBool()
+boolean estFonction()
+String getIdf()
 }
 Idf --|> Expression
 @enduml
