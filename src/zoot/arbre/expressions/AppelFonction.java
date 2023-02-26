@@ -8,12 +8,11 @@ import java.util.HashMap;
 
 public class AppelFonction extends Expression{
     private String idf;
-    private String type;
     private int n;
-    public AppelFonction(int n,String idf) {
+    public AppelFonction(String idf,int n) {
         super(n);
-        this.n=n;
         this.idf = idf;
+        this.n=n;
     }
 
     @Override
@@ -53,4 +52,15 @@ public class AppelFonction extends Expression{
     public boolean estBool() {
         return false;
     }
+
+    @Override
+    public boolean estFonction() {
+        return true;
+    }
+
+    public String getIdf() {
+        return idf;
+    }
+
+
 }

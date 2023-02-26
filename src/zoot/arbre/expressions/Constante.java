@@ -42,7 +42,10 @@ public abstract class Constante extends Expression {
      */
     public abstract Type getType();
 
-
+    @Override
+    public String getIdf() {
+        return null;
+    }
     /**
      * Fonction qui permet de savoir si l'expression est une variable
      * @return vrai si c'est une variable, faux sinon

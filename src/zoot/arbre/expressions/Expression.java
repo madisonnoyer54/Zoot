@@ -33,4 +33,12 @@ public abstract class Expression extends ArbreAbstrait {
      * @return vrai si la constante est booleen, faux sinon
      */
     public abstract boolean estBool();
+
+    /**
+     * Fonction qui permet de savoir si l'expression est un appelle de fonction.
+     * @return vrai si la constante est booleen, faux sinon
+     */
+    public abstract boolean estFonction();
+
+    public abstract String getIdf();
 }

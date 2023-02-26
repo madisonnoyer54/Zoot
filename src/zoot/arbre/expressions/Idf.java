@@ -88,4 +88,14 @@ public class Idf extends Expression {
     public boolean estBool() {
         return (getSymbole().getType().getType().equals("booleen"));
     }
+
+    @Override
+    public boolean estFonction() {
+        return false;
+    }
+
+    @Override
+    public String getIdf() {
+        return variable;
+    }
 }

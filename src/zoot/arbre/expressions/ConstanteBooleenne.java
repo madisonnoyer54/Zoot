@@ -22,6 +22,13 @@ public class ConstanteBooleenne extends Constante {
                 return true;
         }
 
+        @Override
+        public boolean estFonction() {
+                return false;
+        }
+
+
+
 
         /**
          * Fonction toMips, traduction en mips si la constante vaut vrai on stock 1 sinon on stock 0

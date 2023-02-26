@@ -51,5 +51,10 @@ public class ConstanteEntiere extends Constante {
     public boolean estBool() {
         return false;
     }
+
+    @Override
+    public boolean estFonction() {
+        return false;
+    }
 }
 

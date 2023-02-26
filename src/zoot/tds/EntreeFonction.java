@@ -20,6 +20,7 @@ public class EntreeFonction extends Entree{
     public boolean estFonction(){
         return true;
     }
+
 }
 
 

@@ -67,12 +67,18 @@ public class TDS {
         boolean rep = false;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
-            if(et.getIdf().toString().equals(e.idf.toString())){
+            if(et.getIdf().toString().equals(e.idf.toString())  ){
                 rep = true;
             }
         }
         if(!rep){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Variable "+ e.getIdf()+ " non déclaré"));
+            if(!e.estFonction()){
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Variable "+ e.getIdf()+ " non déclaré"));
+
+            }else {
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Fonction "+ e.getIdf()+ " non déclaré"));
+
+            }
         }
 
         return this.tableDesSymboles.get(e);

@@ -2,10 +2,7 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.FabriqueNumero;
 import zoot.arbre.expressions.Expression;
-import zoot.tds.Entree;
-import zoot.tds.EntreeVariable;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
+import zoot.tds.*;
 
 
 public class Ecrire extends Instruction {
@@ -32,7 +29,13 @@ public class Ecrire extends Instruction {
     @Override
     public void verifier() {
         exp.verifier();
-        Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(exp.toString(), noLigne));
+        if (!exp.estFonction()){
+            Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(exp.getIdf(), noLigne));
+        }
+       else{
+            Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne));
+
+        }
     }
 
 
