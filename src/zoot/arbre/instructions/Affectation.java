@@ -4,10 +4,7 @@ import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
-import zoot.tds.Entree;
-import zoot.tds.EntreeVariable;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
+import zoot.tds.*;
 
 import java.util.HashMap;
 
@@ -50,7 +47,14 @@ public class Affectation extends Instruction{
             }
         }
 
-       Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne));
+        if (!exp.estFonction()){
+            Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne));
+        }
+        else{
+            Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne));
+
+        }
+
     }
 
 
