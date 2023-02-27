@@ -111,16 +111,24 @@ public class BlocDInstructions extends ArbreAbstrait {
 
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
         for (Map.Entry<Entree, Symbole> entry : tableFonction.entrySet()) {
-            code = code + entry.getKey().getIdf()+":\n";
-            // Récupérer la clé et la valeur associée à cette entrée
-            Entree entree = entry.getKey();
-            Symbole symbole = entry.getValue();
+            code = code + "\n"+entry.getKey().getIdf()+":\n"+
+                    "# Empilement de l'adresse retour\n"+
+            "sw $ra, 0($sp)\n"+
+            "add $sp, $sp, -4\n"+
+            "\n"+
+                    "# Empilement du chainage dynamique\n"+
+            "sw $s7, 0($sp)\n"+
+            "add $sp, $sp, -4\n"+
+            "\n"+
+                    "# Déplacement de la base\n"+
+            "move $s7, $sp\n"+
+            "\n"+
+                    "# Allocation de la place des variables\n"+
+            "add $sp, $sp, -" + TDS.getInstance().getTailleZoneVariable() + "\n"+
+            "\n"+
+                    "addi $sp,$sp,-4";
 
-            System.out.println("Entree : " + entree);
-            System.out.println("Symbole : " + symbole);
-        }   // Faire quelque chose avec la clé et la valeur (par exemple, les afficher)
-
-        //à continuer faire une boucle ici
+        }
         // Les Instructions
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();
