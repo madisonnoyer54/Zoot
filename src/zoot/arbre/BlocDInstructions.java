@@ -67,6 +67,13 @@ public class BlocDInstructions extends ArbreAbstrait {
                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException( et.getNoLigne()+" : Le BlocFonction dois contenir un retourne ("+et.getIdf()+")"));
 
                }
+               // Il contient un retourne, On verifie le type
+               else{
+                   if(!s.getType().concordance(s.getBlocDInstructions().getRetourner().getType())){
+                       Analyse.getInstance().ajoute(new AnalyseSemantiqueException(s.getBlocDInstructions().numLigneRetourner()+" : Le retourner de la fonction n'a pas le même type que la déclaration "));
+                   }
+
+               }
            }
         }
 
@@ -121,6 +128,16 @@ public class BlocDInstructions extends ArbreAbstrait {
             }
         }
         return  finale;
+    }
+
+    public Instruction getRetourner(){
+        Instruction re = null;
+        for (Instruction instruction : programme) {
+            if(instruction.estRetourner()){
+               re = instruction;
+            }
+        }
+        return re;
     }
 
     public int numLigneRetourner(){

@@ -2,6 +2,7 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.expressions.Expression;
 import zoot.tds.TDS;
+import zoot.tds.Type;
 
 public class Retourne extends Instruction{
     private Expression e;
@@ -54,6 +55,9 @@ public class Retourne extends Instruction{
         return sb.toString();
     }
 
+    public Type getType(){
+        return e.getType();
+    }
     public boolean estRetourner(){
         return true;
     }
