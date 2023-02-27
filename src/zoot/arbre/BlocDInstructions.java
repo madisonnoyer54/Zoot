@@ -10,6 +10,7 @@ import zoot.tds.TDS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 21 novembre 2018
@@ -107,7 +108,18 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "# Reserve la place des variables\n"+
                 "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
         //Les déclarations des fonctions
-        HashMap fonctions = TDS.getInstance().getlistFonction();
+
+        HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
+        for (Map.Entry<Entree, Symbole> entry : tableFonction.entrySet()) {
+            code = code + entry.getKey().getIdf()+":\n";
+            // Récupérer la clé et la valeur associée à cette entrée
+            Entree entree = entry.getKey();
+            Symbole symbole = entry.getValue();
+
+            System.out.println("Entree : " + entree);
+            System.out.println("Symbole : " + symbole);
+        }   // Faire quelque chose avec la clé et la valeur (par exemple, les afficher)
+
         //à continuer faire une boucle ici
         // Les Instructions
         for (Instruction instruction : programme) {
