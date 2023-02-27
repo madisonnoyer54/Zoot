@@ -23,16 +23,15 @@ public class AppelFonction extends Expression{
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n# Sauvegarde des registres avant l'appel de fonction.\n");
-        sb.append("\tsw $ra,0($sp)\n");
-        sb.append("\tsw $s1,-4($sp)\n");
-        sb.append("\taddi $sp,$sp,-8\n");
-        sb.append("\t# Appel de la fonction.\n");
-        sb.append("\tjal ").append(this.idf).append("\n");
-        sb.append("\t# Restauration des registres après l'appel de fonction.\n");
-        sb.append("\tlw $s1,4($sp)\n");
-        sb.append("\tlw $ra,8($sp)\n");
-        sb.append("\taddi $sp,$sp,8\n");
+        sb.append("# Appel d'une fonction \n");
+        sb.append("add $sp, $sp, -4\n");
+
+        sb.append("#Jump sur la fonction ").append(idf).append("\n");
+        sb.append("jal ").append(idf).append("\n");
+
+        sb.append("#Dépiler dans v0\n");
+        sb.append("add $sp, $sp, 4\n");
+        sb.append("lw $v0, 0($sp)\n");
         return sb.toString();
     }
 
