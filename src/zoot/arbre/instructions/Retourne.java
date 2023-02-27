@@ -28,30 +28,9 @@ public class Retourne extends Instruction{
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
-        /*
         sb.append("    #retour de fonction\n");
-        sb.append("    #Met exp dans $v0\n");
-        sb.append(exp.toMIPS() + "\n");
-        if(idRegion > 0){
-            sb.append("    #Deplacement dans la base\n");
-            sb.append("    move $sp, $s7\n" );
-            sb.append("    lw $s7, 8($sp)\n");
-            sb.append("    #Depile l'id de la region\n");
-            sb.append("    add $sp, $sp, 4\n\n");
-            sb.append("    #Depile la chaine dynamique \n");
-            sb.append("    add $sp, $sp, 4\n");
-            sb.append("    #Depile l'adresse de retourne \n");
-            sb.append("    add $sp, $sp, 4\n");
-            sb.append("    lw $ra, 0($sp)\n");
-            sb.append("    #Enregistre la valeur calculée dans $v0\n");
-            sb.append("    sw $v0, 4($sp)\n");
-            sb.append("    jr $ra\n");
-        }else{
-            sb.append("    #Direction fin du programme \n");
-            sb.append("    j fin\n\n");
-        }
-
-         */
+        sb.append("\tli, $v0, " + e.toMIPS() + "\n");
+        sb.append("\tjr $ra\n");
         return sb.toString();
     }
 
