@@ -172,7 +172,7 @@ public class TDS {
      * Fonction qui permet de recumperais la liste des fonctions
      * @return
      */
-    public HashMap<Entree,Symbole> setFonction(){
+    public HashMap<Entree,Symbole> getlistFonction(){
 
        HashMap<Entree, Symbole> tableFonction = new HashMap<>();
 
