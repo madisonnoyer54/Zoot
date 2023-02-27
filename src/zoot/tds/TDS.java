@@ -1,5 +1,6 @@
 package zoot.tds;
 
+import zoot.arbre.instructions.Instruction;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 
@@ -164,5 +165,25 @@ public class TDS {
      */
     public void setTableDesSymboles(HashMap<Entree, Symbole> tableDesSymboles) {
         this.tableDesSymboles = tableDesSymboles;
+    }
+
+
+    /**
+     * Fonction qui permet de recumperais la liste des fonctions
+     * @return
+     */
+    public HashMap<Entree,Symbole> setFonction(){
+
+       HashMap<Entree, Symbole> tableFonction = new HashMap<>();
+
+
+        for (Entree et : tableDesSymboles.keySet()) {
+            if(et.estFonction()){
+                SymboleFonction s = (SymboleFonction) tableDesSymboles.get(et);
+
+              tableFonction.put(et, s);
+            }
+        }
+        return tableFonction;
     }
 }
