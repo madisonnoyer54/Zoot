@@ -106,7 +106,9 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "\tmove $s7,$sp\n"+
                 "# Reserve la place des variables\n"+
                 "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
-
+        //Les déclarations des fonctions
+        HashMap fonctions = TDS.getInstance().getlistFonction();
+        //à continuer faire une boucle ici
         // Les Instructions
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();
