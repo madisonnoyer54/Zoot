@@ -105,7 +105,7 @@ LFONC  ::=      LFONC FONC | FONC;
 
 
 FONC   ::=      TYPE:t IDF:idf PARENTHESE DEBUT LINST:li FIN {:
-                    RESULT = new Fonction(t, idf, (BlocDInstructions)li ,lileft + 1);
+
                     TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
                 :}
                 ;
