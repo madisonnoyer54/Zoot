@@ -9,17 +9,30 @@ import java.util.HashMap;
 public class AppelFonction extends Expression{
     private String idf;
     private int n;
+
+    /**
+     * Constructeur
+     * @param idf
+     * @param n
+     */
     public AppelFonction(String idf,int n) {
         super(n);
         this.idf = idf;
         this.n=n;
     }
 
+    /**
+     * Fonction vérifier de AppelFonction
+     */
     @Override
     public void verifier() {
 
     }
 
+    /**
+     * Fonction toMips qui génère le code mips à chaque appel de fonction
+     * @return String code mips
+     */
     @Override
     public String toMIPS() {
         String code;
@@ -58,28 +71,46 @@ public class AppelFonction extends Expression{
         return symbole;
     }
 
+    /**
+     * Fonction qui retourne le type de retour de la fonction
+     * @return
+     */
     @Override
     public Type getType() {
         //On récupère le type de retour de la fonction
         return getSymbole().getType();
     }
 
-
+    /**
+     * Fonction estbool indique si expression est constantebool
+     * @return
+     */
     @Override
     public boolean estBool() {
         return false;
     }
 
+    /**
+     * Fonction estFonction indique si expression est fonction
+     * @return
+     */
     @Override
     public boolean estFonction() {
         return true;
     }
-
+    /**
+     * Fonction toString retourne l'identifiant
+     * @return
+     */
     @Override
     public String toString() {
         return idf;
     }
 
+    /**
+     * Getteur idf
+     * @return
+     */
     public String getIdf() {
         return idf;
     }

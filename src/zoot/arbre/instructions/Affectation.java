@@ -73,6 +73,10 @@ public class Affectation extends Instruction{
         return code;
     }
 
+    /**
+     * Fonction qui indique si Instruction estRetourne
+     * @return
+     */
     @Override
     public boolean estRetourner() {
         return false;

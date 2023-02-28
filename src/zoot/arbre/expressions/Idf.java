@@ -63,12 +63,20 @@ public class Idf extends Expression {
     }
 
 
+    /**
+     * Fonction toString retourne l'idf variable
+     * @return
+     */
     @Override
     public String toString() {
         return variable;
     }
 
 
+    /**
+     * Fonction qui retourne le type de la variable
+     * @return
+     */
     @Override
     public Type getType() {
         return getSymbole().getType();
@@ -84,16 +92,28 @@ public class Idf extends Expression {
     }
 
 
+    /**
+     * Fonction estbool indique si expression est constantebool
+     * @return
+     */
     @Override
     public boolean estBool() {
         return (getSymbole().getType().getType().equals("booleen"));
     }
 
+    /**
+     * Fonction estFonction indique si expression est fonction
+     * @return
+     */
     @Override
     public boolean estFonction() {
         return false;
     }
 
+    /**
+     * Getteur idf
+     * @return
+     */
     @Override
     public String getIdf() {
         return variable;

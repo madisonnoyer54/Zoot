@@ -40,9 +40,17 @@ public class Retourne extends Instruction{
         return code;
     }
 
+    /**
+     * Fonction qui donne le type de l'expression
+     * @return
+     */
     public Type getType(){
         return e.getType();
     }
+    /**
+     * Fonction qui indique si Instruction estRetourne (vrai)
+     * @return
+     */
     public boolean estRetourner(){
         return true;
     }
