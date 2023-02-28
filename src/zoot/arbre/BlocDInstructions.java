@@ -113,17 +113,25 @@ public class BlocDInstructions extends ArbreAbstrait {
 
             for (Entree et : tableFonction.keySet()){
             code = code + "\n"+et.getIdf()+":\n"+
-                    "\t# Empilier $ra"+
-                    "\t# Empiler $s7"+
-                    "\t# Mettre à jour la base locale "+
-                    "\tmove $s7, $sp";
+                    "\t# Empilier $ra\n"+
+                    "\t sw $ra, 0($sp) \n"+
+                    "\t add $sp,$sp -4\n"+
 
-            // Les Instructions de la fonction
+                    "\t# Empiler $s7\n"+
+                    "\t sw $s7, 0($sp) \n"+
+                    "\t add $sp,$sp -4\n"+
+
+
+                    "\t# Mettre à jour la base locale\n"+
+                    "\tmove $s7, $sp\n";
+
+                // Les Instructions de la fonction
                 SymboleFonction s = (SymboleFonction) tableFonction.get(et);
             for (Instruction instruction : s.getBlocDInstructions().programme) {
                 instruction.verifier();
 
             }
+
         }
         // Les Instructions
         for (Instruction instruction : programme) {

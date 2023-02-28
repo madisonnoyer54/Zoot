@@ -24,21 +24,21 @@ public class AppelFonction extends Expression{
     public String toMIPS() {
         String code;
 
-        code = "\t# Appel de la fonction "+ idf +
+        code = "\t# Appel de la fonction\n"+ idf +
 
                 "\t# Réserve la place pour le résultat de la fonction\n"+
                 "\tadd $sp, $sp, -4\n"+
                 "\n"+
                 // Empiler la valeur du paramètre (zoot 3)
-                "\t# Branchement et svgde de l'adresse de retour   \n"+
-                "\t sw $ra, 0($sp) \n"+
-                "\t add $sp,$sp -4"+
 
-                "\t# Sauvegarde de la valeur de $s7 sur la pile\n"+
-                "\tsw $s7, 0($sp)\n" +
-                "\tadd $sp, $sp, -4\n"+
+                "\tjal "+idf+"\n"+
 
-                "\tjal "+idf;
+                // On depile et on met dans S7
+                "\t # On depile\n"+
+                "\t add $sp, $sp, 4 # depile\n"+
+                "\t sw $s7, $sp\n";
+
+
 
         return code ;
     }

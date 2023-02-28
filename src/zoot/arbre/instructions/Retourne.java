@@ -27,11 +27,16 @@ public class Retourne extends Instruction{
 
     @Override
     public String toMIPS() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\t#Retour de fonction\n");
-        sb.append("\tli, $v0, " + e.toMIPS() + "\n");
-        sb.append("\tjr $ra\n");
-        return sb.toString();
+        String code;
+        // depiler s7 et ra
+        code = "# Depile de s7 et ra\n"+
+        "\tadd $sp, $sp, 4\n"+
+        "\tadd $sra, $ra, 4\n"+
+
+        "\t#Retour de fonction\n"+ e.toString()    +
+        "\t sw $v0, -4($sp)\n"+
+        "\tjr $ra\n";
+        return code;
     }
 
     public Type getType(){
