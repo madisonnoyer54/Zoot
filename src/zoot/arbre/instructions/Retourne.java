@@ -35,6 +35,7 @@ public class Retourne extends Instruction{
 
         "\t#Retour de fonction"+ e.toString()    +
         "\n\tsw $v0, 0($sp)\n"+
+                e.toMIPS()+
         "\tjr $ra\n";
         return code;
     }
