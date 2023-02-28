@@ -113,22 +113,10 @@ public class BlocDInstructions extends ArbreAbstrait {
 
             for (Entree et : tableFonction.keySet()){
             code = code + "\n"+et.getIdf()+":\n"+
-                    "# Réserve la place pour le résultat de la fonction\n"+
-                    "sw $ra, 0($sp)\n" +
-                    "add $sp, $sp, -4\n"+
-            "\n"+
-                    "# Sauvegarde de la valeur de $s7 sur la pile\n"+
-                    "sw $s7, 0($sp)\n" +
-                    "add $sp, $sp, -4\n"+
-
-            "\n"+
-                    "# Mise à jour de la base locale\n" +
-                    "move $s7, $sp\n"+
-                    "\n";
-                   // "# Allocation de la place des variables locales ( pas encore dans zoot ) \n"+
-           // "add $sp, $sp, -" + TDS.getInstance().getTailleZoneVariable() + "\n"+
-           // "\n"+
-           //         "addi $sp,$sp,-4";
+                    "\t# Empilier $ra"+
+                    "\t# Empiler $s7"+
+                    "\t# Mettre à jour la base locale "+
+                    "\tmove $s7, $sp";
 
             // Les Instructions de la fonction
                 SymboleFonction s = (SymboleFonction) tableFonction.get(et);

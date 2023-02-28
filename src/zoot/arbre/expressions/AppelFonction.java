@@ -22,11 +22,21 @@ public class AppelFonction extends Expression{
 
     @Override
     public String toMIPS() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("# Appel d'une fonction \n");
-        sb.append("#Jump sur la fonction ").append(idf).append("\n");
-        sb.append("jal ").append(idf).append("\n");
-        return sb.toString();
+        String code;
+
+        code = "# Appel de la fonction "+ idf +
+                "# Réserve la place pour le résultat de la fonction\n"+
+                "add $sp, $sp, -4\n"+
+                "\n"+
+                // Empiler la valeur du paramètre (zoot 3)
+                "# Branchement et svgde de l'adresse de retour   \n"+
+                //"sw $s7, 0($sp)\n" +
+                "# Sauvegarde de la valeur de $s7 sur la pile\n"+
+                "sw $s7, 0($sp)\n" +
+                "add $sp, $sp, -4\n"+
+                "jal "+idf;
+
+        return code ;
     }
 
     /**
@@ -60,6 +70,11 @@ public class AppelFonction extends Expression{
     @Override
     public boolean estFonction() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return idf;
     }
 
     public String getIdf() {
