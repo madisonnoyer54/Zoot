@@ -126,16 +126,16 @@ public class BlocDInstructions extends ArbreAbstrait {
         for (Entree et : tableFonction.keySet()){
             code = code + "\n"+et.getIdf()+":\n"+
                     "\t# Empilier $ra\n"+
-                    "\t sw $ra, 0($sp) \n"+
-                    "\t add $sp,$sp -4\n"+
+                    "\tsw $ra, 0($sp) \n"+
+                    "\tadd $sp,$sp, -4\n"+
 
                     "\t# Empiler $s7\n"+
-                    "\t sw $s7, 0($sp) \n"+
-                    "\t add $sp,$sp -4\n"+
+                    "\tsw $s7, 0($sp) \n"+
+                    "\tadd $sp,$sp, -4\n"+
 
 
                     "\t# Mettre à jour la base locale\n"+
-                    "\tmove $s7, $sp\n";
+                    "\tmove $s7, $sp\n\n";
 
             // Les Instructions de la fonction
             SymboleFonction s = (SymboleFonction) tableFonction.get(et);

@@ -86,14 +86,22 @@ public class TDS {
      */
     public Symbole identifier(Entree e){
         // Vérifie que la variable à étais déclarer sa a été verifier dans IDF
+        boolean nulle = false;
         boolean rep = false;
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
-            if(et.getIdf().toString().equals(e.idf.toString())  ){
-                rep = true;
+            if(et.getIdf() != null && e.getIdf() != null){
+                if(et.getIdf().toString().equals(e.idf.toString())  ){
+                    rep = true;
+                }
             }
+            if(et.getIdf() == null || e.getIdf() == null){
+                nulle = true;
+            }
+
         }
-        if(!rep){
+
+        if(!rep && nulle == false){
             if(!e.estFonction()){
                 Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne() +" : Variable "+ e.getIdf()+ " non déclaré"));
 

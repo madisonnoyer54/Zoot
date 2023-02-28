@@ -30,11 +30,11 @@ public class Retourne extends Instruction{
         String code;
         // depiler s7 et ra
         code = "\n# Depile de s7 et ra\n"+
-        "\tadd $sp, $sp, 4\n"+
+        "\tadd $s7, $s7, 4\n"+
         "\tadd $ra, $ra, 4\n"+
 
         "\t#Retour de fonction"+ e.toString()    +
-        "\n\t sw $v0, -4($sp)\n"+
+        "\n\tsw $v0, 0($sp)\n"+
         "\tjr $ra\n";
         return code;
     }
