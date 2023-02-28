@@ -24,11 +24,11 @@ public class AppelFonction extends Expression{
     public String toMIPS() {
         String code;
 
-        code = "\t# Appel de la fonction\n"+ idf +
+        code = "\t# Appel de la fonction"+ idf +
 
-                "\t# Réserve la place pour le résultat de la fonction\n"+
+                "\n\t# Réserve la place pour le résultat de la fonction\n"+
                 "\tadd $sp, $sp, -4\n"+
-                "\n"+
+
                 // Empiler la valeur du paramètre (zoot 3)
 
                 "\tjal "+idf+"\n"+

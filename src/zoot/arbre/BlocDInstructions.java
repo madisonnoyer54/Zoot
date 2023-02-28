@@ -108,10 +108,22 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "# Reserve la place des variables\n"+
                 "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
 
+
+        // Les Instructions
+        for (Instruction instruction : programme) {
+            code+=instruction.toMIPS();
+        }
+
+        // Fin du programme
+        code =  code +"\nend :\n" +
+                "\tli $v0, 10\n" +
+                "\tsyscall";
+
+
         //Les déclarations des fonctions
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
 
-            for (Entree et : tableFonction.keySet()){
+        for (Entree et : tableFonction.keySet()){
             code = code + "\n"+et.getIdf()+":\n"+
                     "\t# Empilier $ra\n"+
                     "\t sw $ra, 0($sp) \n"+
@@ -125,23 +137,14 @@ public class BlocDInstructions extends ArbreAbstrait {
                     "\t# Mettre à jour la base locale\n"+
                     "\tmove $s7, $sp\n";
 
-                // Les Instructions de la fonction
-                SymboleFonction s = (SymboleFonction) tableFonction.get(et);
+            // Les Instructions de la fonction
+            SymboleFonction s = (SymboleFonction) tableFonction.get(et);
             for (Instruction instruction : s.getBlocDInstructions().programme) {
                 instruction.verifier();
 
             }
 
         }
-        // Les Instructions
-        for (Instruction instruction : programme) {
-            code+=instruction.toMIPS();
-        }
-
-        // Fin du programme
-        code =  code +"\nend :\n" +
-                "\tli $v0, 10\n" +
-                "\tsyscall";
         return code;
 
     }
