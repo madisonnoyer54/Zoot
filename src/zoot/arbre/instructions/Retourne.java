@@ -29,12 +29,12 @@ public class Retourne extends Instruction{
     public String toMIPS() {
         String code;
         // depiler s7 et ra
-        code = "# Depile de s7 et ra\n"+
+        code = "\n# Depile de s7 et ra\n"+
         "\tadd $sp, $sp, 4\n"+
-        "\tadd $sra, $ra, 4\n"+
+        "\tadd $ra, $ra, 4\n"+
 
-        "\t#Retour de fonction\n"+ e.toString()    +
-        "\t sw $v0, -4($sp)\n"+
+        "\t#Retour de fonction"+ e.toString()    +
+        "\n\t sw $v0, -4($sp)\n"+
         "\tjr $ra\n";
         return code;
     }

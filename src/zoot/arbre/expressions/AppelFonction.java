@@ -36,7 +36,7 @@ public class AppelFonction extends Expression{
                 // On depile et on met dans S7
                 "\t # On depile\n"+
                 "\t add $sp, $sp, 4 # depile\n"+
-                "\t sw $s7, $sp\n";
+                "\t sw $s7, 0($sp)\n";
 
 
 
