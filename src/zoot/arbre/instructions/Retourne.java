@@ -28,7 +28,7 @@ public class Retourne extends Instruction{
     @Override
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
-        sb.append("#Retour de fonction\n");
+        sb.append("\t#Retour de fonction\n");
         sb.append("\tli, $v0, " + e.toMIPS() + "\n");
         sb.append("\tjr $ra\n");
         return sb.toString();
