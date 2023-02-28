@@ -107,26 +107,35 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "\tmove $s7,$sp\n"+
                 "# Reserve la place des variables\n"+
                 "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
-        //Les déclarations des fonctions
 
+        //Les déclarations des fonctions
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
-        for (Map.Entry<Entree, Symbole> entry : tableFonction.entrySet()) {
-            code = code + "\n"+entry.getKey().getIdf()+":\n"+
+
+            for (Entree et : tableFonction.keySet()){
+            code = code + "\n"+et.getIdf()+":\n"+
                     "# Réserve la place pour le résultat de la fonction\n"+
+                    "sw $ra, 0($sp)\n" +
                     "add $sp, $sp, -4\n"+
-            "sw $ra, 0($sp)\n"+
             "\n"+
                     "# Sauvegarde de la valeur de $s7 sur la pile\n"+
+                    "sw $s7, 0($sp)\n" +
                     "add $sp, $sp, -4\n"+
-            "sw $s7, 0($sp)\n"+
+
             "\n"+
                     "# Mise à jour de la base locale\n" +
                     "move $s7, $sp\n"+
-                    "\n"+
-                    "# Allocation de la place des variables locales\n"+
-            "add $sp, $sp, -" + TDS.getInstance().getTailleZoneVariable() + "\n"+
-            "\n"+
-                    "addi $sp,$sp,-4";
+                    "\n";
+                   // "# Allocation de la place des variables locales ( pas encore dans zoot ) \n"+
+           // "add $sp, $sp, -" + TDS.getInstance().getTailleZoneVariable() + "\n"+
+           // "\n"+
+           //         "addi $sp,$sp,-4";
+
+            // Les Instructions de la fonction
+                SymboleFonction s = (SymboleFonction) tableFonction.get(et);
+            for (Instruction instruction : s.getBlocDInstructions().programme) {
+                instruction.verifier();
+
+            }
         }
         // Les Instructions
         for (Instruction instruction : programme) {
