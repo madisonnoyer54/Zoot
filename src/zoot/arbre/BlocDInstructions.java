@@ -140,7 +140,7 @@ public class BlocDInstructions extends ArbreAbstrait {
             // Les Instructions de la fonction
             SymboleFonction s = (SymboleFonction) tableFonction.get(et);
             for (Instruction instruction : s.getBlocDInstructions().programme) {
-                instruction.verifier();
+                code = code  + instruction.toMIPS();
 
             }
 
