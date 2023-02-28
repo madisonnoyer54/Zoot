@@ -112,22 +112,22 @@ public class BlocDInstructions extends ArbreAbstrait {
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
         for (Map.Entry<Entree, Symbole> entry : tableFonction.entrySet()) {
             code = code + "\n"+entry.getKey().getIdf()+":\n"+
-                    "# Empilement de l'adresse retour\n"+
+                    "# Réserve laplace pour le résultat de la fonction\n"+
+                    "add $sp, $sp, -4\n"+
             "sw $ra, 0($sp)\n"+
-            "add $sp, $sp, -4\n"+
+                    "jal "+entry.getKey().getIdf()+"\n"+
             "\n"+
-                    "# Empilement du chainage dynamique\n"+
+                    "# Sauvegarde de la valeur de $s7 sur la pile\n"+
+                    "add $sp, $sp, -4\n"+
             "sw $s7, 0($sp)\n"+
-            "add $sp, $sp, -4\n"+
             "\n"+
-                    "# Déplacement de la base\n"+
-            "move $s7, $sp\n"+
-            "\n"+
-                    "# Allocation de la place des variables\n"+
+                    "# Mise à jour de la base locale\n" +
+                    "move $s7, $sp\n"+
+                    "\n"+
+                    "# Allocation de la place des variables locales\n"+
             "add $sp, $sp, -" + TDS.getInstance().getTailleZoneVariable() + "\n"+
             "\n"+
                     "addi $sp,$sp,-4";
-
         }
         // Les Instructions
         for (Instruction instruction : programme) {
