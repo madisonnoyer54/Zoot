@@ -112,10 +112,9 @@ public class BlocDInstructions extends ArbreAbstrait {
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
         for (Map.Entry<Entree, Symbole> entry : tableFonction.entrySet()) {
             code = code + "\n"+entry.getKey().getIdf()+":\n"+
-                    "# Réserve laplace pour le résultat de la fonction\n"+
+                    "# Réserve la place pour le résultat de la fonction\n"+
                     "add $sp, $sp, -4\n"+
             "sw $ra, 0($sp)\n"+
-                    "jal "+entry.getKey().getIdf()+"\n"+
             "\n"+
                     "# Sauvegarde de la valeur de $s7 sur la pile\n"+
                     "add $sp, $sp, -4\n"+

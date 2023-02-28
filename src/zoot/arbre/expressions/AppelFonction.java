@@ -24,14 +24,8 @@ public class AppelFonction extends Expression{
     public String toMIPS() {
         StringBuilder sb = new StringBuilder();
         sb.append("# Appel d'une fonction \n");
-        sb.append("add $sp, $sp, -4\n");
-
         sb.append("#Jump sur la fonction ").append(idf).append("\n");
         sb.append("jal ").append(idf).append("\n");
-
-        sb.append("#Dépiler dans v0\n");
-        sb.append("add $sp, $sp, 4\n");
-        sb.append("lw $v0, 0($sp)\n");
         return sb.toString();
     }
 
