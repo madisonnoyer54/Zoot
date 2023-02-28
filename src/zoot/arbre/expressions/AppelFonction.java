@@ -24,7 +24,7 @@ public class AppelFonction extends Expression{
     public String toMIPS() {
         String code;
 
-        code = "\t# Appel de la fonction"+ idf +
+        code = "\t# Appel de la fonction "+ idf +
 
                 "\n\t# Réserve la place pour le résultat de la fonction\n"+
                 "\tadd $sp, $sp, -4\n"+
