@@ -106,7 +106,7 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "# Initialiser $s7 avec $sp\n"+
                 "\tmove $s7,$sp\n"+
                 "# Reserve la place des variables\n"+
-                "\taddi $sp,$sp,"+ TDS.getInstance().getTailleZoneVariable()*(-4)+ "\n\n";
+                "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+ "\n\n";
 
 
         // Les Instructions

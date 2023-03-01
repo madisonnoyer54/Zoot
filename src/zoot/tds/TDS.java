@@ -72,10 +72,13 @@ public class TDS {
 
 
         }
-
         this.tableDesSymboles.put(e, s);
-        s.setDeplacement(compteurDeplace);
-        compteurDeplace-= 4;
+        if(!s.estFonction()){
+            compteurDeplace-= 4;
+            s.setDeplacement(compteurDeplace);
+
+        }
+
     }
 
 
