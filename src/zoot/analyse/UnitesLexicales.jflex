@@ -49,8 +49,9 @@ type = (entier)|(booleen)
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
 
+"("                    { return symbol(CodesLexicaux.PAR_OUVRANTE); }
 
-"()"                    { return symbol(CodesLexicaux.PARENTHESE); }
+")"                    { return symbol(CodesLexicaux.PAR_FERMANTE); }
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.EGALE); }
 
