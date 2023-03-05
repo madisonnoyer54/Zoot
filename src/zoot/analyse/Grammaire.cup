@@ -104,7 +104,7 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
 LFONC  ::=      LFONC FONC | FONC;
 
 
-FONC   ::=      TYPE:t IDF:idf PARENTHESE DEBUT LINST:li FIN {:
+FONC   ::=      TYPE:t IDF:idf PARAM:p VARIABLES DEBUT LINST:li FIN {:
 
                     TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
                 :}
