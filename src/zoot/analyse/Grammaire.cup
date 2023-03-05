@@ -101,17 +101,56 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 ;
 
 
-LFONC  ::=      LFONC FONC | FONC;
+LFONC  ::=    LFONC FONC | FONC;
 
+PARAM   ::=   PAR_OUVRANTE PAR_FERMANTE
+              {:
+              // à écrire
+              :}
+        |
+              PAR_OUVRANTE LPAR PAR_FERMANTE
+              {:
+              // à écrire
+              :}
+              ;
 
 FONC   ::=      TYPE:t IDF:idf PARAM:p VARIABLES DEBUT LINST:li FIN {:
 
                     TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
                 :}
+                |
+                TYPE:t IDF:idf PARAM:p VARIABLES LDECL_LOC:ldl DEBUT LINST:li FIN
+                {:
+                //à écrire
+                :}
                 ;
 
 
+
 LDCL   ::=      LDCL DCL | DCL;
+
+LPAR    ::=     LPAR:lp PAR:p
+                {:
+                // à écrire
+                :}
+        |
+                PAR:p
+                {:
+                // à écrire
+                :}
+                ;
+
+LVARLOC    ::=   TYPE:t IDF:i POINTVIRGULE
+                {:
+                //à écrire
+                :}
+                ;
+
+PAR     ::=   TYPE:t IDF:i POINTVIRGULE
+              {:
+              //à écrire
+              :}
+              ;
 
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
