@@ -31,7 +31,7 @@ public class Retourne extends Instruction{
         String code;
         // depiler s7 et ra
         code = "\n# Depile de s7 et ra\n"+
-        "\tadd $sp, $sp, 4\n" +
+                "\tadd $sp, $sp, 4\n" +
                 "\tlw $s7, ($sp)\n" +
                 "\tadd $sp, $sp, 4\n" +
                 "\tlw $ra, ($sp)"+

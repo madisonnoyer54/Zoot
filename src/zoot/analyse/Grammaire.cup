@@ -57,10 +57,11 @@ parser code {:
 
 /* Terminals (tokens returned by the scanner).  */
 
-terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS, PAROUVRANTE, PARFERMANTE, RETOURNE;
-terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN;
+terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS, OUVRE,FERME , RETOURNE;
+terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
+
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, LVARLOC,RET, PARAM, LPAR,PAR;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET ;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -100,56 +101,36 @@ INST    ::=     ECRIRE EXP:e POINTVIRGULE
                 ;
 
 
-LFONC  ::=    LFONC FONC | FONC;
+LFONC  ::=      LFONC FONC | FONC;
 
-PARAM   ::=   PAR_OUVRANTE PAR_FERMANTE
-              {:
-              // à écrire
-              :}
-        |
-              PAR_OUVRANTE LPAR PAR_FERMANTE
-              {:
-              // à écrire
-              :}
-              ;
-
-FONC   ::=      TYPE:t IDF:idf PARAM:p VARIABLES DEBUT LINST:li FIN {:
+                // Fonction sans variable et sans paramètre
+FONC   ::=      TYPE:t IDF:idf OUVRE FERME DEBUT LINST:li FIN {:
 
                     TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
                 :}
                 |
-                TYPE:t IDF:idf PARAM:p VARIABLES LVARLOC:ldl DEBUT LINST:li FIN
-                {:
-                //à écrire
-                :}
+                // Fonction avec parametre mais sans variable
+                 TYPE:t IDF:idf OUVRE LDCL FERME DEBUT LINST:li FIN {:
+
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                 :}
+                 |
+                 // Fonction sans parametre et avec variable
+                  TYPE:t IDF:idf OUVRE FERME VARIABLES LDCL DEBUT LINST:li FIN {:
+
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                  :}
+                  |
+                  // Fonction avec variable et avec paramtre
+                  TYPE:t IDF:idf OUVRE LDCL FERME VARIABLES LDCL DEBUT LINST:li FIN {:
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                  :}
                 ;
+
 
 
 
 LDCL   ::=      LDCL DCL | DCL;
-
-LPAR    ::=     LPAR:lp PAR:p
-                {:
-                // à écrire
-                :}
-        |
-                PAR:p
-                {:
-                // à écrire
-                :}
-                ;
-
-LVARLOC    ::=   TYPE:t IDF:i POINTVIRGULE
-                {:
-                //à écrire
-                :}
-                ;
-
-PAR     ::=   TYPE:t IDF:i POINTVIRGULE
-              {:
-              //à écrire
-              :}
-              ;
 
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
@@ -161,7 +142,7 @@ DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
 EXP    ::=     CSTENTIERE:c
                {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
                |
-               IDF:i PARENTHESE
+               IDF:i OUVRE FERME
                {: RESULT = new AppelFonction(i, ileft + 1); :}
                |
                IDF:i

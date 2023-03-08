@@ -131,11 +131,13 @@ public class BlocDInstructions extends ArbreAbstrait {
 
                     "\t# Empiler $s7\n"+
                     "\tsw $s7, 0($sp) \n"+
-                    "\tadd $sp,$sp, -4\n"+
+                    "\tadd $sp,$sp, -4\n";
 
-
+/*
                     "\t# Mettre à jour la base locale\n"+
                     "\tmove $s7, $sp\n\n";
+
+ */
 
             // Les Instructions de la fonction
             SymboleFonction s = (SymboleFonction) tableFonction.get(et);
