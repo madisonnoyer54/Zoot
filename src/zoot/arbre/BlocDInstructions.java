@@ -99,16 +99,14 @@ public class BlocDInstructions extends ArbreAbstrait {
                        "vraiAff:\t.asciiz \"vrai\"\n"+
                        "fauxAff:\t.asciiz \"faux\"\n"+
                        ".text\n\n"+
-                "main :\n\n";
+                       "main :\n\n";
 
         // Les déclaration des variables
         code = code +
-                "# Initialiser $s7 avec $sp\n"+
+                "# Empilement de l'adresse S7\n"+
                 "\tmove $s7,$sp\n"+
                 "# Reserve la place des variables\n"+
-                "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+ "\n\n";
-
-
+                "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+"\n";
         // Les Instructions
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();
