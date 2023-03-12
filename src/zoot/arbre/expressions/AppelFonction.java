@@ -42,7 +42,10 @@ public class AppelFonction extends Expression{
                 "\n\t# Réserve la place pour le résultat de la fonction\n"+
                 "\tadd $sp, $sp, -4\n"+
 
-                // Empiler la valeur du paramètre (zoot 3)
+                // Empiler la valeur du paramètre
+                "\tsw $a0, ($sp) # On empile la valeur du paramètre a0 sur la pile\n"+
+                "\taddi $sp, $sp, -4 # On ajuste le pointeur de pile\n"+
+
 
                 "\tjal "+idf+"\n"+
 
