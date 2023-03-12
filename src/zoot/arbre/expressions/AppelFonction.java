@@ -44,7 +44,7 @@ public class AppelFonction extends Expression{
 
                 // Empiler la valeur du paramètre
                 "\tsw $a0, ($sp) # On empile la valeur du paramètre a0 sur la pile\n"+
-                "\taddi $sp, $sp, -4 # On ajuste le pointeur de pile\n"+
+                "\tadd $sp, $sp, -4 # On ajuste le pointeur de pile\n"+
 
 
                 "\tjal "+idf+"\n"+
