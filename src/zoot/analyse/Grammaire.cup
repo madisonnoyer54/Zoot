@@ -61,7 +61,7 @@ terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET ;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM ;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -83,7 +83,7 @@ LINST   ::=     LINST:li  INST:i
         |
                 INST:i
                 {:
-                    BlocDInstructions b = new BlocDInstructions(ileft + 1) ;
+                    BlocDInstructions b = new BlocDInstructions(ileft + 1,TDS.getInstance().getNoActuBloc()) ;
                     b.ajouter(i) ;
                     RESULT = b ;
                 :}
@@ -106,24 +106,30 @@ LFONC  ::=      LFONC FONC | FONC;
                 // Fonction sans variable et sans paramètre
 FONC   ::=      TYPE:t IDF:idf OUVRE FERME DEBUT LINST:li FIN {:
 
-                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                     TDS.getInstance().entreeBloc();
+                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
+                    TDS.getInstance().sortieBloc();
                 :}
                 |
                 // Fonction avec parametre mais sans variable
-                 TYPE:t IDF:idf OUVRE LDCL FERME DEBUT LINST:li FIN {:
-
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                 TYPE:t IDF:idf OUVRE LPARAM:lp FERME DEBUT LINST:li FIN {:
+                        TDS.getInstance().entreeBloc();
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
+                       TDS.getInstance().sortieBloc();
                  :}
                  |
                  // Fonction sans parametre et avec variable
-                  TYPE:t IDF:idf OUVRE FERME VARIABLES LDCL DEBUT LINST:li FIN {:
-
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                  TYPE:t IDF:idf OUVRE FERME VARIABLES LDCL:ld DEBUT LINST:li FIN {:
+                        TDS.getInstance().entreeBloc();
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
+                        TDS.getInstance().sortieBloc();
                   :}
                   |
                   // Fonction avec variable et avec paramtre
-                  TYPE:t IDF:idf OUVRE LDCL FERME VARIABLES LDCL DEBUT LINST:li FIN {:
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1), new SymboleFonction(t,li));
+                  TYPE:t IDF:idf OUVRE LPARAM:lp FERME VARIABLES LDCL:ld DEBUT LINST:li FIN {:
+                        TDS.getInstance().entreeBloc();
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
+                       TDS.getInstance().sortieBloc();
                   :}
                 ;
 
@@ -135,7 +141,15 @@ LDCL   ::=      LDCL DCL | DCL;
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
-                    TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1), new SymboleVariable(t));
+                    TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1, TDS.getInstance().getNoActuBloc()), new SymboleVariable(t), TDS.getInstance().getNoActuBloc());
+                :}
+                ;
+
+LPARAM  ::= LPARAM PARAM | PARAM;
+
+PARAM    ::=     TYPE:t IDF:idf POINTVIRGULE
+                {:
+                    TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleVariable(t), TDS.getInstance().getNoActuBloc());
                 :}
                 ;
 
@@ -150,6 +164,5 @@ EXP    ::=     CSTENTIERE:c
                |
                CSTBOOLEEN:b
                {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
-               |
 
                 ;

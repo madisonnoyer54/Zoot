@@ -52,12 +52,15 @@ public class Idf extends Expression {
      */
     public Symbole getSymbole(){
         Symbole symbole = null;
+        /*
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().equals(variable) && !et.estFonction()){
                 symbole = TDS.getInstance().getTableDesSymboles().get(et) ;
             }
         }
+
+         */
 
         return symbole;
     }

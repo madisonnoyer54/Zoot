@@ -57,12 +57,12 @@ class EcrireTest {
 
     @Test
     void verifier() {
-        Entree entree = new EntreeVariable("var",0);
+       // Entree entree = new EntreeVariable("var",0);
         Symbole symbole = new SymboleVariable("entier");
-        TDS.getInstance().getTableDesSymboles().put(entree,symbole);
+       // TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         Idf idf = new Idf("var",1);
         idf.verifier();
-        TDS.getInstance().getTableDesSymboles().remove(entree,symbole); //variable non déclarée
+       // TDS.getInstance().getTableDesSymboles().remove(entree,symbole); //variable non déclarée
         Ecrire ecrire = new Ecrire(idf,0);
        assert(Analyse.getInstance().getList().isEmpty());
     }

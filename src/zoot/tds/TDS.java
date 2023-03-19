@@ -10,19 +10,19 @@ import java.util.List;
 
 public class TDS {
     private int compteurDeplace;
-    private HashMap<Entree, Symbole> tableDesSymboles;
+    //private HashMap<Entree, Symbole> tableDesSymboles;
     private static TDS instance = new TDS();
-    private List<HashMap<Entree, Symbole>> blocs;
-    private int noActuBloc = 0;
-    private int noPrecBloc = 0;
+    private ArrayList<HashMap<Entree, Symbole>> blocs;
+    private int noActuBloc;
 
 
     /**
      * Constructeur
      */
     public TDS() {
-        this.tableDesSymboles = new HashMap<>();
+        //this.tableDesSymboles = new HashMap<>();
         compteurDeplace =0;
+        noActuBloc = 0;
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
     }
@@ -42,11 +42,11 @@ public class TDS {
      * @param e
      * @param s
      */
-    public void ajouter (Entree e, Symbole s){
+    public void ajouter (Entree e, Symbole s,int numBloc){
         Boolean entre1 = e.estFonction();
         Boolean entre2 = null;
         // variable existe déjà double déclaration exception!!
-        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(numBloc);
         for (Entree et : list.keySet()) {
             entre2 = et.estFonction();
 
@@ -72,7 +72,7 @@ public class TDS {
 
 
         }
-        this.tableDesSymboles.put(e, s);
+        list.put(e, s);
         if(!s.estFonction()){
             compteurDeplace-= 4;
             s.setDeplacement(compteurDeplace);
@@ -91,7 +91,7 @@ public class TDS {
         // Vérifie que la variable à étais déclarer sa a été verifier dans IDF
         boolean nulle = false;
         boolean rep = false;
-        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
+        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(e.numBloc);
         for (Entree et : list.keySet()) {
             if(et.getIdf() != null && e.getIdf() != null){
                 if(et.getIdf().toString().equals(e.idf.toString())  ){
@@ -114,7 +114,7 @@ public class TDS {
             }
         }
 
-        return this.tableDesSymboles.get(e);
+        return list.get(e);
     }
 
     /**
@@ -139,7 +139,7 @@ public class TDS {
      * @return taille de la list
      */
     public int getTailleZoneVariable(){
-        return tableDesSymboles.size();
+        return blocs.get(0).size();
     }
 
 
@@ -161,23 +161,6 @@ public class TDS {
     }
 
 
-    /**
-     * Getteur
-     * @return Hashmap table des symboles
-     */
-    public HashMap<Entree, Symbole> getTableDesSymboles() {
-        return tableDesSymboles;
-    }
-
-
-    /**
-     * Setteur
-     * @param tableDesSymboles
-     */
-    public void setTableDesSymboles(HashMap<Entree, Symbole> tableDesSymboles) {
-        this.tableDesSymboles = tableDesSymboles;
-    }
-
 
     /**
      * Fonction qui permet de recumperais la liste des fonctions
@@ -188,13 +171,29 @@ public class TDS {
        HashMap<Entree, Symbole> tableFonction = new HashMap<>();
 
 
-        for (Entree et : tableDesSymboles.keySet()) {
+        for (Entree et : blocs.get(0).keySet()) {
             if(et.estFonction()){
-                SymboleFonction s = (SymboleFonction) tableDesSymboles.get(et);
+                SymboleFonction s = (SymboleFonction) blocs.get(0).get(et);
 
               tableFonction.put(et, s);
             }
         }
         return tableFonction;
+    }
+
+    public int getNoActuBloc() {
+        return noActuBloc;
+    }
+
+    public ArrayList<HashMap<Entree, Symbole>> getBlocs() {
+        return blocs;
+    }
+
+    public void setBlocs(ArrayList<HashMap<Entree, Symbole>> blocs) {
+        this.blocs = blocs;
+    }
+
+    public void setNoActuBloc(int noActuBloc) {
+        this.noActuBloc = noActuBloc;
     }
 }

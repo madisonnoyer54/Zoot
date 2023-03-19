@@ -65,13 +65,17 @@ public class AppelFonction extends Expression{
      * @return le symbole
      */
     public Symbole getSymbole(){
+
         Symbole symbole = null;
+        /*
         HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
             if(et.getIdf().equals(idf) && et.estFonction()){
                 symbole = TDS.getInstance().getTableDesSymboles().get(et) ;
             }
         }
+
+         */
 
         return symbole;
     }

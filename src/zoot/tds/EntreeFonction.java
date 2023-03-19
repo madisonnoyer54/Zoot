@@ -7,8 +7,8 @@ public class EntreeFonction extends Entree{
      * @param idf
      * @param l
      */
-    public EntreeFonction(String idf, int l) {
-        super(idf, l);
+    public EntreeFonction(String idf, int l, int numBloc) {
+        super(idf, l, numBloc);
     }
 
 

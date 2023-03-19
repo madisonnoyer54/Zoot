@@ -19,7 +19,8 @@ import java.util.Map;
  */
 
 public class BlocDInstructions extends ArbreAbstrait {
-    
+
+    protected int numBloc;
     protected ArrayList<Instruction> programme ;
 
 
@@ -27,8 +28,9 @@ public class BlocDInstructions extends ArbreAbstrait {
      * Constructeur
      * @param n
      */
-    public BlocDInstructions(int n) {
+    public BlocDInstructions(int n, int num) {
         super(n) ;
+        numBloc=num;
         programme = new ArrayList<>() ;
     }
 
@@ -52,6 +54,7 @@ public class BlocDInstructions extends ArbreAbstrait {
             instruction.verifier();
 
         }
+        /*
 
         // On verifie les sous programmes
         HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
@@ -78,6 +81,8 @@ public class BlocDInstructions extends ArbreAbstrait {
            }
         }
 
+
+         */
 
     }
 

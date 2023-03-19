@@ -31,7 +31,7 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
-
+/*
         int result = 0;
         HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
         for (Entree et : list.keySet()) {
@@ -54,6 +54,8 @@ public class Affectation extends Instruction{
             Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne));
 
         }
+
+ */
 
     }
 

@@ -7,8 +7,8 @@ public class EntreeVariable extends Entree{
      * @param idf
      * @param l
      */
-    public EntreeVariable(String idf, int l) {
-        super(idf, l);
+    public EntreeVariable(String idf, int l, int numBloc) {
+        super(idf, l, numBloc);
     }
 
 

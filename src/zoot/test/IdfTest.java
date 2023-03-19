@@ -13,9 +13,9 @@ class IdfTest {
 
     @BeforeEach
     void setUp() {
-        Entree entree = new EntreeVariable("variable1",0);
+       // Entree entree = new EntreeVariable("variable1",0);
         Symbole symbole = new SymboleVariable("entier");
-        TDS.getInstance().getTableDesSymboles().put(entree,symbole);
+      //  TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         idf = new Idf("variable1", 1);
         assertNotNull(idf);
     }

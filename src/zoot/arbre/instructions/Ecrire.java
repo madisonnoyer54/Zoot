@@ -29,6 +29,7 @@ public class Ecrire extends Instruction {
     @Override
     public void verifier() {
         exp.verifier();
+        /*
         if (!exp.estFonction()){
             Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(exp.getIdf(), noLigne));
         }
@@ -36,6 +37,8 @@ public class Ecrire extends Instruction {
             Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne));
 
         }
+
+         */
     }
 
 

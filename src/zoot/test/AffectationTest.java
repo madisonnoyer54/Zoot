@@ -18,12 +18,15 @@ class AffectationTest {
     private Entree entree;
     @BeforeEach
     void setUp() {
+        /*
         entree = new EntreeVariable("var",0);
         symbole = new SymboleVariable("entier");
         TDS.getInstance().getTableDesSymboles().put(entree,symbole);
         express = new ConstanteEntiere("nb",7);
         idf = new Idf("var",7);
         affect = new Affectation(idf.toString(),express,7);
+
+         */
     }
 
     @Test

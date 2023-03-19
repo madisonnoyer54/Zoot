@@ -4,13 +4,15 @@ public abstract class Entree {
     public String idf;
     public int noLigne;
 
+    public int numBloc;
     /**
      * Constructeur
      * @param idf
      */
-    public Entree(String idf, int l){
+    public Entree(String idf, int l, int numBloc){
         this.idf = idf;
         noLigne =l;
+        this.numBloc = numBloc;
     }
 
     public int getNoLigne() {
