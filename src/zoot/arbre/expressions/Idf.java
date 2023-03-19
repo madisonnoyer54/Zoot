@@ -6,7 +6,9 @@ import zoot.tds.Symbole;
 import zoot.tds.TDS;
 import zoot.tds.Type;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Idf extends Expression {
 
@@ -52,16 +54,15 @@ public class Idf extends Expression {
      */
     public Symbole getSymbole(){
         Symbole symbole = null;
-        /*
-        HashMap<Entree,Symbole> list = TDS.getInstance().getTableDesSymboles();
-        for (Entree et : list.keySet()) {
-            if(et.getIdf().equals(variable) && !et.estFonction()){
-                symbole = TDS.getInstance().getTableDesSymboles().get(et) ;
+        ArrayList<HashMap<Entree, Symbole>> list = TDS.getInstance().getBlocs();
+        for (HashMap<Entree, Symbole> map : list) {
+            for (Map.Entry<Entree, Symbole> entry : map.entrySet()) {
+                Entree entre = entry.getKey();
+                if (entre.getIdf().equals(variable) && !entre.estFonction()) {
+                    symbole = entry.getValue();
+                }
             }
         }
-
-         */
-
         return symbole;
     }
 

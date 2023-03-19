@@ -5,6 +5,7 @@ import zoot.tds.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AppelFonction extends Expression{
     private String idf;
@@ -64,16 +65,18 @@ public class AppelFonction extends Expression{
      * Getteur
      * @return le symbole
      */
-    public Symbole getSymbole(){
+    public Symbole getSymbole() {
 
         Symbole symbole = null;
-        HashMap<Entree,Symbole> list = TDS.getInstance().getlistFonction();
-        for (Entree et : list.keySet()) {
-            if(et.getIdf().equals(idf) && et.estFonction()){
-                symbole = TDS.getInstance().getlistFonction().get(et) ;
+        ArrayList<HashMap<Entree, Symbole>> list = TDS.getInstance().getBlocs();
+        for (HashMap<Entree, Symbole> map : list) {
+            for (Map.Entry<Entree, Symbole> entry : map.entrySet()) {
+                Entree entre = entry.getKey();
+                if (entre.getIdf().equals(idf) && entre.estFonction()) {
+                    symbole = entry.getValue();
+                }
             }
         }
-
         return symbole;
     }
 
