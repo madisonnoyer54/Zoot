@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class AppelFonction extends Expression{
     private String idf;
     private int n;
+    private ArrayList<Expression> parametres;
 
     /**
      * Constructeur
@@ -19,6 +20,7 @@ public class AppelFonction extends Expression{
         super(n);
         this.idf = idf;
         this.n=n;
+        this.parametres = new ArrayList<>();
     }
 
     /**
