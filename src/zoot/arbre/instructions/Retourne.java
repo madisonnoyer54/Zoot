@@ -13,8 +13,8 @@ public class Retourne extends Instruction{
      *
      * @param n
      */
-    public Retourne(Expression e, int n) {
-        super(n);
+    public Retourne(Expression e, int n, int num) {
+        super(n, num);
         this.e = e;
 
     }

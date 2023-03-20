@@ -11,8 +11,8 @@ public abstract class Constante extends Expression {
      * @param texte
      * @param n
      */
-    protected Constante(String texte, int n) {
-        super(n) ;
+    protected Constante(String texte, int n, int num) {
+        super(n, num) ;
         cste = texte ;
     }
 

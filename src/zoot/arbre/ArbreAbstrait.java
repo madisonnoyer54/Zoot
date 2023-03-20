@@ -4,14 +4,16 @@ public abstract class ArbreAbstrait {
     
     // numéro de ligne du début de l'instruction
     protected int noLigne ;
+    protected int numBloc;
 
 
     /**
      * Constructeur
      * @param n
      */
-    protected ArbreAbstrait(int n) {
+    protected ArbreAbstrait(int n, int num) {
         noLigne = n ;
+        numBloc = num;
     }
 
 
@@ -35,5 +37,14 @@ public abstract class ArbreAbstrait {
      * @return
      */
     public abstract String toMIPS();
+
+    public int getNumBloc() {
+        return numBloc;
+    }
+
+    public void setNumBloc(int numBloc) {
+        this.numBloc = numBloc;
+    }
+
 
 }

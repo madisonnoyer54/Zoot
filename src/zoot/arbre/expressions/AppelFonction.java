@@ -17,8 +17,8 @@ public class AppelFonction extends Expression{
      * @param idf
      * @param n
      */
-    public AppelFonction(String idf,int n) {
-        super(n);
+    public AppelFonction(String idf,int n, int num) {
+        super(n,num);
         this.idf = idf;
         this.n=n;
         this.parametres = new ArrayList<>();

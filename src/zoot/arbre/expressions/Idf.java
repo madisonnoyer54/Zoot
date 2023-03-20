@@ -20,8 +20,8 @@ public class Idf extends Expression {
      * @param texte
      * @param n
      */
-    public Idf(String texte, int n) {
-        super(n);
+    public Idf(String texte, int n, int num) {
+        super(n,num);
         variable = texte;
         verifier();
 

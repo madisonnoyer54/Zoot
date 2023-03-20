@@ -9,8 +9,8 @@ public abstract class Expression extends ArbreAbstrait {
      * Constructeur
      * @param n
      */
-    protected Expression(int n) {
-        super(n) ;
+    protected Expression(int n, int num) {
+        super(n,num) ;
     }
 
 

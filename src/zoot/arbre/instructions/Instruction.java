@@ -10,8 +10,8 @@ public abstract class Instruction extends ArbreAbstrait {
      * Constructeur
      * @param n
      */
-    protected Instruction(int n) {
-        super(n);
+    protected Instruction(int n, int numBloc) {
+        super(n,numBloc);
     }
 
     public abstract boolean estRetourner();

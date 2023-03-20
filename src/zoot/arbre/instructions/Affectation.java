@@ -19,10 +19,11 @@ public class Affectation extends Instruction{
      * @param e
      * @param n
      */
-    public Affectation(String idf,Expression e,int n) {
-        super(n);
-        variable = new Idf(idf,n);
+    public Affectation(String idf,Expression e,int n, int num) {
+        super(n, num);
+        variable = new Idf(idf,n, num);
         exp = e;
+
     }
 
 
@@ -31,31 +32,42 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
-/*
+
         int result = 0;
-        HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
-        for (Entree et : list.keySet()) {
-            if(et.getIdf().toString().equals(variable.toString())){
-                result += 1;
+
+            // On regerde si la variable a etais déclarer dans son bloc
+            HashMap<Entree, Symbole> list = TDS.getInstance().getBlocs().get(variable.getNumBloc());
+            for (Entree et : list.keySet()) {
+                if(et.getIdf().toString().equals(variable.toString())  ){
+                    result += 1;
+
+                }
+            }
+            // On regarde si la variable a étais identifier dans le main
+            HashMap<Entree, Symbole> list2 = TDS.getInstance().getBlocs().get(0);
+            for (Entree et : list2.keySet()) {
+                if(et.getIdf().toString().equals(variable.toString())  ){
+                    result += 1;
+
+                }
+            }
+
+            // Test si la variable a été déclarer
+            if (result != 0){
+                if(!variable.getSymbole().getType().concordance(exp.getType())){
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
+                }
+            }
+
+            if (!exp.estFonction()){
+                Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne, numBloc));
+            }
+            else{
+                Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
 
             }
-        }
-        // Test si la variable a été déclarer
-        if (result != 0){
-            if(!variable.getSymbole().getType().concordance(exp.getType())){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
-            }
-        }
 
-        if (!exp.estFonction()){
-            Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne));
-        }
-        else{
-            Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne));
 
-        }
-
- */
 
     }
 

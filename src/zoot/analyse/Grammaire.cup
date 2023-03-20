@@ -91,13 +91,13 @@ LINST   ::=     LINST:li  INST:i
 
 
 INST    ::=     ECRIRE EXP:e POINTVIRGULE
-                {: RESULT = new Ecrire(e, eleft + 1) ; :}
+                {: RESULT = new Ecrire(e, eleft + 1,TDS.getInstance().getNoActuBloc() ) ; :}
                 |
                 IDF:idf EGALE EXP:e  POINTVIRGULE
-                {: RESULT = new Affectation(idf,e, eleft + 1); :}
+                {: RESULT = new Affectation(idf,e, eleft + 1, TDS.getInstance().getNoActuBloc()); :}
                 |
                 RETOURNE EXP:e POINTVIRGULE
-                {: RESULT = new Retourne(e, eleft + 1); :}
+                {: RESULT = new Retourne(e, eleft + 1, TDS.getInstance().getNoActuBloc()); :}
                 ;
 
 
@@ -154,15 +154,15 @@ PARAM    ::=     TYPE:t IDF:idf POINTVIRGULE
                 ;
 
 EXP    ::=     CSTENTIERE:c
-               {: RESULT = new ConstanteEntiere(c, cleft + 1) ; :}
+               {: RESULT = new ConstanteEntiere(c, cleft + 1,TDS.getInstance().getNoActuBloc()) ; :}
                |
                IDF:i OUVRE FERME
-               {: RESULT = new AppelFonction(i, ileft + 1); :}
+               {: RESULT = new AppelFonction(i, ileft + 1, TDS.getInstance().getNoActuBloc()); :}
                |
                IDF:i
-               {: RESULT = new Idf(i,ileft+1) ; :}
+               {: RESULT = new Idf(i,ileft+1, TDS.getInstance().getNoActuBloc()) ; :}
                |
                CSTBOOLEEN:b
-               {: RESULT = new ConstanteBooleenne(b, bleft + 1) ; :}
+               {: RESULT = new ConstanteBooleenne(b, bleft + 1, TDS.getInstance().getNoActuBloc()) ; :}
 
                 ;

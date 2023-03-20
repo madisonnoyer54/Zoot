@@ -16,8 +16,8 @@ public class Ecrire extends Instruction {
      * @param e
      * @param n
      */
-    public Ecrire (Expression e, int n) {
-        super(n) ;
+    public Ecrire (Expression e, int n, int num) {
+        super(n, num) ;
         exp = e ;
         this.numero = FabriqueNumero.getInstance().genererNombre();
     }
