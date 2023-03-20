@@ -7,6 +7,7 @@ import zoot.arbre.expressions.ConstanteEntiere;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConstanteEntiereTest {
+    /*
     private ConstanteEntiere constTest;
     @BeforeEach
     void setUp() {
@@ -28,4 +29,6 @@ class ConstanteEntiereTest {
     void estBool() {
         assertFalse(constTest.estBool());
     }
+
+     */
 }

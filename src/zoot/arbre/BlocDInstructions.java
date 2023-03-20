@@ -20,7 +20,6 @@ import java.util.Map;
 
 public class BlocDInstructions extends ArbreAbstrait {
 
-    protected int numBloc;
     protected ArrayList<Instruction> programme ;
 
 
@@ -29,8 +28,7 @@ public class BlocDInstructions extends ArbreAbstrait {
      * @param n
      */
     public BlocDInstructions(int n, int num) {
-        super(n) ;
-        numBloc=num;
+        super(n, num) ;
         programme = new ArrayList<>() ;
     }
 

@@ -9,8 +9,8 @@ public class ConstanteBooleenne extends Constante {
          * @param texte
          * @param n
          */
-        public ConstanteBooleenne(String texte, int n) {
-            super(texte, n);
+        public ConstanteBooleenne(String texte, int n, int num) {
+            super(texte, n, num);
         }
 
 

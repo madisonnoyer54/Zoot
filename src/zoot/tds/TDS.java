@@ -91,8 +91,24 @@ public class TDS {
         // Vérifie que la variable à étais déclarer sa a été verifier dans IDF
         boolean nulle = false;
         boolean rep = false;
+
+        // Déclarer dans son bloc
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(e.numBloc);
         for (Entree et : list.keySet()) {
+            if(et.getIdf() != null && e.getIdf() != null){
+                if(et.getIdf().toString().equals(e.idf.toString())  ){
+                    rep = true;
+                }
+            }
+            if(et.getIdf() == null || e.getIdf() == null){
+                nulle = true;
+            }
+
+        }
+
+        // Déclarer dans le main
+        HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(0);
+        for (Entree et : list2.keySet()) {
             if(et.getIdf() != null && e.getIdf() != null){
                 if(et.getIdf().toString().equals(e.idf.toString())  ){
                     rep = true;
@@ -121,10 +137,9 @@ public class TDS {
      * Fonction qui permet d'indiquer l'entree dans un bloc d'instruction
      */
     public void entreeBloc(){
-        if (noActuBloc == 0) {
-            this.blocs.add(new HashMap<>());
-        }
-        this.noActuBloc = this.blocs.size() - 1;
+        this.blocs.add(new HashMap<>());
+
+        this.noActuBloc = this.noActuBloc + 1;
     }
 
     /**

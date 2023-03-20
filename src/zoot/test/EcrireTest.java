@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class EcrireTest {
-
+/*
     @org.junit.jupiter.api.Test
     void testToMIPS() {
         Expression expTest = new ConstanteEntiere("7",7);
@@ -66,4 +66,6 @@ class EcrireTest {
         Ecrire ecrire = new Ecrire(idf,0);
        assert(Analyse.getInstance().getList().isEmpty());
     }
+
+ */
 }

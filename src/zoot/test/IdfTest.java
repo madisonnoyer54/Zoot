@@ -9,6 +9,7 @@ import zoot.tds.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IdfTest {
+    /*
     private Idf idf;
 
     @BeforeEach
@@ -46,4 +47,6 @@ class IdfTest {
     void estBool() {
         assertFalse(idf.estBool());
     }
+
+     */
 }

@@ -9,8 +9,8 @@ public class ConstanteEntiere extends Constante {
      * @param texte
      * @param n
      */
-    public ConstanteEntiere(String texte, int n) {
-        super(texte, n) ;
+    public ConstanteEntiere(String texte, int n, int num) {
+        super(texte, n,num) ;
     }
 
 

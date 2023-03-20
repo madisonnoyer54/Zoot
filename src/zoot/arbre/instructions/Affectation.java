@@ -43,7 +43,7 @@ public class Affectation extends Instruction{
 
                 }
             }
-            // On regarde si la variable a étais identifier dans le main
+            // On regarde si la variable a étais déclarer dans le main
             HashMap<Entree, Symbole> list2 = TDS.getInstance().getBlocs().get(0);
             for (Entree et : list2.keySet()) {
                 if(et.getIdf().toString().equals(variable.toString())  ){
