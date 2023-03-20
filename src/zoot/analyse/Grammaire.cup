@@ -107,38 +107,33 @@ LFONC  ::=      LFONC FONC | FONC;
 FONC   ::=      TYPE:t IDF:idf OUVRE FERME DEBUT LINST:li FIN {:
 
 
-                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
-                    TDS.getInstance().entreeBloc();
+                    TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li),0);
 
                     TDS.getInstance().sortieBloc();
                 :}
                 |
                 // Fonction avec parametre mais sans variable
-                 TYPE:t IDF:idf OUVRE LPARAM:lp FERME DEBUT LINST:li FIN {:
+                 TYPE:t IDF:idf OUVRE LPARAM FERME DEBUT LINST:li FIN {:
 
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
-                        TDS.getInstance().entreeBloc();
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), 0);
 
                        TDS.getInstance().sortieBloc();
                  :}
                  |
                  // Fonction sans parametre et avec variable
-                  TYPE:t IDF:idf OUVRE FERME VARIABLES LDCL:ld DEBUT LINST:li FIN {:
+                  TYPE:t IDF:idf OUVRE FERME VARIABLES LDCL DEBUT LINST:li FIN {:
 
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
-                        TDS.getInstance().entreeBloc();
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), 0);
                         TDS.getInstance().sortieBloc();
                   :}
                   |
                   // Fonction avec variable et avec paramtre
-                  TYPE:t IDF:idf OUVRE LPARAM:lp FERME VARIABLES LDCL:ld DEBUT LINST:li FIN {:
+                  TYPE:t IDF:idf OUVRE LPARAM FERME VARIABLES LDCL DEBUT LINST:li FIN {:
 
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), TDS.getInstance().getNoActuBloc());
-                        TDS.getInstance().entreeBloc();
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), 0);
                        TDS.getInstance().sortieBloc();
                   :}
                 ;
-
 
 
 
@@ -151,7 +146,11 @@ DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 :}
                 ;
 
-LPARAM  ::= LPARAM PARAM | PARAM;
+LPARAM  ::= LPARAM PARAM | PARAM
+            {:
+                    TDS.getInstance().entreeBloc();
+                :}
+                ;
 
 PARAM    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:

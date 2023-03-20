@@ -45,6 +45,11 @@ public class TDS {
     public void ajouter (Entree e, Symbole s,int numBloc){
         Boolean entre1 = e.estFonction();
         Boolean entre2 = null;
+        System.out.println(numBloc);
+        System.out.println(e.idf);
+        System.out.println(noActuBloc);
+        System.out.println(" ");
+
         // variable existe déjà double déclaration exception!!
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(numBloc);
         for (Entree et : list.keySet()) {
@@ -140,6 +145,7 @@ public class TDS {
         this.blocs.add(new HashMap<>());
 
         this.noActuBloc = this.noActuBloc + 1;
+        System.out.println(noActuBloc);
     }
 
     /**
