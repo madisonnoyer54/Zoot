@@ -47,4 +47,8 @@ public abstract class Entree {
     public boolean estFonction(){
         return false;
     }
+
+    public int getNumBloc() {
+        return numBloc;
+    }
 }

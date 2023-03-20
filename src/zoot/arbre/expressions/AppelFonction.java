@@ -72,7 +72,7 @@ public class AppelFonction extends Expression{
         for (HashMap<Entree, Symbole> map : list) {
             for (Map.Entry<Entree, Symbole> entry : map.entrySet()) {
                 Entree entre = entry.getKey();
-                if (entre.getIdf().equals(idf) && entre.estFonction()) {
+                if (entre.getIdf().equals(idf) && entre.estFonction() && entre.getNumBloc() == numBloc) {
                     symbole = entry.getValue();
                 }
             }
