@@ -35,7 +35,7 @@ public class Affectation extends Instruction{
 
         int result = 0;
 
-            // On regerde si la variable a etais déclarer dans son bloc
+            // On regerde si la variable a eté déclarée dans son bloc
             HashMap<Entree, Symbole> list = TDS.getInstance().getBlocs().get(variable.getNumBloc());
             for (Entree et : list.keySet()) {
                 if(et.getIdf().toString().equals(variable.toString())  ){
@@ -43,7 +43,7 @@ public class Affectation extends Instruction{
 
                 }
             }
-            // On regarde si la variable a étais déclarer dans le main
+            // On regarde si la variable a été déclarée dans le main
             HashMap<Entree, Symbole> list2 = TDS.getInstance().getBlocs().get(0);
             for (Entree et : list2.keySet()) {
                 if(et.getIdf().toString().equals(variable.toString())  ){
@@ -52,7 +52,7 @@ public class Affectation extends Instruction{
                 }
             }
 
-            // Test si la variable a été déclarer
+            // Test si la variable a été déclarée
             if (result != 0){
                 if(!variable.getSymbole().getType().concordance(exp.getType())){
                     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));

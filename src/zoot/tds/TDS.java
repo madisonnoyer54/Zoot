@@ -82,7 +82,6 @@ public class TDS {
         if(!s.estFonction() && numBloc ==0){
             compteurDeplace-= 4;
             s.setDeplacement(compteurDeplace);
-
         }
 
     }
@@ -189,7 +188,7 @@ public class TDS {
 
 
     /**
-     * Fonction qui permet de recumperais la liste des fonctions
+     * Fonction qui permet de recuperer la liste des fonctions
      * @return
      */
     public HashMap<Entree,Symbole> getlistFonction(){

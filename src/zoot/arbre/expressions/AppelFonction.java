@@ -29,7 +29,10 @@ public class AppelFonction extends Expression{
      */
     @Override
     public void verifier() {
-
+        HashMap<Entree,Symbole> listefonctions = TDS.getInstance().getlistFonction();
+        //à continuer : parcourir la liste verifier la fonction actuelle
+        //verifier que ce qui est donné en parametre de l'appel est de meme type que les parametres declarés dans la fonction
+        //+vérifier si aucun parametre donné mais requis (dans la décla)
     }
 
     /**
