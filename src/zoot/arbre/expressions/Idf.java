@@ -58,7 +58,7 @@ public class Idf extends Expression {
         for (HashMap<Entree, Symbole> map : list) {
             for (Map.Entry<Entree, Symbole> entry : map.entrySet()) {
                 Entree entre = entry.getKey();
-                if (entre.getIdf().equals(variable) && !entre.estFonction() && entre.getNumBloc() == numBloc) {
+                if (entre.getIdf().equals(variable) && !entre.estFonction()) {
                     symbole = entry.getValue();
                 }
             }

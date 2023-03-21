@@ -13,7 +13,8 @@ public class TDS {
     //private HashMap<Entree, Symbole> tableDesSymboles;
     private static TDS instance = new TDS();
     private ArrayList<HashMap<Entree, Symbole>> blocs;
-    private int noActuBloc;
+    private int noActuBloc=0;
+    private boolean estDansMain;
 
 
     /**
@@ -22,9 +23,9 @@ public class TDS {
     public TDS() {
         //this.tableDesSymboles = new HashMap<>();
         compteurDeplace =0;
-        noActuBloc = 0;
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
+        estDansMain = true;
     }
 
 
@@ -142,17 +143,21 @@ public class TDS {
      * Fonction qui permet d'indiquer l'entree dans un bloc d'instruction
      */
     public void entreeBloc(){
-        this.blocs.add(new HashMap<>());
+        if(estDansMain == true){
+            this.blocs.add(new HashMap<>());
 
-        this.noActuBloc = this.noActuBloc + 1;
-        System.out.println(noActuBloc);
+            this.noActuBloc = this.noActuBloc + 1;
+            estDansMain = false;
+        }
+
     }
 
     /**
      * Fonction qui permet d'indiquer la sortie d'un bloc d'instruction
      */
     public void sortieBloc(){
-        this.noActuBloc = 0;
+       // this.noActuBloc = 0;
+        estDansMain = true;
      }
 
     /**
