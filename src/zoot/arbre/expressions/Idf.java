@@ -33,7 +33,7 @@ public class Idf extends Expression {
      */
     @Override
     public void verifier() {
-      // Symbole symbole = TDS.getInstance().identifier(new Entree(variable, noLigne));
+       //Symbole symbole = TDS.getInstance().identifier(new Entree(variable, noLigne));
 
     }
 

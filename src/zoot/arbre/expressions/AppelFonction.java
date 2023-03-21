@@ -71,8 +71,6 @@ public class AppelFonction extends Expression{
         // 0 car la fonction est forcement déclarer dans le main
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
         for (Entree et : list.keySet()) {
-            //System.out.println(et.idf);
-            //System.out.println(idf);
             if(et.getIdf().equals(idf) && et.estFonction()){
                 symbole = list.get(et) ;
             }

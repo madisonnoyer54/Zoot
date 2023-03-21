@@ -79,7 +79,7 @@ public class TDS {
 
         }
         list.put(e, s);
-        if(!s.estFonction()){
+        if(!s.estFonction() && numBloc ==0){
             compteurDeplace-= 4;
             s.setDeplacement(compteurDeplace);
 
