@@ -103,7 +103,7 @@ public class BlocDInstructions extends ArbreAbstrait {
                        "fauxAff:\t.asciiz \"faux\"\n"+
                        ".text\n\n"+
                        "main :\n\n";
-
+        //$s3 à mettre ici ??
         // Les déclaration des variables
         code = code +
                 "# Empilement de l'adresse S7\n"+
@@ -124,21 +124,19 @@ public class BlocDInstructions extends ArbreAbstrait {
         //Les déclarations des fonctions
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
 
+        code = code +"\t# Empiler $ra\n"+
+                "\tsw $ra, 0($sp) \n"+
+
+                "\t# Empiler $s7\n"+
+                "\tsw $s7, 0($sp) \n"+
+                "\t# Mettre à jour la base locale\n"+
+                //mettre à jour la base locale à faire
+                "\tmove $s7, $sp\n\n"+
+                "\t# On reserve la place pour les variables\n"+
+                "\tadd $sp,$sp,"+TDS.getInstance().getTailleZoneVariable(0)+"\n";
         for (Entree et : tableFonction.keySet()){
-            code = code + "\n"+et.getIdf()+":\n"+
-                    "\t# Empilier $ra\n"+
-                    "\tsw $ra, 0($sp) \n"+
-                    "\tadd $sp,$sp, -4\n"+
+            code = code + "\n"+et.getIdf()+":\n";
 
-                    "\t# Empiler $s7\n"+
-                    "\tsw $s7, 0($sp) \n"+
-                    "\tadd $sp,$sp, -4\n";
-
-/*
-                    "\t# Mettre à jour la base locale\n"+
-                    "\tmove $s7, $sp\n\n";
-
- */
 
             // Les Instructions de la fonction
             SymboleFonction s = (SymboleFonction) tableFonction.get(et);

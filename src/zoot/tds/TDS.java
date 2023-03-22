@@ -7,6 +7,7 @@ import zoot.exceptions.AnalyseSemantiqueException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TDS {
     private int compteurDeplace;
@@ -56,7 +57,7 @@ public class TDS {
         for (Entree et : list.keySet()) {
             entre2 = et.estFonction();
 
-                // DOuble decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
+                // Double decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
                 if(et.getIdf().toString().equals(e.idf.toString()) ){
 
                     // Deux variable avec le meme nom
@@ -83,7 +84,10 @@ public class TDS {
             compteurDeplace-= 4;
             s.setDeplacement(compteurDeplace);
         }
-
+        else if(s.estFonction() && numBloc !=0){//c'est une fonction on reserve la place pour les variables
+            compteurDeplace-= 4;
+            s.setDeplacement(compteurDeplace);
+        }
     }
 
 
@@ -163,8 +167,19 @@ public class TDS {
      * Getteur
      * @return taille de la list
      */
-    public int getTailleZoneVariable(){
-        return blocs.get(0).size();
+    public int getTailleZoneVariable(int noBloc){
+        int taille = 0;
+        for (HashMap<Entree, Symbole> hm : blocs ) {
+            for (Map.Entry<Entree, Symbole> entry : hm.entrySet()) {
+                Entree entree = entry.getKey();
+                if (noBloc == entree.getNumBloc()) {
+                    //System.out.println(numR);
+                    taille++;
+                }
+            }
+        }
+        taille *= -4;
+        return taille;
     }
 
 
