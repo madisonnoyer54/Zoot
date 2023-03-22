@@ -124,7 +124,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         //Les déclarations des fonctions
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
 
-        code = code +"\t# Empiler $ra\n"+
+        code = code +"\t# Empiler $ra\n"+//àrevoir
                 "\tsw $ra, 0($sp) \n"+
 
                 "\t# Empiler $s7\n"+
