@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class TDS {
     private int compteurDeplace;
-    private ArrayList<Integer> compteur;
+    private ArrayList compteur;
     //private HashMap<Entree, Symbole> tableDesSymboles;
     private static TDS instance = new TDS();
     private ArrayList<HashMap<Entree, Symbole>> blocs;
@@ -28,7 +28,8 @@ public class TDS {
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
         estDansMain = true;
-        compteur = new ArrayList<>();
+      //  compteur = new ArrayList<>();
+     //   compteur.set(0,0);
     }
 
 
@@ -83,9 +84,9 @@ public class TDS {
         }
         list.put(e, s);
         if(!s.estFonction() && numBloc ==0){
-            compteur.set(numBloc, compteur.get(numBloc) - 4);
+         //   compteur.set( compteur.get(numBloc) - 4);
           //  compteurDeplace-= 4;
-            s.setDeplacement(compteurDeplace);
+           // s.setDeplacement(compteurDeplace);
         }
 
     }
@@ -152,6 +153,7 @@ public class TDS {
 
             this.noActuBloc = this.noActuBloc + 1;
             estDansMain = false;
+            compteur.set(noActuBloc,0);
         }
 
     }
