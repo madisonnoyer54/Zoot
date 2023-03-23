@@ -54,16 +54,27 @@ public class Idf extends Expression {
      */
     public Symbole getSymbole(){
         Symbole symbole = null;
-        ArrayList<HashMap<Entree, Symbole>> list = TDS.getInstance().getBlocs();
-        for (HashMap<Entree, Symbole> map : list) {
-            for (Map.Entry<Entree, Symbole> entry : map.entrySet()) {
-                Entree entre = entry.getKey();
-                if (entre.getIdf().equals(variable) && !entre.estFonction()) {
-                    symbole = entry.getValue();
+
+        // On regarde deja dans le bloc de fonction
+        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(numBloc);
+        for (Entree et : list.keySet()) {
+            if(et.getIdf().equals(variable) && !et.estFonction()){
+                symbole = list.get(et) ;
+            }
+        }
+        // Puis dans le main
+        if(symbole == null){
+
+            HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(0);
+            for (Entree et : list2.keySet()) {
+                if(et.getIdf().equals(variable) && !et.estFonction()){
+                    symbole = list2.get(et) ;
                 }
             }
         }
+
         return symbole;
+
     }
 
 

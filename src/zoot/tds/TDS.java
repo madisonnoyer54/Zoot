@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class TDS {
     private int compteurDeplace;
-    private ArrayList<Integer> compteur;
+    private ArrayList compteur;
     //private HashMap<Entree, Symbole> tableDesSymboles;
     private static TDS instance = new TDS();
     private ArrayList<HashMap<Entree, Symbole>> blocs;
@@ -28,7 +28,8 @@ public class TDS {
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
         estDansMain = true;
-        compteur = new ArrayList<>();
+      //  compteur = new ArrayList<>();
+     //   compteur.set(0,0);
     }
 
 
@@ -49,43 +50,38 @@ public class TDS {
     public void ajouter (Entree e, Symbole s,int numBloc){
         Boolean entre1 = e.estFonction();
         Boolean entre2 = null;
-        System.out.println(numBloc);
-        System.out.println(e.idf);
-        System.out.println(noActuBloc);
-        System.out.println(" ");
-
         // variable existe déjà double déclaration exception!!
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(numBloc);
         for (Entree et : list.keySet()) {
             entre2 = et.estFonction();
 
-                // Double decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
-                if(et.getIdf().toString().equals(e.idf.toString()) ){
+            // DOuble decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
+            if(et.getIdf().toString().equals(e.idf.toString()) ){
 
-                    // Deux variable avec le meme nom
-                    if(entre1.equals(entre2) && entre1 == false) {
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+                // Deux variable avec le meme nom
+                if(entre1.equals(entre2) && entre1 == false) {
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
 
-                        // Fonction avec le meme nombre de paramêtre
-                    }else if (entre1.equals(entre2) && entre1 == true) {
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
-
-                    }
-                    // Variable et fonction avec le meme nom
-                    else {
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne+" : Une variables et une fonction ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
-
-                    }
+                    // Fonction avec le meme nombre de paramêtre
+                }else if (entre1.equals(entre2) && entre1 == true) {
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
 
                 }
+                // Variable et fonction avec le meme nom
+                else {
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne+" : Une variables et une fonction ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+
+                }
+
+            }
 
 
         }
         list.put(e, s);
         if(!s.estFonction() && numBloc ==0){
-            compteur.set(numBloc, compteur.get(numBloc) - 4);
+         //   compteur.set( compteur.get(numBloc) - 4);
           //  compteurDeplace-= 4;
-            s.setDeplacement(compteurDeplace);
+           // s.setDeplacement(compteurDeplace);
         }
 
     }
@@ -101,9 +97,10 @@ public class TDS {
         boolean nulle = false;
         boolean rep = false;
 
-        // Déclarer dans son bloc
-        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(e.numBloc);
+        // On regarde si la variable est déclarer dans le main
+        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
         for (Entree et : list.keySet()) {
+
             if(et.getIdf() != null && e.getIdf() != null){
                 if(et.getIdf().toString().equals(e.idf.toString())  ){
                     rep = true;
@@ -115,18 +112,22 @@ public class TDS {
 
         }
 
-        // Déclarer dans le main
-        HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(0);
-        for (Entree et : list2.keySet()) {
-            if(et.getIdf() != null && e.getIdf() != null){
-                if(et.getIdf().toString().equals(e.idf.toString())  ){
-                    rep = true;
-                }
-            }
-            if(et.getIdf() == null || e.getIdf() == null){
-                nulle = true;
-            }
+        // Si elle n'est pas déclarer dans le main on regarde dans son bloc de fonction
+        if(!rep){
+            HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(e.numBloc);
+            for (Entree et : list2.keySet()) {
 
+                if(et.getIdf() != null && e.getIdf() != null){
+                    if(et.getIdf().toString().equals(e.idf.toString())  ){
+                        rep = true;
+                    }
+                }
+                if(et.getIdf() == null || e.getIdf() == null){
+                    nulle = true;
+                }
+
+
+            }
         }
 
         if(!rep && nulle == false){
@@ -147,11 +148,11 @@ public class TDS {
      */
     public void entreeBloc(){
         if(estDansMain == true){
-            System.out.println("cc");
             this.blocs.add(new HashMap<>());
 
             this.noActuBloc = this.noActuBloc + 1;
             estDansMain = false;
+
         }
 
     }
@@ -211,7 +212,6 @@ public class TDS {
 
        HashMap<Entree, Symbole> tableFonction = new HashMap<>();
 
-
         for (Entree et : blocs.get(0).keySet()) {
             if(et.estFonction()){
                 SymboleFonction s = (SymboleFonction) blocs.get(0).get(et);
@@ -223,6 +223,9 @@ public class TDS {
     }
 
     public int getNoActuBloc() {
+        if(estDansMain == true){
+            return 0;
+        }
         return noActuBloc;
     }
 
