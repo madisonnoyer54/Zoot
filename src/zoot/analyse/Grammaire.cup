@@ -61,7 +61,7 @@ terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM ;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -108,14 +108,14 @@ LFONC  ::=      LFONC FONC | FONC
 
 FONC ::=
                    {:   TDS.getInstance().entreeBloc();:}
-                  TYPE:t IDF:idf LPARAM VARIABLES LDCL DEBUT LINST:li FIN {:
+                  TYPE:t IDF:idf LPARAM LV DEBUT LINST:li FIN {:
 
                         TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), 0);
                        TDS.getInstance().sortieBloc();
                   :}
                 ;
 
-
+LV ::= VARIABLES LDCL | VARIABLES;
 
 LDCL   ::=      LDCL DCL | DCL;
 
