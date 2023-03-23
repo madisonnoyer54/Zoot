@@ -11,8 +11,6 @@ import java.util.Map;
 
 public class TDS {
     private int compteurDeplace;
-    private ArrayList compteur;
-    //private HashMap<Entree, Symbole> tableDesSymboles;
     private static TDS instance = new TDS();
     private ArrayList<HashMap<Entree, Symbole>> blocs;
     private int noActuBloc=0;
@@ -23,13 +21,12 @@ public class TDS {
      * Constructeur
      */
     public TDS() {
-        //this.tableDesSymboles = new HashMap<>();
+
         compteurDeplace =0;
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
         estDansMain = true;
-      //  compteur = new ArrayList<>();
-     //   compteur.set(0,0);
+
     }
 
 
