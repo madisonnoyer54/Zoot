@@ -176,7 +176,6 @@ public class TDS {
                 Entree entree = entry.getKey();
                 Symbole symbole = entry.getValue();
                 if (noBloc == entree.getNumBloc()&&!symbole.estFonction()) { // si c'est le même no de bloc et c'est une variable
-                    System.out.println("TEEEEEEEEEEEEST"+entree.getIdf());
                     taille++;
                 }
             }
