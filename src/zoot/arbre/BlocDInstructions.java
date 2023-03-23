@@ -120,19 +120,21 @@ public class BlocDInstructions extends ArbreAbstrait {
 
         //Les déclarations des fonctions
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
-
-        code = code +"\t# Empiler $ra\n"+//à revoir
-                "\tsw $ra, 0($sp) \n"+
-
-                "\t# Empiler $s7\n"+
-                "\tsw $s7, 0($sp) \n"+
-                "\t# Mettre à jour la base locale\n"+
-                //mettre à jour la base locale à faire
-                "\tmove $s7, $sp\n\n"+
-                "\t# On reserve la place pour les variables\n"+
-                "\tadd $sp,$sp,"+TDS.getInstance().getTailleZoneVariable(0)+"\n";
+        int noBloc = 0;
         for (Entree et : tableFonction.keySet()){
-            code = code + "\n"+et.getIdf()+":\n";
+            noBloc++;
+            code = code + "\n"+et.getIdf()+":\n"+
+                    "\t# Empiler $ra\n"+//à revoir
+                    "\tsw $ra, 0($sp) \n"+
+                    "\t add $sp, $sp, -4 \n"+
+                    "\t# Empiler $s7\n"+
+                    "\tsw $s7, 0($sp) \n"+
+                    "\t add $sp, $sp, -4 \n"+
+                    "\t# Mettre à jour la base locale\n"+
+                    //mettre à jour la base locale ?v
+                    "\tmove $s7, $sp\n\n"+
+                    "\t# On reserve la place pour les variables\n"+
+                    "\tadd $sp,$sp,"+TDS.getInstance().getTailleZoneVariable(noBloc)+"\n";
 
 
             // Les Instructions de la fonction
