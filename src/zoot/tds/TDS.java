@@ -100,8 +100,7 @@ public class TDS {
         // On regarde si la variable est déclarer dans le main
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
         for (Entree et : list.keySet()) {
-            System.out.println("entrer"+ e.getIdf());
-            System.out.println(et.idf);
+
             if(et.getIdf() != null && e.getIdf() != null){
                 if(et.getIdf().toString().equals(e.idf.toString())  ){
                     rep = true;
@@ -110,7 +109,6 @@ public class TDS {
             if(et.getIdf() == null || e.getIdf() == null){
                 nulle = true;
             }
-            System.out.println();
 
         }
 
@@ -118,8 +116,7 @@ public class TDS {
         if(!rep){
             HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(e.numBloc);
             for (Entree et : list2.keySet()) {
-                System.out.println("entrer"+ e.getIdf());
-                System.out.println(et.idf);
+
                 if(et.getIdf() != null && e.getIdf() != null){
                     if(et.getIdf().toString().equals(e.idf.toString())  ){
                         rep = true;
@@ -128,7 +125,7 @@ public class TDS {
                 if(et.getIdf() == null || e.getIdf() == null){
                     nulle = true;
                 }
-                System.out.println();
+
 
             }
         }
@@ -226,6 +223,9 @@ public class TDS {
     }
 
     public int getNoActuBloc() {
+        if(estDansMain == true){
+            return 0;
+        }
         return noActuBloc;
     }
 
