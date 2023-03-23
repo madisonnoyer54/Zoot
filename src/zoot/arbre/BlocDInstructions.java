@@ -52,35 +52,32 @@ public class BlocDInstructions extends ArbreAbstrait {
             instruction.verifier();
 
         }
-        /*
 
-        // On verifie les sous programmes
-        HashMap<Entree, Symbole> list = TDS.getInstance().getTableDesSymboles();
+        // On verifie les sous programmes pour voir si les fonction on bien un retourne
+        HashMap<Entree, Symbole> list = TDS.getInstance().getBlocs().get(0);
         for (Entree et : list.keySet()) {
-           if(et.estFonction()){
-               SymboleFonction s = (SymboleFonction) list.get(et);
+            if(et.estFonction()){
+                SymboleFonction s = (SymboleFonction) list.get(et);
 
-               for (Instruction instruction : s.getBlocDInstructions().programme) {
-                   instruction.verifier();
+                for (Instruction instruction : s.getBlocDInstructions().programme) {
+                    instruction.verifier();
 
-               }
+                }
 
-               if(!s.getBlocDInstructions().contientRetourner()){
-                   Analyse.getInstance().ajoute(new AnalyseSemantiqueException( et.getNoLigne()+" : Le BlocFonction dois contenir un retourne ("+et.getIdf()+")"));
+                // sa ne contient pas de retour
+                if(!s.getBlocDInstructions().contientRetourner()){
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException( et.getNoLigne()+" : Le BlocFonction dois contenir un retourne ("+et.getIdf()+")"));
 
-               }
-               // Il contient un retourne, On verifie le type
-               else{
-                   if(!s.getType().concordance(s.getBlocDInstructions().getRetourner().getType())){
-                       Analyse.getInstance().ajoute(new AnalyseSemantiqueException(s.getBlocDInstructions().numLigneRetourner()+" : Le retourner de la fonction n'a pas le même type que la déclaration "));
-                   }
+                }
+                // Il contient un retourne, On verifie le type
+                else{
+                    if(!s.getType().concordance(s.getBlocDInstructions().getRetourner().getType())){
+                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(s.getBlocDInstructions().numLigneRetourner()+" : Le retourner de la fonction n'a pas le même type que la déclaration "));
+                    }
 
-               }
-           }
+                }
+            }
         }
-
-
-         */
 
     }
 

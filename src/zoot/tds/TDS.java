@@ -50,35 +50,30 @@ public class TDS {
     public void ajouter (Entree e, Symbole s,int numBloc){
         Boolean entre1 = e.estFonction();
         Boolean entre2 = null;
-        System.out.println(numBloc);
-        System.out.println(e.idf);
-        System.out.println(noActuBloc);
-        System.out.println(" ");
-
         // variable existe déjà double déclaration exception!!
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(numBloc);
         for (Entree et : list.keySet()) {
             entre2 = et.estFonction();
 
-                // Double decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
-                if(et.getIdf().toString().equals(e.idf.toString()) ){
+            // DOuble decla fonction possible si elle ont pas le meme nombre de parametre ( pas de paramettre pour l'instant
+            if(et.getIdf().toString().equals(e.idf.toString()) ){
 
-                    // Deux variable avec le meme nom
-                    if(entre1.equals(entre2) && entre1 == false) {
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+                // Deux variable avec le meme nom
+                if(entre1.equals(entre2) && entre1 == false) {
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
 
-                        // Fonction avec le meme nombre de paramêtre
-                    }else if (entre1.equals(entre2) && entre1 == true) {
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
-
-                    }
-                    // Variable et fonction avec le meme nom
-                    else {
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne+" : Une variables et une fonction ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
-
-                    }
+                    // Fonction avec le meme nombre de paramêtre
+                }else if (entre1.equals(entre2) && entre1 == true) {
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
 
                 }
+                // Variable et fonction avec le meme nom
+                else {
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne+" : Une variables et une fonction ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
+
+                }
+
+            }
 
 
         }
@@ -102,9 +97,11 @@ public class TDS {
         boolean nulle = false;
         boolean rep = false;
 
-        // Déclarer dans son bloc
-        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(e.numBloc);
+        // On regarde si la variable est déclarer dans le main
+        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
         for (Entree et : list.keySet()) {
+            System.out.println("entrer"+ e.getIdf());
+            System.out.println(et.idf);
             if(et.getIdf() != null && e.getIdf() != null){
                 if(et.getIdf().toString().equals(e.idf.toString())  ){
                     rep = true;
@@ -113,21 +110,27 @@ public class TDS {
             if(et.getIdf() == null || e.getIdf() == null){
                 nulle = true;
             }
+            System.out.println();
 
         }
 
-        // Déclarer dans le main
-        HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(0);
-        for (Entree et : list2.keySet()) {
-            if(et.getIdf() != null && e.getIdf() != null){
-                if(et.getIdf().toString().equals(e.idf.toString())  ){
-                    rep = true;
+        // Si elle n'est pas déclarer dans le main on regarde dans son bloc de fonction
+        if(!rep){
+            HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(e.numBloc);
+            for (Entree et : list2.keySet()) {
+                System.out.println("entrer"+ e.getIdf());
+                System.out.println(et.idf);
+                if(et.getIdf() != null && e.getIdf() != null){
+                    if(et.getIdf().toString().equals(e.idf.toString())  ){
+                        rep = true;
+                    }
                 }
-            }
-            if(et.getIdf() == null || e.getIdf() == null){
-                nulle = true;
-            }
+                if(et.getIdf() == null || e.getIdf() == null){
+                    nulle = true;
+                }
+                System.out.println();
 
+            }
         }
 
         if(!rep && nulle == false){
@@ -148,7 +151,6 @@ public class TDS {
      */
     public void entreeBloc(){
         if(estDansMain == true){
-            System.out.println("cc");
             this.blocs.add(new HashMap<>());
 
             this.noActuBloc = this.noActuBloc + 1;
@@ -212,7 +214,6 @@ public class TDS {
     public HashMap<Entree,Symbole> getlistFonction(){
 
        HashMap<Entree, Symbole> tableFonction = new HashMap<>();
-
 
         for (Entree et : blocs.get(0).keySet()) {
             if(et.estFonction()){
