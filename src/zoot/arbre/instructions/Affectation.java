@@ -32,32 +32,26 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
-        int result = 0;
-        HashMap<Entree, Symbole> list = TDS.getInstance().getBlocs().get(0);
-        for (Entree et : list.keySet()) {
-            if(et.getIdf().toString().equals(variable.toString())){
-                result += 1;
+        Symbole symbole = null;
 
-            }
+
+        if (!exp.estFonction()){
+            symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
+        }
+        else{
+            symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
+
         }
 
         // Test si la variable a été déclarer
-        if (result != 0){
+
+        if (symbole != null){
 
             if(!variable.getType().concordance(exp.getType()) && ( variable.getNumBloc() == exp.getNumBloc() || variable.getNumBloc() == 0 )){
 
                 Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
             }
         }
-
-        if (!exp.estFonction()){
-            Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
-        }
-        else{
-            Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
-
-        }
-
 
     }
 

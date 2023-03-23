@@ -96,6 +96,7 @@ public class TDS {
         // Vérifie que la variable à étais déclarer sa a été verifier dans IDF
         boolean nulle = false;
         boolean rep = false;
+        Symbole symbole = null;
 
         // On regarde si la variable est déclarer dans le main
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
@@ -104,6 +105,7 @@ public class TDS {
             if(et.getIdf() != null && e.getIdf() != null){
                 if(et.getIdf().toString().equals(e.idf.toString())  ){
                     rep = true;
+                    symbole = list.get(et);
                 }
             }
             if(et.getIdf() == null || e.getIdf() == null){
@@ -120,6 +122,7 @@ public class TDS {
                 if(et.getIdf() != null && e.getIdf() != null){
                     if(et.getIdf().toString().equals(e.idf.toString())  ){
                         rep = true;
+                        symbole = list2.get(et);
                     }
                 }
                 if(et.getIdf() == null || e.getIdf() == null){
@@ -139,8 +142,7 @@ public class TDS {
 
             }
         }
-
-        return list.get(e);
+        return symbole;
     }
 
     /**
