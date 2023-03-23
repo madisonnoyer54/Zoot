@@ -153,7 +153,7 @@ public class TDS {
 
             this.noActuBloc = this.noActuBloc + 1;
             estDansMain = false;
-            compteur.set(noActuBloc,0);
+
         }
 
     }
