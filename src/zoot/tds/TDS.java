@@ -174,8 +174,9 @@ public class TDS {
         for (HashMap<Entree, Symbole> hm : blocs ) {
             for (Map.Entry<Entree, Symbole> entry : hm.entrySet()) {
                 Entree entree = entry.getKey();
-                if (noBloc == entree.getNumBloc()) {
-                    //System.out.println(numR);
+                Symbole symbole = entry.getValue();
+                if (noBloc == entree.getNumBloc()&&!symbole.estFonction()) { // si c'est le même no de bloc et c'est une variable
+                    System.out.println("TEEEEEEEEEEEEST"+entree.getIdf());
                     taille++;
                 }
             }
