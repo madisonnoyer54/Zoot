@@ -16,6 +16,7 @@ public class TDS {
     private int noActuBloc=0;
     private boolean estDansMain;
     private int compteParam;
+    private boolean dansParam;
 
 
     /**
@@ -28,6 +29,8 @@ public class TDS {
         this.blocs.add(new HashMap<>());
         estDansMain = true;
         compteParam = 0;
+        dansParam = false;
+
 
     }
 
@@ -154,6 +157,7 @@ public class TDS {
             this.noActuBloc = this.noActuBloc + 1;
             estDansMain = false;
             compteParam =0;
+            dansParam = true;
 
         }
 
@@ -166,10 +170,14 @@ public class TDS {
     public void compteParamPlus1(){
 
         // Si on est dans une fonction on compte les param
-        if(estDansMain == false){
+        if(estDansMain == false && dansParam == true ){
             compteParam = compteParam +1;
         }
 
+    }
+
+    public void sortieParam(){
+        dansParam = false;
     }
 
     /**

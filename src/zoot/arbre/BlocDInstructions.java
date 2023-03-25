@@ -32,6 +32,10 @@ public class BlocDInstructions extends ArbreAbstrait {
         programme = new ArrayList<>() ;
     }
 
+    public int nbInstruction(){
+        return this.programme.size();
+    }
+
 
     /**
      * Fonction ajouter, elle permet d'ajouter une instruction à la liste

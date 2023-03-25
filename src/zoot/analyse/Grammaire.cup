@@ -61,7 +61,7 @@ terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, EGALE, FONCTIONS
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP,LP;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -110,6 +110,7 @@ FONC ::=
                    {:   TDS.getInstance().entreeBloc();:}
                   TYPE:t IDF:idf LPARAM LV DEBUT LINST:li FIN {:
 
+
                         TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li,TDS.getInstance().getCompteParam()), 0);
                        TDS.getInstance().sortieBloc();
                   :}
@@ -126,9 +127,18 @@ DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                     TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1, TDS.getInstance().getNoActuBloc()), new SymboleVariable(t), TDS.getInstance().getNoActuBloc());
                 :}
                 ;
+LPARAM ::=  LP
+            {:
+                TDS.getInstance().sortieParam();
+            :}
+            ;
 
-LPARAM  ::= OUVRE LDCL FERME | OUVRE FERME
-           ;
+LP ::= OUVRE LDCL FERME | OUVRE FERME
+            {:
+            TDS.getInstance().sortieParam();
+            :}
+            ;
+
 
 LEXP ::=      LEXP VIRGULE EXP | EXP;
 
