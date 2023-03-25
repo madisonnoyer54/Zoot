@@ -110,7 +110,7 @@ FONC ::=
                    {:   TDS.getInstance().entreeBloc();:}
                   TYPE:t IDF:idf LPARAM LV DEBUT LINST:li FIN {:
 
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li), 0);
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li,TDS.getInstance().getCompteParam()), 0);
                        TDS.getInstance().sortieBloc();
                   :}
                 ;
@@ -122,6 +122,7 @@ LDCL   ::=      LDCL DCL | DCL;
 
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
+                    TDS.getInstance().compteParamPlus1();
                     TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1, TDS.getInstance().getNoActuBloc()), new SymboleVariable(t), TDS.getInstance().getNoActuBloc());
                 :}
                 ;

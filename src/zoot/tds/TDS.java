@@ -15,6 +15,7 @@ public class TDS {
     private ArrayList<HashMap<Entree, Symbole>> blocs;
     private int noActuBloc=0;
     private boolean estDansMain;
+    private int compteParam;
 
 
     /**
@@ -26,6 +27,7 @@ public class TDS {
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
         estDansMain = true;
+        compteParam = 0;
 
     }
 
@@ -151,7 +153,21 @@ public class TDS {
 
             this.noActuBloc = this.noActuBloc + 1;
             estDansMain = false;
+            compteParam =0;
 
+        }
+
+    }
+
+    public int getCompteParam() {
+        return compteParam;
+    }
+
+    public void compteParamPlus1(){
+
+        // Si on est dans une fonction on compte les param
+        if(estDansMain == false){
+            compteParam = compteParam +1;
         }
 
     }

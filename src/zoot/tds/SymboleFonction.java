@@ -5,14 +5,16 @@ import zoot.arbre.BlocDInstructions;
 
 public class SymboleFonction extends Symbole{
     private BlocDInstructions blocDInstructions;
+    private int nb;
     /**
      * Constructeur
      *
      * @param type
      */
-    public SymboleFonction(String type, ArbreAbstrait li) {
+    public SymboleFonction(String type, ArbreAbstrait li, int nbParam) {
         super(type);
         blocDInstructions = (BlocDInstructions)li;
+        nb = nbParam;
     }
 
     /**

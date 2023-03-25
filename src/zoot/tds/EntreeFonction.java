@@ -1,6 +1,7 @@
 package zoot.tds;
 
 public class EntreeFonction extends Entree{
+
     /**
      * Constructeur
      *
