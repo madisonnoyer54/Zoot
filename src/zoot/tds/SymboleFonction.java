@@ -15,7 +15,6 @@ public class SymboleFonction extends Symbole{
         super(type);
         blocDInstructions = (BlocDInstructions)li;
         nb = nbParam;
-        System.out.println("nb"+nb);
     }
 
     /**

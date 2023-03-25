@@ -73,8 +73,6 @@ public class TDS {
                     SymboleFonction s1 = (SymboleFonction) s;
                     SymboleFonction s2 = (SymboleFonction) identifier(et);
                     if(s1.getNb() == s2.getNb()){
-                        System.out.println(s1.getNb());
-                        System.out.println(s2.getNb());
                         Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
 
                     }
@@ -232,7 +230,7 @@ public class TDS {
     }
 
     public void entreeAppel(){
-        System.out.println("cc");
+
         dansAppel = true;
         listParam = new ArrayList<>();
     }
