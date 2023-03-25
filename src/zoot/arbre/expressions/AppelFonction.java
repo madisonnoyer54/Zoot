@@ -10,18 +10,21 @@ import java.util.Map;
 public class AppelFonction extends Expression{
     private String idf;
     private int n;
-    private ArrayList<Expression> parametres;
+    private ArrayList<Expression> listParam;
+
 
     /**
      * Constructeur
      * @param idf
      * @param n
      */
-    public AppelFonction(String idf,int n, int num) {
+    public AppelFonction(String idf,int n, int num, ArrayList<Expression> list) {
         super(n,num);
         this.idf = idf;
         this.n=n;
-        this.parametres = new ArrayList<>();
+        listParam = list;
+        System.out.println(listParam);
+
     }
 
     /**

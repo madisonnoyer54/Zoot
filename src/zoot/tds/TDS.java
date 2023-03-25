@@ -1,5 +1,6 @@
 package zoot.tds;
 
+import zoot.arbre.expressions.Expression;
 import zoot.arbre.instructions.Instruction;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
@@ -18,6 +19,9 @@ public class TDS {
     private int compteParam;
     private boolean dansParam;
 
+    private ArrayList<Expression> listParam;
+
+    private boolean dansAppel;
 
     /**
      * Constructeur
@@ -180,6 +184,7 @@ public class TDS {
         dansParam = false;
     }
 
+
     /**
      * Fonction qui permet d'indiquer la sortie d'un bloc d'instruction
      */
@@ -207,6 +212,27 @@ public class TDS {
         return taille;
     }
 
+    public ArrayList<Expression> getListParam() {
+        return listParam;
+    }
+
+
+    public void ajouteParamAppel(Expression e){
+        if(dansAppel == true){
+            listParam.add(e);
+        }
+
+    }
+
+    public void entreeAppel(){
+        System.out.println("cc");
+        dansAppel = true;
+        listParam = new ArrayList<>();
+    }
+
+    public void sortieAppel(){
+        dansAppel =false;
+    }
 
     /**
      * Getteur
