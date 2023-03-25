@@ -69,8 +69,15 @@ public class TDS {
                     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
 
                     // Fonction avec le meme nombre de paramêtre
-                }else if (entre1.equals(entre2) && entre1 == true) {
-                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
+                }else if (entre1.equals(entre2) && entre1 == true ) {
+                    SymboleFonction s1 = (SymboleFonction) s;
+                    SymboleFonction s2 = (SymboleFonction) identifier(et);
+                    if(s1.getNb() == s2.getNb()){
+                        System.out.println(s1.getNb());
+                        System.out.println(s2.getNb());
+                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
+
+                    }
 
                 }
                 // Variable et fonction avec le meme nom

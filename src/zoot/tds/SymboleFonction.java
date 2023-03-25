@@ -15,6 +15,7 @@ public class SymboleFonction extends Symbole{
         super(type);
         blocDInstructions = (BlocDInstructions)li;
         nb = nbParam;
+        System.out.println("nb"+nb);
     }
 
     /**
@@ -23,6 +24,10 @@ public class SymboleFonction extends Symbole{
      */
     public boolean estFonction(){
         return true;
+    }
+
+    public int getNb() {
+        return nb;
     }
 
     public BlocDInstructions getBlocDInstructions() {
