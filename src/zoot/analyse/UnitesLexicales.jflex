@@ -53,6 +53,7 @@ type = (entier)|(booleen)
 ")"                    { return symbol(CodesLexicaux.FERME); }
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.EGALE); }
+","                    {return symbol(CodesLexicaux.VIRGULE);}
 
 {type}                 { return symbol(CodesLexicaux.TYPE, yytext());}
 
