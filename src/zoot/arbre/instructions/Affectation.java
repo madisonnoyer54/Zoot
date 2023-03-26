@@ -1,5 +1,6 @@
 package zoot.arbre.instructions;
 
+import zoot.arbre.expressions.AppelFonction;
 import zoot.arbre.expressions.Expression;
 import zoot.arbre.expressions.Idf;
 import zoot.exceptions.Analyse;
@@ -33,13 +34,20 @@ public class Affectation extends Instruction{
     @Override
     public void verifier() {
         Symbole symbole = null;
+        int taille;
 
 
         if (!exp.estFonction()){
             symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
         }
         else{
-           // symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
+            AppelFonction a = (AppelFonction) exp;
+            if(a.getListParam() == null){
+                taille =0;
+            }else{
+                taille = a.getListParam().size();
+            }
+            symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc,taille));
 
         }
 

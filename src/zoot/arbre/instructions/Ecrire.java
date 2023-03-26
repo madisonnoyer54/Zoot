@@ -1,6 +1,7 @@
 package zoot.arbre.instructions;
 
 import zoot.arbre.FabriqueNumero;
+import zoot.arbre.expressions.AppelFonction;
 import zoot.arbre.expressions.Expression;
 import zoot.tds.*;
 
@@ -28,12 +29,19 @@ public class Ecrire extends Instruction {
      */
     @Override
     public void verifier() {
+        int taille;
         exp.verifier();
         if (!exp.estFonction()){
             Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(exp.getIdf(), noLigne,numBloc));
         }
         else{
-            //Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
+            AppelFonction a = (AppelFonction) exp;
+            if(a.getListParam() == null){
+                taille =0;
+            }else{
+                taille = a.getListParam().size();
+            }
+            Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc,taille));
 
         }
 

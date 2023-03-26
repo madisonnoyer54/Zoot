@@ -12,7 +12,6 @@ public class AppelFonction extends Expression{
     private int n;
     private ArrayList<Expression> listParam;
 
-
     /**
      * Constructeur
      * @param idf
@@ -206,4 +205,9 @@ public class AppelFonction extends Expression{
         }
 
     }
+
+    public ArrayList<Expression> getListParam() {
+        return listParam;
+    }
+
 }
