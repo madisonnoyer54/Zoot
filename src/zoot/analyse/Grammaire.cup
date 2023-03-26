@@ -111,7 +111,7 @@ FONC ::=
                   TYPE:t IDF:idf LPARAM LV DEBUT LINST:li FIN {:
 
 
-                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc()), new SymboleFonction(t,li,TDS.getInstance().getCompteParam()), 0);
+                        TDS.getInstance().ajouter(new EntreeFonction(idf, idfleft+1,  TDS.getInstance().getNoActuBloc(),TDS.getInstance().getCompteParam()), new SymboleFonction(t,li,TDS.getInstance().getCompteParam()), 0);
                        TDS.getInstance().sortieBloc();
                   :}
                 ;
