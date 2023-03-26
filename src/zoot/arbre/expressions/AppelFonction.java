@@ -62,8 +62,6 @@ public class AppelFonction extends Expression{
             for (Entree et : list2.keySet()) {
                 SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(et);
                 if(s.getNumVar() != 0  ){
-                    System.out.println(listParam.get(s.getNumVar()-1).getType());
-                    System.out.println(s.getType());
                     if(listParam.get(s.getNumVar()-1).getType() != s.getType()) {
                         result2 =true;
                     }
