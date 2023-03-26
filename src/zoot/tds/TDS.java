@@ -21,6 +21,7 @@ public class TDS {
 
     private ArrayList<Expression> listParam;
 
+
     private boolean dansAppel;
 
     /**
@@ -178,7 +179,15 @@ public class TDS {
     }
 
     public int getCompteParam() {
-        return compteParam;
+            return compteParam;
+
+    }
+
+    public int getCompteParam2() {
+        if(dansParam ==true){
+            return compteParam;
+        }
+        return 0;
     }
 
     public void compteParamPlus1(){
@@ -192,6 +201,7 @@ public class TDS {
 
     public void sortieParam(){
         dansParam = false;
+
     }
 
 

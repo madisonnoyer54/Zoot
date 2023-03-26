@@ -38,6 +38,7 @@ public class AppelFonction extends Expression{
         Symbole sy= null;
         int compte= 0;
         int compteRes =0;
+        boolean result2= false;
 
         // Test si l'appel correspond a une declaration de fonction
         HashMap<Entree,Symbole> list = TDS.getInstance().getlistFonction();
@@ -59,9 +60,18 @@ public class AppelFonction extends Expression{
         }else{// Verif si les param sont de meme type
             HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(compteRes);
             for (Entree et : list2.keySet()) {
-               // System.out.println(et.idf);
+                SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(et);
+                if(s.getNumVar() != 0  ){
+                    System.out.println(listParam.get(s.getNumVar()-1).getType());
+                    System.out.println(s.getType());
+                    if(listParam.get(s.getNumVar()-1).getType() != s.getType()) {
+                        result2 =true;
+                    }
+                }
 
-            // A finir
+            }
+            if(result2 ==true){
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne + " : L'appel de fonction " + this.toString() + " n'a pas le meme type de param que la déclaration de fonction"));
 
             }
         }

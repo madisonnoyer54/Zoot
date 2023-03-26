@@ -124,7 +124,7 @@ LDCL   ::=      LDCL DCL | DCL;
 DCL    ::=     TYPE:t IDF:idf POINTVIRGULE
                 {:
                     TDS.getInstance().compteParamPlus1();
-                    TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1, TDS.getInstance().getNoActuBloc()), new SymboleVariable(t), TDS.getInstance().getNoActuBloc());
+                    TDS.getInstance().ajouter(new EntreeVariable(idf, idfleft+1, TDS.getInstance().getNoActuBloc()), new SymboleVariable(t, TDS.getInstance().getCompteParam2()), TDS.getInstance().getNoActuBloc());
                 :}
                 ;
 LPARAM ::=  LP

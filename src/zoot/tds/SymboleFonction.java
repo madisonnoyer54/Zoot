@@ -3,9 +3,13 @@ package zoot.tds;
 import zoot.arbre.ArbreAbstrait;
 import zoot.arbre.BlocDInstructions;
 
+import java.util.ArrayList;
+
 public class SymboleFonction extends Symbole{
     private BlocDInstructions blocDInstructions;
-    private int nb;
+    private int nbParam;
+
+
     /**
      * Constructeur
      *
@@ -14,7 +18,7 @@ public class SymboleFonction extends Symbole{
     public SymboleFonction(String type, ArbreAbstrait li, int nbParam) {
         super(type);
         blocDInstructions = (BlocDInstructions)li;
-        nb = nbParam;
+        this.nbParam = nbParam;
     }
 
     /**
@@ -26,7 +30,7 @@ public class SymboleFonction extends Symbole{
     }
 
     public int getNb() {
-        return nb;
+        return nbParam;
     }
 
     public BlocDInstructions getBlocDInstructions() {
