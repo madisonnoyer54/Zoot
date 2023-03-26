@@ -135,7 +135,6 @@ public class BlocDInstructions extends ArbreAbstrait {
                     "\tsw $s7, 0($sp) \n"+
                     "\t add $sp, $sp, -4 \n"+
                     "\t# Mettre à jour la base locale\n"+
-                    //mettre à jour la base locale ?v
                     "\tmove $s7, $sp\n\n"+
                     "\t# On reserve la place pour les variables\n"+ //condition : si des variable locales sont déclarées
                     "\tadd $sp,$sp,"+TDS.getInstance().getTailleZoneVariable(noBloc)+"\n";
