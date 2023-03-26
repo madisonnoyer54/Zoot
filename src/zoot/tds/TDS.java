@@ -238,7 +238,7 @@ public class TDS {
 
 
     public void ajouteParamAppel(Expression e){
-        if(dansAppel == true){
+        if(dansAppel){
             listParam.add(e);
         }
 
