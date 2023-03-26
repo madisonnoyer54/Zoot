@@ -10,6 +10,7 @@ public class SymboleVariable extends Symbole{
     public SymboleVariable(String type, int num) {
         super(type);
         numVar =num;
+
     }
 
     /**

@@ -115,49 +115,52 @@ public class TDS {
         boolean rep = false;
         Symbole symbole = null;
 
-        // On regarde si la variable est déclarer dans le main
-        HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
-        for (Entree et : list.keySet()) {
+        // On regarde si la variable est déclarer dans son bloc
+        HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(e.numBloc);
+        for (Entree et : list2.keySet()) {
 
             if(et.getIdf() != null && e.getIdf() != null){
-                if(!e.estFonction() && !et.estFonction()){
-                    if(et.getIdf().toString().equals(e.idf.toString())  ){
-                        rep = true;
-                        symbole = list.get(et);
-                    }
-                }else if (e.estFonction() && et.estFonction()){
-                    EntreeFonction e1 = (EntreeFonction) et;
-                    EntreeFonction e2 = (EntreeFonction) e;
-                    if(et.getIdf().toString().equals(e.idf.toString())&& e1.getNbParam() == e2.getNbParam()  ){
-                        rep = true;
-                        symbole = list.get(et);
-                    }
+                if(et.getIdf().toString().equals(e.idf.toString())  ){
+                    rep = true;
+                    symbole = list2.get(et);
                 }
-
             }
             if(et.getIdf() == null || e.getIdf() == null){
                 nulle = true;
             }
 
+
         }
 
-        // Si elle n'est pas déclarer dans le main on regarde dans son bloc de fonction
+        // Si elle n'est pas déclarer dans son bloc on regarde dans le main
         if(!rep){
-            HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(e.numBloc);
-            for (Entree et : list2.keySet()) {
+            HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(0);
+            for (Entree et : list.keySet()) {
 
                 if(et.getIdf() != null && e.getIdf() != null){
-                    if(et.getIdf().toString().equals(e.idf.toString())  ){
-                        rep = true;
-                        symbole = list2.get(et);
+                    if(!e.estFonction() && !et.estFonction()){
+                        if(et.getIdf().toString().equals(e.idf.toString())  ){
+                            rep = true;
+                            symbole = list.get(et);
+                        }
+                    }else if (e.estFonction() && et.estFonction()){
+                        EntreeFonction e1 = (EntreeFonction) et;
+                        EntreeFonction e2 = (EntreeFonction) e;
+                        if(et.getIdf().toString().equals(e.idf.toString())&& e1.getNbParam() == e2.getNbParam()  ){
+                            rep = true;
+                            symbole = list.get(et);
+                        }
                     }
+
                 }
                 if(et.getIdf() == null || e.getIdf() == null){
                     nulle = true;
                 }
 
-
             }
+
+
+
         }
 
         if(!rep && nulle == false){
@@ -204,6 +207,7 @@ public class TDS {
 
         // Si on est dans une fonction on compte les param
         if(estDansMain == false && dansParam == true ){
+
             compteParam = compteParam +1;
         }
 

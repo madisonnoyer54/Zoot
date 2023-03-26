@@ -31,13 +31,11 @@ public class AppelFonction extends Expression{
      */
     @Override
     public void verifier() {
-       // System.out.println(idf);
-        //System.out.println("cc");
         boolean result = false;
         Entree e = null;
         Symbole sy= null;
         int compte= 0;
-        int compteRes =0;
+
         boolean result2= false;
         boolean result3 = false;
         int taille;
@@ -69,10 +67,10 @@ public class AppelFonction extends Expression{
                 result = true;
                 sy =s;
                 e = et;
-                compteRes =compte;
+
             }
         }
-       // System.out.println("nombloc"+compteRes);
+
 
         if(result == false){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'appel de fonction " + this.toString() + " n'appartient à aucune déclaration"));
@@ -80,12 +78,10 @@ public class AppelFonction extends Expression{
         }else if(listParam !=  null){// Verif si les param sont de meme type
 
             if(result3 == false){
-               // System.out.println("lol");
-                HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(compteRes);
+                HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(e.numBloc);
                 for (Entree et : list2.keySet()) {
                     SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(et);
                     if(s.getNumVar() != 0  ){
-
                         if(listParam.get(s.getNumVar()-1).getType() != s.getType()) {
                             result2 =true;
                         }
