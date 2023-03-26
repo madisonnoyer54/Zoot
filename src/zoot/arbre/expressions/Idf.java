@@ -133,4 +133,9 @@ public class Idf extends Expression {
     public String getIdf() {
         return variable;
     }
+
+    @Override
+    public boolean estConstante() {
+        return false;
+    }
 }

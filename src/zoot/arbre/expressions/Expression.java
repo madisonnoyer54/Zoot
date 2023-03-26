@@ -41,4 +41,6 @@ public abstract class Expression extends ArbreAbstrait {
     public abstract boolean estFonction();
 
     public abstract String getIdf();
+
+    public abstract boolean estConstante();
 }

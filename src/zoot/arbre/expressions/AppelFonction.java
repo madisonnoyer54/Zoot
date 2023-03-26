@@ -39,6 +39,18 @@ public class AppelFonction extends Expression{
         int compte= 0;
         int compteRes =0;
         boolean result2= false;
+        boolean result3 = false;
+
+
+        // Verif si les param entrer son declarer
+        for (int i = 0; i < listParam.size(); i++) {
+            Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(listParam.get(i).getIdf(), noLigne,numBloc));
+            if(!listParam.get(i).estConstante() && symbole == null){
+                result3 = true;
+            }
+
+
+        }
 
         // Test si l'appel correspond a une declaration de fonction
         HashMap<Entree,Symbole> list = TDS.getInstance().getlistFonction();
@@ -58,20 +70,24 @@ public class AppelFonction extends Expression{
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'appel de fonction " + this.toString() + " n'appartient à aucune déclaration"));
 
         }else{// Verif si les param sont de meme type
-            HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(compteRes);
-            for (Entree et : list2.keySet()) {
-                SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(et);
-                if(s.getNumVar() != 0  ){
-                    if(listParam.get(s.getNumVar()-1).getType() != s.getType()) {
-                        result2 =true;
+
+            if(result3 == false){
+                HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(compteRes);
+                for (Entree et : list2.keySet()) {
+                    SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(et);
+                    if(s.getNumVar() != 0  ){
+                        if(listParam.get(s.getNumVar()-1).getType() != s.getType()) {
+                            result2 =true;
+                        }
                     }
+
                 }
+                if(result2 ==true){
+                    Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne + " : L'appel de fonction " + this.toString() + " n'a pas le meme type de param que la déclaration de fonction"));
 
+                }
             }
-            if(result2 ==true){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne + " : L'appel de fonction " + this.toString() + " n'a pas le meme type de param que la déclaration de fonction"));
 
-            }
         }
     }
 
@@ -157,6 +173,11 @@ public class AppelFonction extends Expression{
      */
     public String getIdf() {
         return idf;
+    }
+
+    @Override
+    public boolean estConstante() {
+        return false;
     }
 
     /**
