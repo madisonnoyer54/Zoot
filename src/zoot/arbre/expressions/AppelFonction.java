@@ -5,9 +5,7 @@ import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 public class AppelFonction extends Expression{
     private String idf;
@@ -98,17 +96,16 @@ public class AppelFonction extends Expression{
     @Override
     public String toMIPS() {
         String code;
-
+        ArrayList<Expression> listParam = TDS.getInstance().getListParam();
         code = "\t# Appel de la fonction "+ idf +
-
-                "\n\t# Réserve la place pour le résultat de la fonction\n"+
-                "\tadd $sp, $sp, -4\n"+
-
-                // Empiler la valeur du paramètre
-                "\tsw $a0, ($sp) # On empile la valeur du paramètre a0 sur la pile\n"+
-                "\tadd $sp, $sp, -4 # On ajuste le pointeur de pile\n"+
-
-
+                "\n\tadd $sp, $sp, -4\n"+
+                "\t# Réserve la place pour le résultat de la fonction\n";
+                for(Expression e : listParam){
+                    code = e.toMIPS()+
+                    "\n\tsw $v0, ($sp) \n"+
+                    "\tadd $sp, $sp,-4 \n";
+                }
+                code = code +
                 "\tjal "+idf+"\n"+
 
                 // On depile et on met dans S7

@@ -184,7 +184,7 @@ public class TDS {
     }
 
     public int getCompteParam2() {
-        if(dansParam ==true){
+        if(dansParam){
             return compteParam;
         }
         return 0;
