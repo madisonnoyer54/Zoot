@@ -56,6 +56,7 @@ public class TDS {
     public void ajouter (Entree e, Symbole s,int numBloc){
         Boolean entre1 = e.estFonction();
         Boolean entre2 = null;
+        Boolean result= false;
         // variable existe déjà double déclaration exception!!
         HashMap<Entree,Symbole> list = TDS.getInstance().getBlocs().get(numBloc);
         for (Entree et : list.keySet()) {
@@ -67,28 +68,32 @@ public class TDS {
                 // Deux variable avec le meme nom
                 if(entre1.equals(entre2) && entre1 == false) {
                     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux variable ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
-
+                    result = true;
                     // Fonction avec le meme nombre de paramêtre
                 }else if (entre1.equals(entre2) && entre1 == true ) {
                     SymboleFonction s1 = (SymboleFonction) s;
                     SymboleFonction s2 = (SymboleFonction) identifier(et);
                     if(s1.getNb() == s2.getNb()){
                         Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne +" : Deux fonction ne peuvent pas etre déclarer avec le même nom si elle ont le même nombre de paramêtre ("+ e.idf.toString()+")."));
-
+                        result = true;
                     }
 
                 }
                 // Variable et fonction avec le meme nom
                 else {
                     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(e.getNoLigne()+" et "+et.noLigne+" : Une variables et une fonction ne peuvent pas etre déclarer avec le même nom ("+ e.idf.toString()+")."));
-
+                    result = true;
                 }
 
             }
 
 
         }
-        list.put(e, s);
+
+        // Si tout vas bien on ajout a la liste
+        if(result == false){
+            list.put(e, s);
+        }
         if(!s.estFonction() && numBloc ==0){
 
             compteurDeplace-= 4;

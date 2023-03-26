@@ -34,23 +34,37 @@ public class AppelFonction extends Expression{
     @Override
     public void verifier() {
         boolean result = false;
+        Entree e = null;
+        Symbole sy= null;
+        int compte= 0;
+        int compteRes =0;
 
         // Test si l'appel correspond a une declaration de fonction
         HashMap<Entree,Symbole> list = TDS.getInstance().getlistFonction();
         for (Entree et : list.keySet()) {
+            compte = compte+1;
             SymboleFonction s = (SymboleFonction) TDS.getInstance().identifier(et);
             if(et.getIdf().toString().equals(idf.toString()) && listParam.size() == s.getNb()){
                 result = true;
+                sy =s;
+                e = et;
+                compteRes =compte;
             }
         }
+       // System.out.println("nombloc"+compteRes);
 
         if(result == false){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'appel de fonction " + this.toString() + " n'appartient à aucune déclaration"));
 
+        }else{// Verif si les param sont de meme type
+            HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(compteRes);
+            for (Entree et : list2.keySet()) {
+               // System.out.println(et.idf);
+
+            // A finir
+
+            }
         }
-        //à continuer : parcourir la liste verifier la fonction actuelle
-        //verifier que ce qui est donné en parametre de l'appel est de meme type que les parametres declarés dans la fonction
-        //+vérifier si aucun parametre donné mais requis (dans la décla)
     }
 
     /**
