@@ -23,7 +23,7 @@ public class AppelFonction extends Expression{
         this.idf = idf;
         this.n=n;
         listParam = list;
-        verifier();
+
     }
 
     /**
@@ -31,6 +31,8 @@ public class AppelFonction extends Expression{
      */
     @Override
     public void verifier() {
+       // System.out.println(idf);
+        //System.out.println("cc");
         boolean result = false;
         Entree e = null;
         Symbole sy= null;
@@ -38,24 +40,32 @@ public class AppelFonction extends Expression{
         int compteRes =0;
         boolean result2= false;
         boolean result3 = false;
+        int taille;
 
 
         // Verif si les param entrer son declarer
-        for (int i = 0; i < listParam.size(); i++) {
-            Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(listParam.get(i).getIdf(), noLigne,numBloc));
-            if(!listParam.get(i).estConstante() && symbole == null){
-                result3 = true;
+        if(listParam != null){
+            for (int i = 0; i < listParam.size(); i++) {
+                Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(listParam.get(i).getIdf(), noLigne,numBloc));
+                if(!listParam.get(i).estConstante() && symbole == null){
+                    result3 = true;
+                }
+
+
             }
-
-
+            taille =listParam.size();
+        }else{
+            taille = 0;
         }
+
+
 
         // Test si l'appel correspond a une declaration de fonction
         HashMap<Entree,Symbole> list = TDS.getInstance().getlistFonction();
         for (Entree et : list.keySet()) {
             compte = compte+1;
             SymboleFonction s = (SymboleFonction) TDS.getInstance().identifier(et);
-            if(et.getIdf().toString().equals(idf.toString()) && listParam.size() == s.getNb()){
+            if(et.getIdf().toString().equals(idf.toString()) && taille == s.getNb()){
                 result = true;
                 sy =s;
                 e = et;
@@ -67,13 +77,15 @@ public class AppelFonction extends Expression{
         if(result == false){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'appel de fonction " + this.toString() + " n'appartient à aucune déclaration"));
 
-        }else{// Verif si les param sont de meme type
+        }else if(listParam !=  null){// Verif si les param sont de meme type
 
             if(result3 == false){
+               // System.out.println("lol");
                 HashMap<Entree,Symbole> list2 = TDS.getInstance().getBlocs().get(compteRes);
                 for (Entree et : list2.keySet()) {
                     SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(et);
                     if(s.getNumVar() != 0  ){
+
                         if(listParam.get(s.getNumVar()-1).getType() != s.getType()) {
                             result2 =true;
                         }
@@ -185,10 +197,15 @@ public class AppelFonction extends Expression{
      */
     @Override
     public String toString() {
-        String param = listParam.get(0).toString();
-        for( int i=1; i<listParam.size(); i++ ){
-            param = param + "," +  listParam.get(i).toString();
+        if(listParam != null){
+            String param = listParam.get(0).toString();
+            for( int i=1; i<listParam.size(); i++ ){
+                param = param + "," +  listParam.get(i).toString();
+            }
+            return idf + "("+param+")";
+        }else{
+            return idf + "()";
         }
-        return idf + "("+param+")";
+
     }
 }

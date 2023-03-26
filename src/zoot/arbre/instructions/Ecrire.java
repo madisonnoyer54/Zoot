@@ -33,7 +33,7 @@ public class Ecrire extends Instruction {
             Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(exp.getIdf(), noLigne,numBloc));
         }
         else{
-            Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
+            //Symbole symbole =  TDS.getInstance().identifier(new EntreeFonction(exp.getIdf(), noLigne,numBloc));
 
         }
 
