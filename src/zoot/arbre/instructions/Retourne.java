@@ -6,7 +6,7 @@ import zoot.tds.Type;
 
 public class Retourne extends Instruction{
     private Expression e;
-
+    private int num;
 
     /**
      * Constructeur
@@ -16,6 +16,7 @@ public class Retourne extends Instruction{
     public Retourne(Expression e, int n, int num) {
         super(n, num);
         this.e = e;
+        this.num=num;
 
     }
 
@@ -29,17 +30,19 @@ public class Retourne extends Instruction{
     @Override
     public String toMIPS() {
         String code;
+        int nbVar=TDS.getInstance().getTailleZoneVariable(num);
         // depiler s7 et ra
         code = "\n# Depile de s7 et ra\n"+
-                "\tadd $sp, $sp, 4\n" +
+                "\taddi $sp,$sp, "+nbVar+"\n"+
+                //"\tadd $sp, $sp, 4\n" +
                 "\tlw $s7, ($sp)\n" +
                 "\tadd $sp, $sp, 4\n" +
                 "\tlw $ra, ($sp)"+
 
 
         "\t#Retour de fonction"+ e.toString()    +
-        "\n\tsw $v0, 0($sp)\n"+
-                e.toMIPS()+
+        //"\n\tsw $v0, 0($sp)\n"+
+        //       e.toMIPS()+ (à revoir ici)
         "\tjr $ra\n";
         return code;
     }

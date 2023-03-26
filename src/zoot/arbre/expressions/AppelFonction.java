@@ -107,25 +107,27 @@ public class AppelFonction extends Expression{
      */
     @Override
     public String toMIPS() {
-        String code;
+        String code = "\t# Appel de la fonction " + idf +
+                "\n\tadd $sp, $sp, -4\n";
+        int nbparam = 0;
         ArrayList<Expression> listParam = TDS.getInstance().getListParam();//à revoir
-        int nbparam = TDS.getInstance().getListParam().size();//àrevoir
-        code = "\t# Appel de la fonction "+ idf +
-                "\n\tadd $sp, $sp, -4\n"+
-                "\t# Réserve la place pour le résultat de la fonction\n";
-                for(Expression e : listParam){ //on calcule la valeur de chaque paramêtres passés
-                    code = e.toMIPS()+
-                    "\n\tsw $v0, ($sp) \n"+
-                    "\tadd $sp, $sp,-4 \n";
-                }
-                code = code +
-                "\t# Branchement et svgde de l’adresse de retour dans $ra\n"+
-                "\tjal "+idf+"\n"+
+        if(listParam!=null) {
+            nbparam = TDS.getInstance().getListParam().size();//àrevoir
+            code = code+
+                    "\t# Réserve la place pour le résultat de la fonction\n";
+            for (Expression e : listParam) { //on calcule la valeur de chaque paramêtres passés
+                code = e.toMIPS() +
+                        "\n\tsw $v0, ($sp) \n" +
+                        "\tadd $sp, $sp,-4 \n";
+            }
+        }
+            code = code +
+                    "\t# Branchement et svgde de l’adresse de retour dans $ra\n" +
+                    "\tjal " + idf + "\n" +
 
-                // On depile et on met dans S7 à revoir içi ?
-                "\tadd $sp, $sp,"+4*nbparam+" \n"+
-                "\tadd $sp, $sp, 4 # Depile\n";
-
+                    // On depile et on met dans S7 à revoir içi ?
+                    "\tadd $sp, $sp," + 4 * nbparam + " \n" +
+                    "\tadd $sp, $sp, 4 # Depile\n";
 
         return code ;
     }
