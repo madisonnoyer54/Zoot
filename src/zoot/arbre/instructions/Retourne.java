@@ -37,16 +37,16 @@ public class Retourne extends Instruction{
                 if (num > 0) { // si on est pas dans le main
                    code = code + "\n# Depile espace alloué aux variables locales\n" +
                             //"\taddi $sp,$sp, " + nbVar + "\n" + //OK
-                            "move $sp, $s7\n"+
-                           "# Déplacement base\n" +
+                            "\tmove $sp, $s7\n"+
+                           "\t#Déplacement base\n" +
                             "\tlw $s7, 8($sp)\n" +
-                           "# Dépiler le chainage dynamique\n" +
+                           "\t#Dépiler le chainage dynamique\n" +
                             "\taddi $sp, $sp, 4\n" + //OK
-                           "# Dépiler l'adresse retour\n"+
+                           "\t#Dépiler l'adresse retour\n"+
                            "\taddi $sp, $sp, 4\n" +
                            "\tlw $ra, 0($sp)\n" + //OK
-                           "# Enregistre la valeur de $v0\n"+
-                           "sw $v0, 4($sp)\n"+
+                           "\t#Enregistre la valeur de $v0\n"+
+                           "\tsw $v0, 4($sp)\n"+
 
 
                             "\t#Retour de fonction " + e.toString() +
