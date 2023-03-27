@@ -130,8 +130,8 @@ public class BlocDInstructions extends ArbreAbstrait {
             // etiquette
             code = code + "\n"+et.getIdf()+ e1.getNbParam()+":\n"+ //OK
                     "\t# Empiler $ra\n"+//à revoir
-                    // Empile l'adresse de retour
                     "\tsw $ra, 0($sp) \n"+// ~
+                    // Empile l'adresse de retour
                     "\t addi $sp, $sp, -4 \n"+//OK
                     "\t# Empiler $s7\n"+
                     // li ???
