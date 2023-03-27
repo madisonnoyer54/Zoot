@@ -49,7 +49,7 @@ public class Retourne extends Instruction{
                            "\tsw $v0, 4($sp)\n"+
 
 
-                            "\t#Retour de fonction " + e.toString() +
+                            "\t#Retour de fonction " + e.toString() +"\n"+
 
                             "\tjr $ra\n";
                 }

@@ -121,9 +121,9 @@ public class AppelFonction extends Expression{
                     "\tjal " + idf + nbparam +"\n" +//OK
 
                     // On depile et on met dans S7 à revoir içi ?
-                    "\tadd $sp, $sp," + 4 * nbparam + " \n" + // OK
-                    "\tadd $sp, $sp, 4 # Depile\n"; // OK
-
+                    //"\tadd $sp, $sp," + 4 * nbparam + " \n" + // OK
+                    //"\tadd $sp, $sp, 4 # Depile\n"; // OK
+//TODO:problemes etiquettes avec nbparam probleme + revoir apres le jal
         return code ;
     }
 
