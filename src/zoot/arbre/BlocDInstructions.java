@@ -125,11 +125,12 @@ public class BlocDInstructions extends ArbreAbstrait {
         for (Entree et : tableFonction.keySet()){
             EntreeFonction e1 = (EntreeFonction) et;
             noBloc++;
-            code = code + "\n"+et.getIdf()+ e1.getNbParam()+":\n"+
+            code = code + "\n"+et.getIdf()+ e1.getNbParam()+":\n"+ //OK
                     "\t# Empiler $ra\n"+//à revoir
-                    "\tsw $ra, 0($sp) \n"+
-                    "\t add $sp, $sp, -4 \n"+
+                    "\tsw $ra, 0($sp) \n"+// ~
+                    "\t add $sp, $sp, -4 \n"+//OK
                     "\t# Empiler $s7\n"+
+                    // li ???
                     "\tsw $s7, 0($sp) \n"+
                     "\t add $sp, $sp, -4 \n"+
                     "\t# Mettre à jour la base locale\n"+

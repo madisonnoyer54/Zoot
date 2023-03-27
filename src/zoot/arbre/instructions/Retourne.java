@@ -33,16 +33,16 @@ public class Retourne extends Instruction{
         int nbVar=TDS.getInstance().getTailleZoneVariable(num);
         // depiler s7 et ra
         code = "\n# Depile de s7 et ra\n"+
-                "\taddi $sp,$sp, "+nbVar+"\n"+
-                //"\tadd $sp, $sp, 4\n" +
-                "\tlw $s7, ($sp)\n" +
-                "\tadd $sp, $sp, 4\n" +
-                "\tlw $ra, ($sp)"+
+                "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
+                "\tadd $sp, $sp, 4\n" + //4??
+                "\tlw $s7, ($sp)\n" + //~
+                "\taddi $sp, $sp, 4\n" + //OK
+                "\tlw $ra, ($sp)"+ //OK
 
 
         "\t#Retour de fonction "+ e.toString()    +
-        //"\n\tsw $v0, 0($sp)\n"+
-        //       e.toMIPS()+ (à revoir ici)
+        "\n\tsw $v0, 0($sp)\n"+
+              e.toMIPS()+
         "\tjr $ra\n";
         return code;
     }
