@@ -118,11 +118,11 @@ public class AppelFonction extends Expression{
         }
             code = code +
                     "\t# Branchement et svgde de l’adresse de retour dans $ra\n" +
-                    "\tjal " + idf + "\n" +
+                    "\tjal " + idf + nbparam +"\n" +
 
                     // On depile et on met dans S7 à revoir içi ?
-                    "\tadd $sp, $sp," + 4 * nbparam + " \n" +
-                    "\tadd $sp, $sp, 4 # Depile\n";
+                    "\tadd $sp, $sp," + 4 * nbparam + " \n" + // OK
+                    "\tadd $sp, $sp, 4 # Depile\n"; // OK
 
         return code ;
     }

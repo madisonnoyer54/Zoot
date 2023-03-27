@@ -3,10 +3,7 @@ package zoot.arbre;
 import zoot.arbre.instructions.Instruction;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.SymboleFonction;
-import zoot.tds.TDS;
+import zoot.tds.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -126,8 +123,9 @@ public class BlocDInstructions extends ArbreAbstrait {
         HashMap<Entree, Symbole> tableFonction = TDS.getInstance().getlistFonction();
         int noBloc = 0;
         for (Entree et : tableFonction.keySet()){
+            EntreeFonction e1 = (EntreeFonction) et;
             noBloc++;
-            code = code + "\n"+et.getIdf()+":\n"+
+            code = code + "\n"+et.getIdf()+ e1.getNbParam()+":\n"+
                     "\t# Empiler $ra\n"+//à revoir
                     "\tsw $ra, 0($sp) \n"+
                     "\t add $sp, $sp, -4 \n"+
