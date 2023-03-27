@@ -104,10 +104,12 @@ public class BlocDInstructions extends ArbreAbstrait {
         //$s3 à mettre ici ??
         // Les déclaration des variables
         code = code +
-                "# Empilement de l'adresse S7\n"+
-                "\tmove $s7,$sp\n"+
+                "# Empilement de l'adresse S3\n"+
+                "\tmove $s3,$sp\n"+
                 "# Reserve la place des variables\n"+
-                "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+"\n";
+                "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+"\n"+
+                "# Empilement de l'adresse S7\n"+
+                "\tmove $s7,$sp\n";
         // Les Instructions
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();
