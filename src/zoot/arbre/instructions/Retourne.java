@@ -31,6 +31,7 @@ public class Retourne extends Instruction{
     public String toMIPS() {
         String code;
         int nbVar=TDS.getInstance().getTailleZoneVariable(num);
+        nbVar = -nbVar;
         // depiler s7 et ra
         code = e.toMIPS()+
                 "\n# Depile de s7 et ra\n"+

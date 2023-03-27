@@ -240,14 +240,14 @@ public class TDS {
                 if(noBloc == entree.getNumBloc()&&!symbole.estFonction()) {
                     SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(entree);
                     if (s.getNumVar() == 0) { // si c'est le même no de bloc et c'est une variable
-                        //System.out.println("TESSSSST : " + entree.getIdf());
+                        System.out.println("TESSSSST : " + entree.getIdf());
                         taille++;
                     }
                 }
             }
         }
         taille *= -4;
-        //System.out.println("\ntest taille zoneVariable pour le nobloc : "+noBloc+" la taille : "+taille);
+        System.out.println("\ntest taille zoneVariable pour le nobloc : "+noBloc+" la taille : "+taille);
         return taille;
     }
 
