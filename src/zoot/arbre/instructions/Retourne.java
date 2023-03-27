@@ -55,7 +55,7 @@ public class Retourne extends Instruction{
                 }
                 else{
                     code = code +"# Fin du programme\n"+
-                            "\tj fin\n";
+                            "\tj end\n";
                 }
         return code;
     }
