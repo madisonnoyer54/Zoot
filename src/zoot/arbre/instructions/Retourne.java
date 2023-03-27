@@ -40,7 +40,7 @@ public class Retourne extends Instruction{
                 "\tlw $ra, ($sp)"+
 
 
-        "\t#Retour de fonction"+ e.toString()    +
+        "\t#Retour de fonction "+ e.toString()    +
         //"\n\tsw $v0, 0($sp)\n"+
         //       e.toMIPS()+ (à revoir ici)
         "\tjr $ra\n";

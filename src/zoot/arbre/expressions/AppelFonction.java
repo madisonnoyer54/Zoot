@@ -102,7 +102,7 @@ public class AppelFonction extends Expression{
      */
     @Override
     public String toMIPS() {
-        String code = "\t# Appel de la fonction " + idf +
+        String code = "\t# Appel de la fonction " + this.toString()+
                 "\n\tadd $sp, $sp, -4\n";
         int nbparam = 0;
         ArrayList<Expression> listParam = TDS.getInstance().getListParam();//à revoir
