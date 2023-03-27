@@ -35,12 +35,18 @@ public class Retourne extends Instruction{
         code =  "# Met la valeur de l'expression dans $v0\n"+
                 e.toMIPS();
                 if (num > 0) { // si on est pas dans le main
-                   code = code + "\n# Depile de s7 et ra\n" +
-                            "\taddi $sp,$sp, " + nbVar + "\n" + //OK
-                            "\tadd $sp, $sp, 4\n" + //4??
-                            "\tlw $s7, ($sp)\n" + //~
+                   code = code + "\n# Depile espace alloué aux variables locales\n" +
+                            //"\taddi $sp,$sp, " + nbVar + "\n" + //OK
+                            "move $sp, $s7\n"+
+                           "# Déplacement base\n" +
+                            "\tlw $s7, 8($sp)\n" +
+                           "# Dépiler le chainage dynamique\n" +
                             "\taddi $sp, $sp, 4\n" + //OK
-                            "\tlw $ra, ($sp)" + //OK
+                           "# Dépiler l'adresse retour\n"+
+                           "\taddi $sp, $sp, 4\n" +
+                           "\tlw $ra, 0($sp)\n" + //OK
+                           "# Enregistre la valeur de $v0\n"+
+                           "sw $v0, 4($sp)\n"+
 
 
                             "\t#Retour de fonction " + e.toString() +
