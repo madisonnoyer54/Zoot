@@ -105,9 +105,9 @@ public class AppelFonction extends Expression{
         String code = "\t# Appel de la fonction " + this.toString()+
                 "\n\tadd $sp, $sp, -4\n";//OK
         int nbparam = 0;
-        ArrayList<Expression> listParam = TDS.getInstance().getListParam();//à revoir OK
+
         if(listParam!=null) {
-            nbparam = TDS.getInstance().getListParam().size();//àrevoir OK
+            nbparam = listParam.size();
             code = code+
                     "\t# Réserve la place pour le résultat de la fonction\n";
             for (Expression e : listParam) { //on calcule la valeur de chaque paramêtres passés
@@ -121,9 +121,9 @@ public class AppelFonction extends Expression{
                     "\tjal " + idf + nbparam +"\n" +//OK
 
                     // On depile et on met dans S7 à revoir içi ?
-                    //"\tadd $sp, $sp," + 4 * nbparam + " \n" + // OK
-                    //"\tadd $sp, $sp, 4 # Depile\n"; // OK
-//TODO:problemes etiquettes avec nbparam probleme + revoir apres le jal
+                    "\tadd $sp, $sp,4   \n" + // de pile la valeur de retour
+                    "\tlw $v0, 0($sp)\n"; // OK
+
         return code ;
     }
 

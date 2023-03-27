@@ -125,18 +125,24 @@ public class BlocDInstructions extends ArbreAbstrait {
         for (Entree et : tableFonction.keySet()){
             EntreeFonction e1 = (EntreeFonction) et;
             noBloc++;
+            // etiquette
             code = code + "\n"+et.getIdf()+ e1.getNbParam()+":\n"+ //OK
                     "\t# Empiler $ra\n"+//à revoir
+                    // Empile l'adresse de retour
                     "\tsw $ra, 0($sp) \n"+// ~
-                    "\t add $sp, $sp, -4 \n"+//OK
+                    "\t addi $sp, $sp, -4 \n"+//OK
                     "\t# Empiler $s7\n"+
                     // li ???
+                    // Empilement chainage dynamique
                     "\tsw $s7, 0($sp) \n"+
                     "\t add $sp, $sp, -4 \n"+
                     "\t# Mettre à jour la base locale\n"+
+                    // metre a jour les piles
                     "\tmove $s7, $sp\n\n"+
+
+                    // reserver de la place variables
                     "\t# On reserve la place pour les variables\n"+ //condition : si des variable locales sont déclarées
-                    "\tadd $sp,$sp,"+TDS.getInstance().getTailleZoneVariable(noBloc)+"\n";
+                    "\taddi $sp,$sp,"+TDS.getInstance().getTailleZoneVariable(noBloc)+"\n";
 
 
             // Les Instructions de la fonction

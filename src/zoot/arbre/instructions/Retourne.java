@@ -32,31 +32,17 @@ public class Retourne extends Instruction{
         String code;
         int nbVar=TDS.getInstance().getTailleZoneVariable(num);
         // depiler s7 et ra
-        code =  "# Met la valeur de l'expression dans $v0\n"+
-                e.toMIPS();
-                if (num > 0) { // si on est pas dans le main
-                   code = code + "\n# Depile espace alloué aux variables locales\n" +
-                            //"\taddi $sp,$sp, " + nbVar + "\n" + //OK
-                            "\tmove $sp, $s7\n"+
-                           "\t#Déplacement base\n" +
-                            "\tlw $s7, 8($sp)\n" +
-                           "\t#Dépiler le chainage dynamique\n" +
-                            "\taddi $sp, $sp, 4\n" + //OK
-                           "\t#Dépiler l'adresse retour\n"+
-                           "\taddi $sp, $sp, 4\n" +
-                           "\tlw $ra, 0($sp)\n" + //OK
-                           "\t#Enregistre la valeur de $v0\n"+
-                           "\tsw $v0, 4($sp)\n"+
+        code = "\n# Depile de s7 et ra\n"+
+                "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
+                "\tlw $s7, 0($sp)\n" + //~
+                "\taddi $sp, $sp, 4\n" + //OK
+                "\tlw $ra, 0($sp)"+ //OK
 
 
-                            "\t#Retour de fonction " + e.toString() +"\n"+
-
-                            "\tjr $ra\n";
-                }
-                else{
-                    code = code +"# Fin du programme\n"+
-                            "\tj end\n";
-                }
+        "\t#Retour de fonction "+ e.toString()    +
+        "\n\tsw $v0, 0($sp)\n"+ // 12 et pas 0
+              e.toMIPS()+
+        "\tjr $ra\n";
         return code;
     }
 
