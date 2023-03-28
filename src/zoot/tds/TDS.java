@@ -240,7 +240,7 @@ public class TDS {
                 if(noBloc == entree.getNumBloc()&&!symbole.estFonction()) {
                     SymboleVariable s = (SymboleVariable) TDS.getInstance().identifier(entree);
                     if (s.getNumVar() == 0) { // si c'est le même no de bloc et c'est une variable
-                        System.out.println("TESSSSST : " + entree.getIdf());
+                        //System.out.println("pour noBloc : "+noBloc+"variable : " + entree.getIdf());
                         taille++;
                     }
                 }
