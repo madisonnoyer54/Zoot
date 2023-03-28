@@ -29,12 +29,15 @@ public class Retourne extends Instruction{
 
     @Override
     public String toMIPS() {
-        String code;
+        String code = "\t#Retourne\n";
         int nbVar=TDS.getInstance().getTailleZoneVariable(num);
         nbVar = -nbVar;
         // depiler s7 et ra
-        code = e.toMIPS()+
-                "\n# Depile de s7 et ra\n"+
+
+        if(!e.estVariable()) {
+           code = code + e.toMIPS();
+        }
+          code = code +      "\n# Depile de s7 et ra\n"+
                 "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
                 "\taddi $sp, $sp, 4\n" + //OK //A AJOUTER AUSSI EN PLUS SI PARAMETRES UNE CASE EN PLUS DANS LA PILE
                 "\taddi $sp, $sp, 4\n" + //OK
