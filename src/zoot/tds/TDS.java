@@ -247,7 +247,7 @@ public class TDS {
             }
         }
         taille *= -4;
-        System.out.println("\ntest taille zoneVariable pour le nobloc : "+noBloc+" la taille : "+taille);
+        //System.out.println("\ntest taille zoneVariable pour le nobloc : "+noBloc+" la taille : "+taille);
         return taille;
     }
 
