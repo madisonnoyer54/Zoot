@@ -50,7 +50,7 @@ public class Retourne extends Instruction{
 
         "\t#Retour de fonction "+ e.toString()    +
         //"\n\tsw $v0, 4($sp)\n"+ // 12 et pas 0 probleme ici!
-        "\t\njr $ra\n";
+        "\n\tjr $ra\n";
         return code;
     }
 
