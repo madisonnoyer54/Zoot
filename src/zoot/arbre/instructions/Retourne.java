@@ -4,6 +4,8 @@ import zoot.arbre.expressions.Expression;
 import zoot.tds.TDS;
 import zoot.tds.Type;
 
+import java.util.List;
+
 public class Retourne extends Instruction{
     private Expression e;
     private int num;
@@ -37,7 +39,9 @@ public class Retourne extends Instruction{
         if(!e.estVariable()) {
            code = code + e.toMIPS();
         }
-          code = code +      "\n# Depile de s7 et ra\n"+
+        //il faut dépiler les paramètres ??
+        List listParam = TDS.getInstance().getListParam();
+          code = code + "\n# Depile de s7 et ra\n"+
                 "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
                 "\taddi $sp, $sp, 4\n" + //OK //A AJOUTER AUSSI EN PLUS SI PARAMETRES UNE CASE EN PLUS DANS LA PILE
                 "\taddi $sp, $sp, 4\n" + //OK
@@ -45,7 +49,7 @@ public class Retourne extends Instruction{
 
 
         "\t#Retour de fonction "+ e.toString()    +
-        "\n\tsw $v0, 4($sp)\n"+ // 12 et pas 0
+        //"\n\tsw $v0, 4($sp)\n"+ // 12 et pas 0 probleme ici!
         "\tjr $ra\n";
         return code;
     }
