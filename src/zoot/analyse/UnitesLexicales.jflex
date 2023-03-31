@@ -48,6 +48,16 @@ type = (entier)|(booleen)
 "retourne"             { return symbol(CodesLexicaux.RETOURNE); }
 "fin"              	   { return symbol(CodesLexicaux.FIN); }
 "ecrire"               { return symbol(CodesLexicaux.ECRIRE); }
+"non"                    {return symbol(CodesLexicaux.NON);}
+"si"                    {return symbol(CodesLexicaux.SI);}
+"sinon"                    {return symbol(CodesLexicaux.SINON);}
+"finsi"                    {return symbol(CodesLexicaux.FINSI);}
+"et"                    {return symbol(CodesLexicaux.ET);}
+"ou"                    {return symbol(CodesLexicaux.OU);}
+"repeter"                    {return symbol(CodesLexicaux.REPETER);}
+"jusqua"                    {return symbol(CodesLexicaux.JUSQUA);}
+"finrepeter"                    {return symbol(CodesLexicaux.FINREPETER);}
+
 
 "("                    { return symbol(CodesLexicaux.OUVRE); }
 ")"                    { return symbol(CodesLexicaux.FERME); }
@@ -55,6 +65,13 @@ type = (entier)|(booleen)
 "="                    { return symbol(CodesLexicaux.AFF); }
 ","                    {return symbol(CodesLexicaux.VIRGULE);}
 "=="                    {return symbol(CodesLexicaux.EGALE);}
+"!="                    {return symbol(CodesLexicaux.DIFF);}
+"+"                    {return symbol(CodesLexicaux.ADD);}
+"*"                    {return symbol(CodesLexicaux.MULT);}
+"-"                    {return symbol(CodesLexicaux.SOUS);}
+"<"                    {return symbol(CodesLexicaux.INF);}
+
+
 
 {type}                 { return symbol(CodesLexicaux.TYPE, yytext());}
 
