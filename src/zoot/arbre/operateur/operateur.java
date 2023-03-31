@@ -1,15 +1,15 @@
-package zoot.arbre.operations;
+package zoot.arbre.operateur;
 
 import zoot.arbre.ArbreAbstrait;
 
-public abstract class Operation extends ArbreAbstrait {
+public abstract class operateur extends ArbreAbstrait {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Operation(int n, int num) {
+    protected operateur(int n, int num) {
         super(n, num);
     }
 }

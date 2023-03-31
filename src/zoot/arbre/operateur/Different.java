@@ -1,13 +1,13 @@
-package zoot.arbre.operations;
+package zoot.arbre.operateur;
 
-public class Egale extends  Operation{
+public class Different extends operateur {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Egale(int n, int num) {
+    protected Different(int n, int num) {
         super(n, num);
     }
 

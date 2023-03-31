@@ -1,13 +1,13 @@
-package zoot.arbre.operations;
+package zoot.arbre.operateur;
 
-public class Et extends  Operation{
+public class Ou extends operateur {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Et(int n, int num) {
+    protected Ou(int n, int num) {
         super(n, num);
     }
 
