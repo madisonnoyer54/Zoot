@@ -54,6 +54,7 @@ type = (entier)|(booleen)
 ";"                    { return symbol(CodesLexicaux.POINTVIRGULE); }
 "="                    { return symbol(CodesLexicaux.AFF); }
 ","                    {return symbol(CodesLexicaux.VIRGULE);}
+"=="                    {return symbol(CodesLexicaux.EGALE);}
 
 {type}                 { return symbol(CodesLexicaux.TYPE, yytext());}
 
