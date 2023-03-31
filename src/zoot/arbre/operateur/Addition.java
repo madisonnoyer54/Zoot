@@ -1,6 +1,6 @@
-package zoot.arbre.operations;
+package zoot.arbre.operateur;
 
-public class Addition extends  Operation{
+public class Addition extends operateur {
     /**
      * Constructeur
      *
