@@ -102,8 +102,8 @@ public class AppelFonction extends Expression{
      */
     @Override
     public String toMIPS() {
-        String code = "\t# Appel de la fonction " + this.toString()+"\n";
-               //+"\n\tadd $sp, $sp, -4\n";//OK PEUT ETRE A METTRE
+        String code = "\t# Appel de la fonction " + this.toString()+
+               "\n\tadd $sp, $sp, -4\n";
         int nbparam = 0;
 
         if(listParam!=null) {
@@ -112,18 +112,18 @@ public class AppelFonction extends Expression{
                     "\t# Réserve la place pour les paramêtres de la fonction\n";
             for (Expression e : listParam) { //on calcule la valeur de chaque paramêtres passés
                 code = code + e.toMIPS() +//OK
-                        "\n\tadd $sp, $sp,-4 \n"+//OK
-                        "\tsw $v0, 4($sp) \n";//OK
+                        "\tsw $v0, 4($sp) \n"+//OK
+                        "\n\tadd $sp, $sp,-4 \n";//OK
             }
         }
 
-
+            int caseParam = nbparam*4;
             code = code +
                     "\t# Branchement et svgde de l’adresse de retour dans $ra\n" +
                     "\tjal " + idf + nbparam +"\n" +//OK
 
                     // On depile et on met dans S7 à revoir içi ?
-                    "\tadd $sp, $sp,4   \n" + // de pile la valeur de retour
+                    "\tadd $sp, $sp,"+caseParam+"\n" + // de pile les parametres
                     "\tlw $v0, 0($sp)\n"; // OK
 
         return code ;
