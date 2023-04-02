@@ -102,18 +102,18 @@ public class AppelFonction extends Expression{
      */
     @Override
     public String toMIPS() {
-        String code = "\t# Appel de la fonction " + this.toString()
-               +"\n\tadd $sp, $sp, -4\n";//OK
+        String code = "\t# Appel de la fonction " + this.toString()+"\n";
+               //+"\n\tadd $sp, $sp, -4\n";//OK
         int nbparam = 0;
 
         if(listParam!=null) {
             nbparam = listParam.size();
             code = code+
-                    "\t# Réserve la place pour le résultat de la fonction\n";
+                    "\t# Réserve la place pour les paramêtres de la fonction\n";
             for (Expression e : listParam) { //on calcule la valeur de chaque paramêtres passés
                 code = code + e.toMIPS() +//OK
-                        "\n\tsw $v0, ($sp) \n" +//OK
-                        "\tadd $sp, $sp,-4 \n";//OK
+                        "\n\tadd $sp, $sp,-4 \n"+//OK
+                        "\tsw $v0, 4($sp) \n";//OK
             }
         }
 

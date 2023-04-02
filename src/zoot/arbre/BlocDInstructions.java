@@ -133,21 +133,19 @@ public class BlocDInstructions extends ArbreAbstrait {
             EntreeFonction e1 = (EntreeFonction) et;
             // etiquette
             code = code + "\n"+et.getIdf()+ e1.getNbParam()+":\n"+ //OK
-                    "\t# Empiler $ra\n"+//à revoir
-                    "\tsw $ra, 0($sp) \n"+// ~
                     // Empile l'adresse de retour
-                    "\t addi $sp, $sp, -4 \n"+//OK
+                    "\t# Empiler $ra\n"+
+                    "\t addi $sp, $sp, -4 \n"+
+                    "\tsw $ra, 4($sp) \n"+
+                    //Empiler le chainage dynamique
                     "\t# Empiler $s7\n"+
-                    // li ???
-                    // Empilement chainage dynamique
-                    "\tsw $s7, 0($sp) \n"+
-                    "\t add $sp, $sp, -4 \n"+
+                    "\t addi $sp, $sp, -4 \n"+
+                    "\tsw $s7, 4($sp) \n"+
                     "\t# Mettre à jour la base locale\n"+
-                    // metre a jour les piles
                     "\tmove $s7, $sp\n\n"+
 
                     // reserver de la place variables
-                    "\t# On reserve la place pour les variables\n"; //condition : si des variable locales sont déclarées
+                    "\t# On reserve la place pour les variables\n"; //condition : si des variable locales sont déclarées sinon ici 0
                     code = code + "\taddi $sp,$sp," + TDS.getInstance().getTailleZoneVariable(et.getNumBloc()) + "\n";
 
 
