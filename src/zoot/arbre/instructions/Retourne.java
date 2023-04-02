@@ -34,6 +34,7 @@ public class Retourne extends Instruction{
         String code = "\t#Retourne\n";
         int nbVar=TDS.getInstance().getTailleZoneVariable(num);
         nbVar = -nbVar;
+        int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
         // depiler s7 et ra
 
         if(!e.estVariable()) {
@@ -42,6 +43,7 @@ public class Retourne extends Instruction{
         //il faut dépiler les paramètres ??
         List listParam = TDS.getInstance().getListParam();
           code = code + "\n# Rangement du résultat de la fonction\n"+
+                  "\t lw $v0,"+zoneParam+"($s7)\n"+
                   "\tsw $v0, 12($s7)\n"+
                   "# Depile des variables\n"+
                 "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
@@ -53,7 +55,7 @@ public class Retourne extends Instruction{
                   "\tlw $ra, 4($sp)\n" +
                   "# Dépile adresse de retour\n"+
                 "\taddi $sp, $sp, 4\n" + //OK
-                "\tlw $ra, 0($sp)"+ //OK
+                //"\tlw $ra, 0($sp)"+ //OK
 
 
         "\t#Retour de fonction "+ e.toString()    +

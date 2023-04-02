@@ -103,7 +103,7 @@ public class AppelFonction extends Expression{
     @Override
     public String toMIPS() {
         String code = "\t# Appel de la fonction " + this.toString()+"\n";
-               //+"\n\tadd $sp, $sp, -4\n";//OK
+               //+"\n\tadd $sp, $sp, -4\n";//OK PEUT ETRE A METTRE
         int nbparam = 0;
 
         if(listParam!=null) {
