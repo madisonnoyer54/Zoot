@@ -73,7 +73,7 @@ public class Affectation extends Instruction{
         // On met dans v0
         String code = "";
         if(this.exp.getNumBloc()==0) {
-            code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" +
+            code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
                     exp.toMIPS() +
                     "\tsw $v0, " + variable.getSymbole().getDeplacement() + "($s7)" + "\n\n";
         }
