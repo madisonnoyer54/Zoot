@@ -106,10 +106,16 @@ public class BlocDInstructions extends ArbreAbstrait {
         code = code +
                 "# Empilement de l'adresse S3\n"+
                 "\tmove $s3,$sp\n"+
-                "# Reserve la place des variables\n"+
+                "# Allocation de la place pour la valeur de retour\n"+
+                "\taddi $sp, $sp, -4\n"+
+                "# Allocation de la place pour l'adresse de retour\n"+
+                "\taddi $sp, $sp, -4\n"+
+                "# Chaînage dynamique\n"+
+                "\taddi $sp, $sp, -4\n"+
+                "# Empilement de l'adresse S7\n"+
+                "\tmove $s7,$sp\n"+
+                "# Reserve la place des variables locales du main\n"+
                 "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+"\n";
-                //"# Empilement de l'adresse S7\n"+
-                //"\tmove $s7,$sp\n";
         // Les Instructions
         for (Instruction instruction : programme) {
             code+=instruction.toMIPS();
