@@ -61,7 +61,7 @@ terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, AFF, FONCTIONS, 
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP,LP,APPEL, OPER, CONDITION;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP,LP,APPEL,OPER;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -90,19 +90,30 @@ LINST   ::=     LINST:li  INST:i
                 ;
 
 
-INST    ::=     ECRIRE EXP:e POINTVIRGULE
+INST    ::=
+                // ECRIRE
+                ECRIRE EXP:e POINTVIRGULE
                 {: RESULT = new Ecrire(e, eleft + 1,TDS.getInstance().getNoActuBloc() ) ; :}
                 |
+                // AFFECTATION
                 IDF:idf AFF EXP:e  POINTVIRGULE
                 {: RESULT = new Affectation(idf,e, eleft + 1, TDS.getInstance().getNoActuBloc()); :}
                 |
+                // RETOURNER
                 RETOURNE EXP:e POINTVIRGULE
                 {: RESULT = new Retourne(e, eleft + 1, TDS.getInstance().getNoActuBloc()); :}
+                |
+                // BOUCLE REVOIR
+                REPETER LINST JUSQUA EXP FINREPETER
+                {::}
+                |
+                // CONDITION REVOIR
+                SI EXP ALORS LINST SINON LINST FINSI
+                {::}
                 ;
 
 
-LFONC  ::=      LFONC FONC | FONC
-;
+LFONC  ::=      LFONC FONC | FONC;
 
 
 
@@ -144,13 +155,6 @@ APPEL ::= {:  TDS.getInstance().entreeAppel();:}
             {: TDS.getInstance().sortieAppel();:};
 
 
-// REVOIR INST
-BOUCLE ::= REPETER LINST JUSQUA EXP FINREPETER
-            {::};
-
-// REVOIR LES INST * +
-CONDITION ::= SI EXP ALORS LINST SINON LINST FINSI
-                {::};
 
 OPER ::= ADD
         {: :}
@@ -210,9 +214,9 @@ EXP    ::=     CSTENTIERE:c
                |
                SOUS EXP
                {: :}
-              //|
-               //EXP OPER EXP
-              // {: :}
+     //         |
+       //        EXP OPER EXP
+         //      {: :}
                 ;
 
 

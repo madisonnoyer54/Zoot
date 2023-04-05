@@ -43,4 +43,6 @@ public abstract class Expression extends ArbreAbstrait {
     public abstract String getIdf();
 
     public abstract boolean estConstante();
+
+   // public  abstract int getNombreDePlaces();
 }
