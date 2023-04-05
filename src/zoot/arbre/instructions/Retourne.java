@@ -43,7 +43,7 @@ public class Retourne extends Instruction{
         //il faut dépiler les paramètres ??
         List listParam = TDS.getInstance().getListParam();
           code = code + "\n# Rangement du résultat de la fonction\n"+
-                  "\t lw $v0,"+zoneParam+"($s7)\n"+
+                  "\t lw $v0,"+zoneParam+"($s7)\n"+//TODO:juste cette ligne à reprendre il faut renvoyer la valeur voulue
                   "\tsw $v0, 12($s7)\n"+
                   "# Depile des variables\n"+
                 "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
