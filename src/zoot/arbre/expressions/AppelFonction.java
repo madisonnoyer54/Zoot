@@ -6,6 +6,7 @@ import zoot.tds.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class AppelFonction extends Expression{
     private String idf;
@@ -187,6 +188,16 @@ public class AppelFonction extends Expression{
     @Override
     public boolean estConstante() {
         return false;
+    }
+
+    @Override
+    public int getNombreDePlaces() {
+        return 0;
+    }
+
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
     }
 
     /**

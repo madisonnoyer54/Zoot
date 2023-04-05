@@ -2,6 +2,8 @@ package zoot.arbre.expressions;
 
 import zoot.tds.Type;
 
+import java.util.List;
+
 public class ConstanteBooleenne extends Constante {
 
         /**
@@ -27,7 +29,15 @@ public class ConstanteBooleenne extends Constante {
                 return false;
         }
 
+        @Override
+        public int getNombreDePlaces() {
+                return 0;
+        }
 
+        @Override
+        public String toMips(List<String> registres) {
+                return null;
+        }
 
 
         /**

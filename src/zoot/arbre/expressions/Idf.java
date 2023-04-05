@@ -8,6 +8,7 @@ import zoot.tds.Type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Idf extends Expression {
@@ -137,5 +138,15 @@ public class Idf extends Expression {
     @Override
     public boolean estConstante() {
         return false;
+    }
+
+    @Override
+    public int getNombreDePlaces() {
+        return 0;
+    }
+
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
     }
 }

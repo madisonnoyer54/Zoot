@@ -2,6 +2,8 @@ package zoot.arbre.expressions;
 
 import zoot.tds.Type;
 
+import java.util.List;
+
 public class Non extends Expression{
     /**
      * Constructeur
@@ -46,5 +48,15 @@ public class Non extends Expression{
     @Override
     public boolean estConstante() {
         return false;
+    }
+
+    @Override
+    public int getNombreDePlaces() {
+        return 0;
+    }
+
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
     }
 }

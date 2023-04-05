@@ -2,6 +2,8 @@ package zoot.arbre.expressions;
 
 import zoot.tds.Type;
 
+import java.util.List;
+
 public class ConstanteEntiere extends Constante {
 
     /**
@@ -55,6 +57,16 @@ public class ConstanteEntiere extends Constante {
     @Override
     public boolean estFonction() {
         return false;
+    }
+
+    @Override
+    public int getNombreDePlaces() {
+        return 0;
+    }
+
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
     }
 }
 

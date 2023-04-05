@@ -215,8 +215,6 @@ EXP    ::=     CSTENTIERE:c
                 SOUS EXP
                {: :}
               |
-
-              // MANQUE LE EXP
               EXP OPER EXP
                {: :}
                 ;

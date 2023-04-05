@@ -1,26 +1,18 @@
-package zoot.arbre.expressions;
+package zoot.arbre.expressions.Binaire;
 
 import zoot.tds.Type;
 
-public class Operation extends Expression{
+import java.util.List;
+
+public class Multiplication extends Binaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Operation(int n, int num) {
+    protected Multiplication(int n, int num) {
         super(n, num);
-    }
-
-    @Override
-    public void verifier() {
-
-    }
-
-    @Override
-    public String toMIPS() {
-        return null;
     }
 
     @Override
@@ -46,5 +38,25 @@ public class Operation extends Expression{
     @Override
     public boolean estConstante() {
         return false;
+    }
+
+    @Override
+    public int getNombreDePlaces() {
+        return 0;
+    }
+
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
+    }
+
+    @Override
+    public void verifier() {
+
+    }
+
+    @Override
+    public String toMIPS() {
+        return null;
     }
 }
