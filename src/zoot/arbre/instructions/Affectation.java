@@ -77,7 +77,7 @@ public class Affectation extends Instruction{
                     exp.toMIPS() +
                     "\tsw $v0, " + variable.getSymbole().getDeplacement() + "($s7)" + "\n\n";
         }
-        else{
+        else{//au niveau de fonction
             int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
             code += exp.toMIPS() +
                     "\tsw $v0, " + deplacement + "($s3)" + "\n\n";

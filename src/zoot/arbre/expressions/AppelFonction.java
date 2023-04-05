@@ -5,6 +5,8 @@ import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class AppelFonction extends Expression{
@@ -109,11 +111,11 @@ public class AppelFonction extends Expression{
         if(listParam!=null) {
             nbparam = listParam.size();
             code = code+
-                    "\t# Réserve la place pour les paramêtres de la fonction\n";
+                    "\t# Paramêtres de la fonction\n";
             for (Expression e : listParam) { //on calcule la valeur de chaque paramêtres passés
                 code = code + e.toMIPS() +//OK
-                        "\tsw $v0, 4($sp) \n"+//OK
-                        "\n\tadd $sp, $sp,-4 \n";//OK
+                        "\tsw $v0, 0($sp) \n"+//OK
+                        "\tadd $sp, $sp,-4 \n";//OK
             }
         }
 

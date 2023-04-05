@@ -13,6 +13,7 @@ import java.util.Map;
 public class Idf extends Expression {
 
     protected String variable;
+    private int noBloc;
 
 
     /**
@@ -24,6 +25,8 @@ public class Idf extends Expression {
         super(n,num);
         variable = texte;
         verifier();
+        this.noBloc=num;
+
 
     }
 
@@ -44,7 +47,14 @@ public class Idf extends Expression {
      */
     @Override
     public String toMIPS() {
-        return "\tlw $v0,"+getSymbole().getDeplacement() + "($s7)\n";
+        if(noBloc==0) {//TODO:à tester
+            return "\tlw $v0," + getSymbole().getDeplacement() + "($s7)\n";
+        }
+        else{//au niveau de fonction
+            int deplacement = -getSymbole().getDeplacement();
+            int deplacementParam = 16 + deplacement ;
+            return "\tlw $v0," + deplacementParam + "($s7)\n";
+        }
     }
 
 

@@ -23,12 +23,13 @@ public class TDS {
 
 
     private boolean dansAppel;
+    private int compteurDeplaceParam;
 
     /**
      * Constructeur
      */
     public TDS() {
-
+        compteurDeplaceParam=0;
         compteurDeplace =0;
         this.blocs = new ArrayList<>();
         this.blocs.add(new HashMap<>());
@@ -99,6 +100,10 @@ public class TDS {
 
             compteurDeplace-= 4;
             s.setDeplacement(compteurDeplace);
+        }
+        else{//fonction
+            compteurDeplaceParam-=4;//pb ici de compteur
+            s.setDeplacement(compteurDeplaceParam);
         }
 
     }
