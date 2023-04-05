@@ -57,6 +57,7 @@ type = (entier)|(booleen)
 "repeter"                    {return symbol(CodesLexicaux.REPETER);}
 "jusqua"                    {return symbol(CodesLexicaux.JUSQUA);}
 "finrepeter"                    {return symbol(CodesLexicaux.FINREPETER);}
+"alors"                      {return symbol(CodesLexicaux.ALORS);}
 
 
 "("                    { return symbol(CodesLexicaux.OUVRE); }

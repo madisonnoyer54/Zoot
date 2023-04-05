@@ -3,6 +3,8 @@ package zoot.arbre.expressions;
 import zoot.arbre.ArbreAbstrait;
 import zoot.tds.Type;
 
+import java.util.List;
+
 public abstract class Expression extends ArbreAbstrait {
 
     /**
@@ -43,4 +45,8 @@ public abstract class Expression extends ArbreAbstrait {
     public abstract String getIdf();
 
     public abstract boolean estConstante();
+
+    public  abstract int getNombreDePlaces();
+
+    public abstract String toMips(List<String> registres);
 }

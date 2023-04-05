@@ -1,28 +1,18 @@
-package zoot.arbre.expressions;
+package zoot.arbre.expressions.Binaire;
 
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Parenthese extends  Expression{
+public class Egale extends Binaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Parenthese(int n, int num) {
+    protected Egale(int n, int num) {
         super(n, num);
-    }
-
-    @Override
-    public void verifier() {
-
-    }
-
-    @Override
-    public String toMIPS() {
-        return null;
     }
 
     @Override
@@ -57,6 +47,16 @@ public class Parenthese extends  Expression{
 
     @Override
     public String toMips(List<String> registres) {
+        return null;
+    }
+
+    @Override
+    public void verifier() {
+
+    }
+
+    @Override
+    public String toMIPS() {
         return null;
     }
 }
