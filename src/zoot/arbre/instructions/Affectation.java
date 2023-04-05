@@ -72,15 +72,17 @@ public class Affectation extends Instruction{
     public String toMIPS() {
         // On met dans v0
         String code = "";
-        if(this.exp.getNumBloc()==0) {
+        if(this.exp.getNumBloc()!=0) {
             code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
                     exp.toMIPS() +
                     "\tsw $v0, " + variable.getSymbole().getDeplacement() + "($s7)" + "\n\n";
         }
         else{//au niveau de fonction
-            int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
+            int deplacement = TDS.getInstance().getCompteurDeplace();
+            int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
+            //int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
             code += exp.toMIPS() +
-                    "\tsw $v0, " + deplacement + "($s3)" + "\n\n";
+                    "\tsw $v0, " + deplacementTotal + "($s3)" + "\n\n";
         }
 
         return code;

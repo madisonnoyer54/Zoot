@@ -49,7 +49,9 @@ public class Idf extends Expression {
     @Override
     public String toMIPS() {
         if(noBloc==0) {//TODO:à tester
-            return "\tlw $v0," + getSymbole().getDeplacement() + "($s7)\n";
+            int deplacement = TDS.getInstance().getCompteurDeplace();
+            int deplacementTotal = deplacement - getSymbole().getDeplacement();
+            return "\tlw $v0," + deplacementTotal + "($s3)\n";
         }
         else{//au niveau de fonction
             System.out.println(this.getIdf()+" : "+this.getSymbole().getDeplacement());

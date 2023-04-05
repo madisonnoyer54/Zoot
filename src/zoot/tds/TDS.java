@@ -102,7 +102,7 @@ public class TDS {
             s.setDeplacement(compteurDeplace);
         }
         else{//fonction
-            compteurDeplaceParam-=4;//pb ici de compteur
+            compteurDeplaceParam-=4;
             s.setDeplacement(compteurDeplaceParam);
         }
 
