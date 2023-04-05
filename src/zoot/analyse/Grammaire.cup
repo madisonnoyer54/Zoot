@@ -65,7 +65,7 @@ non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP,LP,
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
-
+precedence left ADD, MULT, INF,EGALE, DIFF, ET, OU;
 /* ----------------------------Grammar Section-------------------- */
 
 start with PROG ;
@@ -212,11 +212,13 @@ EXP    ::=     CSTENTIERE:c
                NON EXP
                {::}
                |
-               SOUS EXP
+                SOUS EXP
                {: :}
-     //         |
-       //        EXP OPER EXP
-         //      {: :}
+              |
+
+              // MANQUE LE EXP
+              EXP OPER EXP
+               {: :}
                 ;
 
 
