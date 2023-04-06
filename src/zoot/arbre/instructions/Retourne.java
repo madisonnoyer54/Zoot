@@ -65,8 +65,10 @@ public class Retourne extends Instruction{
                 }
                 if(entree.getNumBloc()!=0&& !TDS.getInstance().identifier(entree).estFonction()){
                     symboleVariable = (SymboleVariable) TDS.getInstance().identifier(entree);
-                    if(e.getNumBloc()!=0 && symboleVariable.getNumVar()==0){//on retourne une variable locale
-                        if(Objects.equals(entree.getIdf(), e.getIdf())) {
+                    if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()==0){//on retourne une variable locale
+                        if(Objects.equals(entree.getIdf(), e.getIdf())) { //TODO:REVOIR APRES AFFECTATION REGLEE
+                            deplacement = TDS.getInstance().getCompteurDeplace();
+                            deplacementTotal = deplacement - symbole.getDeplacement();
                         }
 
                     }

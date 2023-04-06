@@ -7,7 +7,9 @@ import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Affectation extends Instruction{
     protected Expression exp ;
@@ -74,19 +76,50 @@ public class Affectation extends Instruction{
     public String toMIPS() {
         // On met dans v0
         String code = "";
-        SymboleVariable symbole = (SymboleVariable)  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
-        System.out.println(variable.getIdf()+exp.getNumBloc());
-        if(symbole.getNumVar()==0) {//TODO: Revoir les IF : Si déclarer dans le main : s3 // si déclarer dans la fonction : s7
-            code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
-                    exp.toMIPS() +
-                    "\tsw $v0, " + variable.getSymbole().getDeplacement() + "($s7)" + "\n\n";
+        //SymboleVariable symbole = (SymboleVariable)  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
+
+        ArrayList<HashMap<Entree, Symbole>> tds =  TDS.getInstance().getBlocs();
+        for (HashMap<Entree, Symbole> map : tds) {
+            for (Entree entree : map.keySet()) {
+                Symbole symbole = map.get(entree);
+                SymboleVariable symboleVariable = null;
+
+                if (entree.getNumBloc() == 0) {//le main
+                    if(Objects.equals(entree.getIdf(), variable.getIdf())) {
+                        System.out.println(variable.getIdf());
+                        int deplacement = TDS.getInstance().getCompteurDeplace();
+                        int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
+                        //int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
+                        code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" +
+                                exp.toMIPS() +
+                                "\tsw $v0, " + deplacementTotal + "($s3)" + "\n\n";
+                    }
+                }
+                if(entree.getNumBloc()!=0&& !TDS.getInstance().identifier(entree).estFonction()){
+                    symboleVariable = (SymboleVariable) TDS.getInstance().identifier(entree);
+                    if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()==0){//on retourne une variable locale
+                        if(Objects.equals(entree.getIdf(), variable.getIdf())) { //TODO:REVOIR APRES AFFECTATION REGLEE
+                            int deplacement = TDS.getInstance().getCompteurDeplace();
+                            int deplacementTotal = deplacement - symbole.getDeplacement();
+                            code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
+                                    exp.toMIPS() +
+                                    "\tsw $v0, " + deplacementTotal + "($s7)" + "\n\n";
+                        }
+
+                    }
+                    if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()!=0){//on retourne un parametre
+                        if(Objects.equals(entree.getIdf(), variable.getIdf())){
+                            int deplacement = TDS.getInstance().getCompteurDeplace();
+                            int deplacementTotal = 24 + deplacement ;//TODO:revoir si pas mieux que hardcode 24
+                            code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
+                                    exp.toMIPS() +
+                                    "\tsw $v0, " +deplacementTotal + "($s7)" + "\n\n";
+                        }
+                    }
+                }
+            }
         }
-        else{//au niveau du main
-            int deplacement = TDS.getInstance().getCompteurDeplace();
-            int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
-            //int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
-            code += exp.toMIPS() +
-                    "\tsw $v0, " + deplacementTotal + "($s3)" + "\n\n";
+        if(true) {//TODO: Revoir les IF : Si déclarer dans le main : s3 // si déclarer dans la fonction : s7
         }
 
         return code;
