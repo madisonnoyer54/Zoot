@@ -86,7 +86,6 @@ public class Affectation extends Instruction{
 
                 if (entree.getNumBloc() == 0) {//le main
                     if(Objects.equals(entree.getIdf(), variable.getIdf())) {
-                        System.out.println(variable.getIdf());
                         int deplacement = TDS.getInstance().getCompteurDeplace();
                         int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
                         //int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
@@ -98,7 +97,7 @@ public class Affectation extends Instruction{
                 if(entree.getNumBloc()!=0&& !TDS.getInstance().identifier(entree).estFonction()){
                     symboleVariable = (SymboleVariable) TDS.getInstance().identifier(entree);
                     if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()==0){//on retourne une variable locale
-                        if(Objects.equals(entree.getIdf(), variable.getIdf())) { //TODO:REVOIR APRES AFFECTATION REGLEE
+                        if(Objects.equals(entree.getIdf(), variable.getIdf())) {
                             int deplacement = TDS.getInstance().getCompteurDeplace();
                             int deplacementTotal = deplacement - symbole.getDeplacement();
                             code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
@@ -110,7 +109,7 @@ public class Affectation extends Instruction{
                     if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()!=0){//on retourne un parametre
                         if(Objects.equals(entree.getIdf(), variable.getIdf())){
                             int deplacement = TDS.getInstance().getCompteurDeplace();
-                            int deplacementTotal = 24 + deplacement ;//TODO:revoir si pas mieux que hardcode 24
+                            int deplacementTotal = deplacement - symbole.getDeplacement();
                             code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
                                     exp.toMIPS() +
                                     "\tsw $v0, " +deplacementTotal + "($s7)" + "\n\n";

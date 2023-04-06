@@ -1,15 +1,9 @@
 package zoot.arbre.expressions;
 
 
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
-import zoot.tds.Type;
+import zoot.tds.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Idf extends Expression {
 
@@ -48,17 +42,39 @@ public class Idf extends Expression {
      */
     @Override
     public String toMIPS() {
-        if(noBloc==0) {//TODO:à tester
-            int deplacement = TDS.getInstance().getCompteurDeplace();
-            int deplacementTotal = deplacement - getSymbole().getDeplacement();
-            return "\tlw $v0," + deplacementTotal + "($s3)\n";
+        String code="";
+        ArrayList<HashMap<Entree, Symbole>> tds =  TDS.getInstance().getBlocs();
+                if (noBloc == 0) {//TODO:à tester
+                    int deplacement = TDS.getInstance().getCompteurDeplace();
+                    int deplacementTotal = deplacement - getSymbole().getDeplacement();
+                    return "\tlw $v0," + deplacementTotal + "($s3)\n";
+                } else {//au niveau de fonction
+                    for (HashMap<Entree, Symbole> map : tds) {
+                        for (Entree entree : map.keySet()) {
+                            Symbole symbole = map.get(entree);
+                            SymboleVariable symboleVariable = null;
+                            if(entree.getNumBloc()!=0&& !TDS.getInstance().identifier(entree).estFonction()) {
+                                symboleVariable = (SymboleVariable) TDS.getInstance().identifier(entree);
+                                if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() == 0) {// variable locale
+                                    if (Objects.equals(entree.getIdf(), variable)) {
+                                        int deplacement = TDS.getInstance().getCompteurDeplace();
+                                        int deplacementParam = deplacement - symbole.getDeplacement();
+                                        return "\tlw $v0," + deplacementParam + "($s7)\n";
+                                    }
+                                }
+                                if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
+                                    if (Objects.equals(entree.getIdf(), variable)) {
+                                        int deplacement = symbole.getDeplacement();
+                                        int deplacementParam = 24 + deplacement;
+                                        return "\tlw $v0," + deplacementParam + "($s7)\n";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                return code; //si aucun de tout ça on retourne rien à revoir?
         }
-        else{//au niveau de fonction
-            int deplacement = TDS.getInstance().getCompteurDeplace();
-            int deplacementParam = deplacement - getSymbole().getDeplacement();
-            return "\tlw $v0," + deplacementParam + "($s7)\n";
-        }
-    }
 
 
     /**
