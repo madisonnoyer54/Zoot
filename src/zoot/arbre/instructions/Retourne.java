@@ -1,10 +1,7 @@
 package zoot.arbre.instructions;
 
 import zoot.arbre.expressions.Expression;
-import zoot.tds.Entree;
-import zoot.tds.Symbole;
-import zoot.tds.TDS;
-import zoot.tds.Type;
+import zoot.tds.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,24 +33,49 @@ public class Retourne extends Instruction{
 
     @Override
     public String toMIPS() {
+        boolean retourParam = false;
+        boolean retourVariableLocale = false;
+        boolean retourVariableMain = false;
         String code = "\t#Retourne\n";
         int nbVar=TDS.getInstance().getTailleZoneVariable(num);
         nbVar = -nbVar;
         int deplacement = 0;
-        int deplacementParam = 0;
+        int deplacementTotal = 0;
+        String registre = "$s7";//s7 par défaut
         //int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
         // depiler s7 et ra
 
-        if(!e.estVariable()) {
+        if(!e.estVariable()) {//si c'est une fonction
            code = code + e.toMIPS();
         }
         ArrayList<HashMap<Entree, Symbole>> tds =  TDS.getInstance().getBlocs();
         for (HashMap<Entree, Symbole> map : tds) {
             for (Entree entree : map.keySet()) {
                 Symbole symbole = map.get(entree);
-                if(Objects.equals(entree.getIdf(), e.getIdf())){
-                    deplacement = symbole.getDeplacement();
-                    deplacementParam = 24 + deplacement ;
+                SymboleVariable symboleVariable=null;
+
+                if(entree.getNumBloc()==0){//le main
+                    if(Objects.equals(entree.getIdf(), e.getIdf())) {
+                        deplacement = TDS.getInstance().getCompteurDeplace();
+                        deplacementTotal = deplacement - symbole.getDeplacement();
+                        registre = "$s3"; //on va chercher dans s3 et non s7 les variables du main
+                    }
+
+
+                }
+                if(entree.getNumBloc()!=0&& !TDS.getInstance().identifier(entree).estFonction()){
+                    symboleVariable = (SymboleVariable) TDS.getInstance().identifier(entree);
+                    if(e.getNumBloc()!=0 && symboleVariable.getNumVar()==0){//on retourne une variable locale
+                        if(Objects.equals(entree.getIdf(), e.getIdf())) {
+                        }
+
+                    }
+                    if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()!=0){//on retourne un parametre
+                        if(Objects.equals(entree.getIdf(), e.getIdf())){
+                            deplacement = symbole.getDeplacement();
+                            deplacementTotal = 24 + deplacement ;//TODO:revoir si pas mieux que hardcode 24
+                        }
+                    }
                 }
             }
         }
@@ -61,7 +83,7 @@ public class Retourne extends Instruction{
         //il faut dépiler les paramètres ??
         List listParam = TDS.getInstance().getListParam();
           code = code + "\n# Rangement du résultat de la fonction\n"+
-                  "\t lw $v0,"+deplacementParam+"($s7)\n"+
+                  "\t lw $v0,"+deplacementTotal+"("+registre+")\n"+
                   "\tsw $v0, 12($s7)\n"+
                   "# Depile des variables\n"+
                 "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
@@ -72,7 +94,7 @@ public class Retourne extends Instruction{
                   "# Récupère adresse de retour\n"+
                   "\tlw $ra, 4($sp)\n" +
                   "# Dépile adresse de retour\n"+
-                "\taddi $sp, $sp, 4\n" + //OK
+                  "\taddi $sp, $sp, 4\n" + //OK
                 //"\tlw $ra, 0($sp)"+ //OK
 
 
