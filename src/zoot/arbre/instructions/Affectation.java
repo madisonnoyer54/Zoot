@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class Affectation extends Instruction{
     protected Expression exp ;
     protected Idf variable;
+    private int n;
 
 
     /**
@@ -24,6 +25,7 @@ public class Affectation extends Instruction{
         super(n, num);
         variable = new Idf(idf,n, num);
         exp = e;
+        this.n = num;
 
     }
 
@@ -72,17 +74,16 @@ public class Affectation extends Instruction{
     public String toMIPS() {
         // On met dans v0
         String code = "";
-        int deplacement = TDS.getInstance().getCompteurDeplace();
-
-        int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
-        if(this.exp.getNumBloc()!=0) {
+        SymboleVariable symbole = (SymboleVariable)  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
+        System.out.println(variable.getIdf()+exp.getNumBloc());
+        if(symbole.getNumVar()==0) {//TODO: Revoir les IF : Si déclarer dans le main : s3 // si déclarer dans la fonction : s7
             code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
                     exp.toMIPS() +
-                    "\tsw $v0, " + deplacementTotal + "($s3)" + "\n\n";
+                    "\tsw $v0, " + variable.getSymbole().getDeplacement() + "($s7)" + "\n\n";
         }
-        else{//au niveau de fonction
-            deplacement = TDS.getInstance().getCompteurDeplace();
-            deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
+        else{//au niveau du main
+            int deplacement = TDS.getInstance().getCompteurDeplace();
+            int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
             //int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
             code += exp.toMIPS() +
                     "\tsw $v0, " + deplacementTotal + "($s3)" + "\n\n";

@@ -54,7 +54,6 @@ public class Idf extends Expression {
             return "\tlw $v0," + deplacementTotal + "($s3)\n";
         }
         else{//au niveau de fonction
-            System.out.println(this.getIdf()+" : "+this.getSymbole().getDeplacement());
             int deplacement = getSymbole().getDeplacement();
             int deplacementParam = 24 + deplacement ;
             return "\tlw $v0," + deplacementParam + "($s7)\n";
