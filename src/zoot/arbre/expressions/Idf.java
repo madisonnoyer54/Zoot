@@ -64,8 +64,9 @@ public class Idf extends Expression {
                                 }
                                 if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
                                     if (Objects.equals(entree.getIdf(), variable)) {
-                                        int deplacement = symbole.getDeplacement();
-                                        int deplacementParam = 24 + deplacement;
+                                        int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
+                                        int deplacement = getSymbole().getDeplacement();
+                                        int deplacementParam = zoneParam + deplacement;
                                         return "\tlw $v0," + deplacementParam + "($s7)\n";
                                     }
                                 }
