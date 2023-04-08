@@ -123,7 +123,9 @@ public class AppelFonction extends Expression{
             int caseParam = nbparam*4;
             code = code +
                     "\t# Branchement et svgde de l’adresse de retour dans $ra\n" +
-                    "\tjal " + idf + nbparam +"\n";//OK
+                    "\tjal " + idf + nbparam +"\n"+//OK
+                    "# Récupère adresse de retour\n"+
+                    "\tlw $ra, 4($sp)\n";
 
                     // On depile et on met dans S7 à revoir içi ?
                     //"\tadd $sp, $sp,"+caseParam+"\n" + // de pile les parametres

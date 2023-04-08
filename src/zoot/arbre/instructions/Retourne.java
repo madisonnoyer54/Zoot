@@ -74,8 +74,9 @@ public class Retourne extends Instruction{
                     }
                     if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()!=0){//on retourne un parametre
                         if(Objects.equals(entree.getIdf(), e.getIdf())){
+                            int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
                             deplacement = symbole.getDeplacement();
-                            deplacementTotal = 24 + deplacement ;//TODO:revoir si pas mieux que hardcode 24
+                            deplacementTotal = zoneParam + deplacement; ;//TODO:revoir si pas mieux que hardcode 24
                         }
                     }
                 }
@@ -93,8 +94,6 @@ public class Retourne extends Instruction{
                   "\tlw $s7, 4($sp)\n" +
                   "# Dépile chaînage dynamique\n"+
                   "\taddi $sp, $sp, 4\n" + //OK //A AJOUTER AUSSI EN PLUS SI PARAMETRES UNE CASE EN PLUS DANS LA PILE
-                  "# Récupère adresse de retour\n"+
-                  "\tlw $ra, 4($sp)\n" +
                   "# Dépile adresse de retour\n"+
                   "\taddi $sp, $sp, 4\n" + //OK
                 //"\tlw $ra, 0($sp)"+ //OK
