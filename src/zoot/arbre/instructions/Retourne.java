@@ -80,13 +80,20 @@ public class Retourne extends Instruction{
                         }
                     }
                 }
+                else{
+                    deplacementTotal = -1;
+                }
             }
         }
 
         //il faut dépiler les paramètres ??
         List listParam = TDS.getInstance().getListParam();
-          code = code + "\n# Rangement du résultat de la fonction\n"+
-                  "\t lw $v0,"+deplacementTotal+"("+registre+")\n"+
+          code = code + "\n# Rangement du résultat de la fonction\n";
+          if(deplacementTotal!=-1) {//si on retourne pas directement un entier // booleen
+              code = code +
+                      "\t lw $v0," + deplacementTotal + "(" + registre + ")\n";
+          }
+          code = code+
                   "\tsw $v0, 12($s7)\n"+
                   "# Depile des variables\n"+
                 "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
