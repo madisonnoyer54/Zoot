@@ -3,10 +3,12 @@ package zoot.arbre.instructions;
 import zoot.arbre.ArbreAbstrait;
 import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 
 public class Condition extends Instruction{
-    BlocDInstructions b1;
-    BlocDInstructions b2;
+    BlocDInstructions siBloc;
+    BlocDInstructions sinonBloc;
     Expression e;
     /**
      * Constructeur
@@ -16,14 +18,27 @@ public class Condition extends Instruction{
      */
     public Condition(int n, int numBloc, Expression e, ArbreAbstrait a, ArbreAbstrait a1) {
         super(n, numBloc);
-        b1 = (BlocDInstructions) a;
-        b2 = (BlocDInstructions) a1;
+        siBloc = (BlocDInstructions) a;
+        sinonBloc = (BlocDInstructions) a1;
         this.e = e;
     }
 
     @Override
     public void verifier() {
-
+        if(e!=null){
+            e.verifier();
+            if(!e.estBool()){
+                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
+            }
+            else{
+                if(siBloc!= null){
+                    siBloc.verifier();
+                }
+                if(sinonBloc!= null){
+                    sinonBloc.verifier();
+                }
+            }
+        }
     }
 
     @Override

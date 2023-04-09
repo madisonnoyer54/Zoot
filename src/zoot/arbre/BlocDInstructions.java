@@ -195,4 +195,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         return programme.toString() ;
     }
 
+    public ArrayList<Instruction> getProgramme() {
+        return programme;
+    }
 }
