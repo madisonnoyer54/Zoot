@@ -1,6 +1,8 @@
 package zoot.arbre.expressions.binaire;
 
 import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Type;
 
 import java.util.List;
@@ -53,12 +55,15 @@ public class Inferieur extends Binaire {
 
     @Override
     public void verifier() {
+        if(this.e1.estBool() || e2.estBool()){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une < doivent etre des entiers "));
 
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        return "";
     }
 
     @Override

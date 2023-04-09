@@ -1,6 +1,8 @@
 package zoot.arbre.expressions.unaire;
 
 import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Type;
 
 import java.util.List;
@@ -18,7 +20,10 @@ public class Non extends Unaire{
 
     @Override
     public void verifier() {
+        if(!this.e.estBool() ){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'opérateurs de non dois etre un boolean "));
 
+        }
     }
 
     @Override

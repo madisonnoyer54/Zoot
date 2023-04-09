@@ -1,6 +1,8 @@
 package zoot.arbre.expressions.binaire;
 
 import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Type;
 
 import java.util.List;
@@ -53,7 +55,10 @@ public class Egale extends Binaire {
 
     @Override
     public void verifier() {
+        if(this.e1.getType() != e2.getType()){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une != doivent etre de même type "));
 
+        }
     }
 
     @Override
