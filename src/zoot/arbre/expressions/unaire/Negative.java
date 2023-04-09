@@ -1,23 +1,29 @@
-package zoot.arbre.expressions;
+package zoot.arbre.expressions.unaire;
 
+import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Parenthese extends  Expression{
+public class Negative extends Unaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Parenthese(int n, int num) {
-        super(n, num);
+    public Negative(int n, int num,Expression e) {
+        super(n, num,e);
     }
 
     @Override
     public void verifier() {
+        if(this.e.estBool() ){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'opérateurs dois etre un entiers "));
 
+        }
     }
 
     @Override

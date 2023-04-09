@@ -1,18 +1,19 @@
-package zoot.arbre.expressions.Binaire;
+package zoot.arbre.expressions.binaire;
 
+import zoot.arbre.expressions.Expression;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Multiplication extends Binaire {
+public class Inferieur extends Binaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Multiplication(int n, int num) {
-        super(n, num);
+    public Inferieur(int n, int num, Expression e1, Expression e2) {
+        super(n, num,e1,e2);
     }
 
     @Override
@@ -53,6 +54,11 @@ public class Multiplication extends Binaire {
     @Override
     public void verifier() {
 
+    }
+
+    @Override
+    public String toString() {
+        return null;
     }
 
     @Override

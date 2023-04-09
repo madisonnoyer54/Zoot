@@ -1,18 +1,19 @@
-package zoot.arbre.expressions.Binaire;
+package zoot.arbre.expressions.binaire;
 
+import zoot.arbre.expressions.Expression;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Inferieur extends Binaire {
+public class Egale extends Binaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Inferieur(int n, int num) {
-        super(n, num);
+    public Egale(int n, int num, Expression e1, Expression e2) {
+        super(n, num,e1,e2);
     }
 
     @Override
@@ -53,6 +54,11 @@ public class Inferieur extends Binaire {
     @Override
     public void verifier() {
 
+    }
+
+    @Override
+    public String toString() {
+        return null;
     }
 
     @Override

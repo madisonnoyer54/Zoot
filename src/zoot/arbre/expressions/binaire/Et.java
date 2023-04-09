@@ -1,28 +1,19 @@
-package zoot.arbre.expressions;
+package zoot.arbre.expressions.binaire;
 
+import zoot.arbre.expressions.Expression;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Negative extends Expression{
+public class Et extends Binaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Negative(int n, int num) {
-        super(n, num);
-    }
-
-    @Override
-    public void verifier() {
-
-    }
-
-    @Override
-    public String toMIPS() {
-        return null;
+    public Et(int n, int num, Expression e1, Expression e2) {
+        super(n, num,e1,e2);
     }
 
     @Override
@@ -57,6 +48,21 @@ public class Negative extends Expression{
 
     @Override
     public String toMips(List<String> registres) {
+        return null;
+    }
+
+    @Override
+    public void verifier() {
+
+    }
+
+    @Override
+    public String toString() {
+        return null;
+    }
+
+    @Override
+    public String toMIPS() {
         return null;
     }
 }

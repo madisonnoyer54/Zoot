@@ -1,18 +1,29 @@
-package zoot.arbre.expressions.Binaire;
+package zoot.arbre.expressions.unaire;
 
+import zoot.arbre.expressions.Expression;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Ou extends Binaire {
+public class Parenthese extends Unaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Ou(int n, int num) {
-        super(n, num);
+    public Parenthese(int n, int num,Expression e) {
+        super(n, num,e);
+    }
+
+    @Override
+    public void verifier() {
+
+    }
+
+    @Override
+    public String toMIPS() {
+        return null;
     }
 
     @Override
@@ -47,16 +58,6 @@ public class Ou extends Binaire {
 
     @Override
     public String toMips(List<String> registres) {
-        return null;
-    }
-
-    @Override
-    public void verifier() {
-
-    }
-
-    @Override
-    public String toMIPS() {
         return null;
     }
 }

@@ -3,6 +3,8 @@ package zoot.analyse ;
 import java.util.*;
 import zoot.arbre.* ;
 import zoot.arbre.expressions.* ;
+import zoot.arbre.expressions.binaire.* ;
+import zoot.arbre.expressions.unaire.* ;
 import zoot.tds.*;
 import zoot.arbre.instructions.* ;
 import zoot.exceptions.AnalyseSyntaxiqueException;
@@ -61,7 +63,7 @@ terminal Symbol    VARIABLES, DEBUT, FIN, POINTVIRGULE, ECRIRE, AFF, FONCTIONS, 
 terminal String    CSTENTIERE, IDF, TYPE, CSTBOOLEEN ;
 
 /* Non terminals used in the grammar section.  */
-non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP,LP,APPEL,OPER;
+non terminal LDCL, DCL, LFONC, FONC, PROGFONCT, RET, LPARAM, PARAM, LV, LEXP,LP,APPEL,LALORS;
 non terminal ArbreAbstrait PROG, LINST ;
 non terminal Instruction INST ;
 non terminal Expression EXP ;
@@ -103,15 +105,20 @@ INST    ::=
                 RETOURNE EXP:e POINTVIRGULE
                 {: RESULT = new Retourne(e, eleft + 1, TDS.getInstance().getNoActuBloc()); :}
                 |
-                // BOUCLE REVOIR
-                REPETER LINST JUSQUA EXP FINREPETER
-                {::}
+                // BOUCLE
+                REPETER LINST:l JUSQUA EXP:e FINREPETER
+                {:RESULT = new Boucle(eleft + 1, TDS.getInstance().getNoActuBloc(),l,e);:}
                 |
                 // CONDITION REVOIR
-                SI EXP ALORS LINST SINON LINST FINSI
-                {::}
+                SI EXP:e LALORS:l SINON LINST:li FINSI
+                {:RESULT = new Condition(eleft + 1, TDS.getInstance().getNoActuBloc(),e,(ArbreAbstrait)l,li);:}
                 ;
 
+LALORS ::= ALORS LINST:li
+            {: RESULT = li;:}
+            | ALORS
+
+            ;
 
 LFONC  ::=      LFONC FONC | FONC;
 
@@ -156,27 +163,6 @@ APPEL ::= {:  TDS.getInstance().entreeAppel();:}
 
 
 
-OPER ::= ADD
-        {: :}
-        |
-        MULT
-        {: :}
-        |
-        INF
-        {::}
-        |
-        EGALE
-        {: :}
-        |
-        DIFF
-        {: :}
-        |
-        ET
-        {: :}
-        |
-        OU
-        {: :};
-
 
 
 LEXP ::=      LEXP VIRGULE EXP:e
@@ -205,19 +191,42 @@ EXP    ::=     CSTENTIERE:c
 
                RESULT = new ConstanteBooleenne(b, bleft + 1, TDS.getInstance().getNoActuBloc()) ; :}
                |
-               OUVRE EXP FERME
+               OUVRE EXP:e FERME
                {:
+               RESULT = new Parenthese(eleft + 1, TDS.getInstance().getNoActuBloc(),e);
                :}
                |
-               NON EXP
-               {::}
+               NON EXP:e
+               {:
+                 RESULT = new Non(eleft + 1, TDS.getInstance().getNoActuBloc(),e);
+               :}
                |
-                SOUS EXP
-               {: :}
+                SOUS EXP:e
+               {:
+                 RESULT = new Negative(eleft + 1, TDS.getInstance().getNoActuBloc(),e);
+               :}
               |
-              EXP OPER EXP
-               {: :}
-                ;
+                EXP:e1 ADD EXP:e2
+               {: RESULT = new Somme(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :}
+               |
+               EXP:e1 MULT EXP:e2
+               {: RESULT = new Multiplication(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :}
+               |
+               EXP:e1 INF EXP:e2
+               {: RESULT = new Inferieur(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :}
+               |
+               EXP:e1 EGALE EXP:e2
+               {: RESULT = new Egale(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :}
+               |
+               EXP:e1 DIFF EXP:e2
+               {: RESULT = new Different(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :}
+               |
+               EXP:e1 ET EXP:e2
+               {: RESULT = new Et(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :}
+               |
+               EXP:e1 OU EXP:e2
+               {: RESULT = new Ou(e1left+1, TDS.getInstance().getNoActuBloc(),e1,e2); :};
+
 
 
 
