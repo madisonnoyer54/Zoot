@@ -29,7 +29,7 @@ public class Condition extends Instruction{
         if(e!=null){
             e.verifier();
             if(!e.estBool()){
-                Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
+               // Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
             }
             else{
                 if(siBloc!= null){
@@ -71,4 +71,62 @@ public class Condition extends Instruction{
     public boolean estRetourner() {
         return false;
     }
+
+    @Override
+    public boolean estBoucleOuCondition() {
+        return true;
+    }
+
+    @Override
+    public Boolean contientRetourner(){
+        boolean finale = false;
+        boolean finale2 = false;
+        for (Instruction instruction : siBloc.getProgramme()) {
+            if(instruction.estRetourner()){
+                finale =  true;
+            }
+            if(instruction.estBoucleOuCondition()){
+                instruction.contientRetourner();
+            }
+        }
+        for (Instruction instruction : sinonBloc.getProgramme()) {
+            if (instruction.estRetourner()) {
+                finale2 = true;
+            }
+            if (instruction.estBoucleOuCondition()) {
+                instruction.contientRetourner();
+            }
+        }
+        if(finale == true && finale2 == true){
+            finale =true;
+        }else{
+            finale2 = false;
+        }
+        return  finale;
+    }
+
+    @Override
+    public Instruction getRetourner() {
+       Instruction finale = null;
+        for (Instruction instruction : siBloc.getProgramme()) {
+            if(instruction.estRetourner()){
+                finale =  instruction;
+            }
+            if(instruction.estBoucleOuCondition()){
+                instruction.contientRetourner();
+            }
+        }
+        for (Instruction instruction : sinonBloc.getProgramme()) {
+            if (instruction.estRetourner()) {
+                finale = instruction;
+            }
+            if (instruction.estBoucleOuCondition()) {
+               finale = instruction.getRetourner();
+            }
+        }
+
+        return  finale;
+    }
+
+
 }
