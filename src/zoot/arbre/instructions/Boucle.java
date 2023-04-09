@@ -27,7 +27,7 @@ public class Boucle extends Instruction{
     public void verifier() {
         this.e.verifier();
         if(!(this.e.estBool() && this.e != null)){
-            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
+       //     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
 
         }
         blocDInstructions.verifier();
@@ -59,5 +59,41 @@ public class Boucle extends Instruction{
     @Override
     public boolean estRetourner() {
         return false;
+    }
+
+    @Override
+    public boolean estBoucleOuCondition() {
+        return true;
+    }
+
+    @Override
+    public Boolean contientRetourner(){
+        boolean finale = false;
+        for (Instruction instruction : blocDInstructions.getProgramme()) {
+            if(instruction.estRetourner()){
+                finale =  true;
+            }
+            if(instruction.estBoucleOuCondition()){
+                instruction.contientRetourner();
+            }
+        }
+
+        return  finale;
+    }
+
+    @Override
+    public Instruction getRetourner() {
+        Instruction finale = null;
+
+        for (Instruction instruction :blocDInstructions.getProgramme()) {
+            if (instruction.estRetourner()) {
+                finale = instruction;
+            }
+            if (instruction.estBoucleOuCondition()) {
+                finale = instruction.getRetourner();
+            }
+        }
+
+        return  finale;
     }
 }
