@@ -5,6 +5,7 @@ import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
+import zoot.tds.TDS;
 
 public class Condition extends Instruction{
     BlocDInstructions siBloc;
@@ -43,7 +44,27 @@ public class Condition extends Instruction{
 
     @Override
     public String toMIPS() {
-        return null;
+        int num = TDS.getInstance().getIdEtiquette();
+        String res = "#Condition\n";
+        res += e.toMIPS();
+        res += "beq $v0 $zero sinon" + num + "\n";
+        if (siBloc != null)
+            res += derouleMips(siBloc);
+        res += "j finsi" + num + "\n";
+        res += "sinon" + num + ":\n";
+        if(sinonBloc!= null) {
+            res += derouleMips(sinonBloc);
+        }
+        res += "finsi" + num + ":\n";
+        return res;
+    }
+
+    public String derouleMips(BlocDInstructions b){
+        String code = "";
+        for (Instruction instruction : b.getProgramme()) {
+            code+=instruction.toMIPS();
+        }
+        return code;
     }
 
     @Override

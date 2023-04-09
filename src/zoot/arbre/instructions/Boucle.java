@@ -5,6 +5,7 @@ import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
+import zoot.tds.TDS;
 
 public class Boucle extends Instruction{
     private BlocDInstructions blocDInstructions;
@@ -34,9 +35,27 @@ public class Boucle extends Instruction{
 
     @Override
     public String toMIPS() {
-        return null;
+        int num = TDS.getInstance().getIdEtiquette();
+        String res = e.toMIPS();
+        res += "#Boucle\n";
+        res += "j condition" + num + "\n";
+        res += "loop" + num + ":\n";
+        res += derouleMips(blocDInstructions);
+
+        res += e.toMIPS();
+        res += "condition" + num + ":";
+        res += "bne $v0 $zero loop" + num + "\n";
+
+        return res;
     }
 
+    public String derouleMips(BlocDInstructions b){
+        String code = "";
+        for (Instruction instruction : b.getProgramme()) {
+            code+=instruction.toMIPS();
+        }
+        return code;
+    }
     @Override
     public boolean estRetourner() {
         return false;

@@ -20,7 +20,7 @@ public class TDS {
     private boolean dansParam;
 
     private ArrayList<Expression> listParam;
-
+    private  int num;
 
     private boolean dansAppel;
     private int compteurDeplaceParam;
@@ -36,6 +36,7 @@ public class TDS {
         estDansMain = true;
         compteParam = 0;
         dansParam = false;
+        num =0;
 
 
     }
@@ -332,5 +333,10 @@ public class TDS {
 
     public void setNoActuBloc(int noActuBloc) {
         this.noActuBloc = noActuBloc;
+    }
+
+    public int getIdEtiquette(){
+        num++;
+        return num ;
     }
 }
