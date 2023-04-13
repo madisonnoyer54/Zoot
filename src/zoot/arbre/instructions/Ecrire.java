@@ -59,7 +59,7 @@ public class Ecrire extends Instruction {
         code.append("# Ecrire "+exp.toString()+"\n"+
                 exp.toMIPS()
                 +"\tmove $a0, $v0  # Copie de la valeur de v0 dans a0\n");
-                if (exp.estBool()) {
+                if (exp.estBool()||exp.getType().equals(Type.BOOLEEN)) {
                     code.append("\tbeq $zero, $a0, Sinon").append(this.numero).append("\n");
                     code.append("\tla $a0, vraiAff\n");
                     code.append("\tli $v0, 4\n");
