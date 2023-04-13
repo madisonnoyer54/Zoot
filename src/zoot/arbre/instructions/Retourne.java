@@ -85,6 +85,7 @@ public class Retourne extends Instruction{
                     else{
                         if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
                             if (Objects.equals(entree.getIdf(), e.getIdf())&&entree.getNumBloc()==num) {
+                                registre = "$s7";
                                 int numFonction = entree.getNumBloc()-1;//on enleve le main
                                 int zoneParam = 12 + TDS.getInstance().getNbParametres().get(numFonction) * 4;
                                 deplacement = symbole.getDeplacement();
