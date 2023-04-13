@@ -105,8 +105,7 @@ public class AppelFonction extends Expression{
      */
     @Override
     public String toMIPS() {
-        String code = "\t# Appel de la fonction " + this.toString()+
-               "\n\tadd $sp, $sp, -4\n";
+        String code = "\t# Appel de la fonction " + this.toString()+"\n";
         int nbparam = 0;
 
         if(listParam!=null) {
@@ -123,9 +122,7 @@ public class AppelFonction extends Expression{
             int caseParam = nbparam*4;
             code = code +
                     "\t# Branchement et svgde de l’adresse de retour dans $ra\n" +
-                    "\tjal " + idf + nbparam +"\n"+//OK
-                    "# Récupère adresse de retour\n"+
-                    "\tlw $ra, 4($sp)\n";
+                    "\tjal " + idf + nbparam +"\n";//OK
 
                     // On depile et on met dans S7 à revoir içi ?
                     //"\tadd $sp, $sp,"+caseParam+"\n" + // de pile les parametres

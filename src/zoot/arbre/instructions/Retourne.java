@@ -121,7 +121,8 @@ public class Retourne extends Instruction{
                   "\taddi $sp, $sp, 4\n" + //OK //A AJOUTER AUSSI EN PLUS SI PARAMETRES UNE CASE EN PLUS DANS LA PILE
                   "# Dépile adresse de retour\n"+
                   "\taddi $sp, $sp, 4\n" + //OK
-                //"\tlw $ra, 0($sp)"+ //OK
+                  "# Récupère adresse de retour\n"+
+                  "\tlw $ra, 0($sp)"+ //OK
 
 
         "\t#Retour de fonction "+ e.toString()    +
