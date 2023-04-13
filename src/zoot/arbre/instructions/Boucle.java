@@ -3,9 +3,9 @@ package zoot.arbre.instructions;
 import zoot.arbre.ArbreAbstrait;
 import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
-import zoot.exceptions.Analyse;
-import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.TDS;
+
+import java.util.List;
 
 public class Boucle extends Instruction{
     private BlocDInstructions blocDInstructions;
@@ -34,15 +34,15 @@ public class Boucle extends Instruction{
     }
 
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         int num = TDS.getInstance().getIdEtiquette();
-        String res = e.toMIPS();
+        String res = e.toMIPS(registres);
         res += "#Boucle\n";
         res += "j condition" + num + "\n";
         res += "loop" + num + ":\n";
         res += derouleMips(blocDInstructions);
 
-        res += e.toMIPS();
+        res += e.toMIPS(registres);
         res += "condition" + num + ":";
         res += "bne $v0 $zero loop" + num + "\n";
 
@@ -52,7 +52,7 @@ public class Boucle extends Instruction{
     public String derouleMips(BlocDInstructions b){
         String code = "";
         for (Instruction instruction : b.getProgramme()) {
-            code+=instruction.toMIPS();
+            code+=instruction.toMIPS(registres);
         }
         return code;
     }

@@ -45,7 +45,7 @@ public class ConstanteBooleenne extends Constante {
          * @return le code mips en string
          */
         @Override
-        public String toMIPS() {
+        public String toMIPS(List<String> registres) {
             return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
         }
 

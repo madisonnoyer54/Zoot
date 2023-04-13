@@ -22,7 +22,7 @@ public class Parenthese extends Unaire {
     }
 
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         return null;
     }
 

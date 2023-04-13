@@ -7,7 +7,7 @@ import zoot.tds.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * 21 novembre 2018
@@ -88,7 +88,7 @@ public class BlocDInstructions extends ArbreAbstrait {
      * @return le mips en string
      */
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         String code;
 
         // Début du programme + str( permet le saut de ligne)
@@ -118,7 +118,7 @@ public class BlocDInstructions extends ArbreAbstrait {
                 "\taddi $sp,$sp,"+ TDS.getInstance().getCompteurDeplace()+"\n";
         // Les Instructions
         for (Instruction instruction : programme) {
-            code+=instruction.toMIPS();
+            code+=instruction.toMIPS(registres);
         }
 
         // Fin du programme
@@ -152,7 +152,7 @@ public class BlocDInstructions extends ArbreAbstrait {
             // Les Instructions de la fonction
             SymboleFonction s = (SymboleFonction) tableFonction.get(et);
             for (Instruction instruction : s.getBlocDInstructions().programme) {
-                code = code  + instruction.toMIPS();
+                code = code  + instruction.toMIPS(registres);
 
             }
 

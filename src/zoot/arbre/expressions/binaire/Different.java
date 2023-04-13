@@ -67,7 +67,7 @@ public class Different extends Binaire {
     }
 
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         return null;
     }
 }
