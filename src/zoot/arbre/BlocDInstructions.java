@@ -167,6 +167,9 @@ public class BlocDInstructions extends ArbreAbstrait {
             if(instruction.estRetourner()){
               finale =  true;
             }
+            if(instruction.estBoucleOuCondition()){
+                finale = instruction.contientRetourner();
+            }
         }
         return  finale;
     }
@@ -177,7 +180,11 @@ public class BlocDInstructions extends ArbreAbstrait {
             if(instruction.estRetourner()){
                re = instruction;
             }
+            if(instruction.estBoucleOuCondition()){
+                re = instruction.getRetourner();
+            }
         }
+
         return re;
     }
 
@@ -195,4 +202,7 @@ public class BlocDInstructions extends ArbreAbstrait {
         return programme.toString() ;
     }
 
+    public ArrayList<Instruction> getProgramme() {
+        return programme;
+    }
 }

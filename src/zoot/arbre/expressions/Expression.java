@@ -49,4 +49,6 @@ public abstract class Expression extends ArbreAbstrait {
     public  abstract int getNombreDePlaces();
 
     public abstract String toMips(List<String> registres);
+
+    public abstract void verifier();
 }

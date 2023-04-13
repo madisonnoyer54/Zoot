@@ -1,18 +1,21 @@
-package zoot.arbre.expressions.Binaire;
+package zoot.arbre.expressions.binaire;
 
+import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Ou extends Binaire {
+public class Inferieur extends Binaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Ou(int n, int num) {
-        super(n, num);
+    public Inferieur(int n, int num, Expression e1, Expression e2) {
+        super(n, num,e1,e2);
     }
 
     @Override
@@ -52,7 +55,15 @@ public class Ou extends Binaire {
 
     @Override
     public void verifier() {
+        if(this.e1.estBool() || e2.estBool()){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une < doivent etre des entiers "));
 
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 
     @Override

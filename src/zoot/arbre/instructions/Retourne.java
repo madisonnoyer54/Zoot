@@ -137,6 +137,22 @@ public class Retourne extends Instruction{
     public Type getType(){
         return e.getType();
     }
+
+    @Override
+    public boolean estBoucleOuCondition() {
+        return false;
+    }
+
+    @Override
+    public Boolean contientRetourner() {
+        return null;
+    }
+
+    @Override
+    public Instruction getRetourner() {
+        return null;
+    }
+
     /**
      * Fonction qui indique si Instruction estRetourne (vrai)
      * @return

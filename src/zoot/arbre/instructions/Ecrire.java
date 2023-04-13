@@ -90,4 +90,19 @@ public class Ecrire extends Instruction {
     public boolean estRetourner() {
         return false;
     }
+
+    @Override
+    public boolean estBoucleOuCondition() {
+        return false;
+    }
+
+    @Override
+    public Boolean contientRetourner() {
+        return null;
+    }
+
+    @Override
+    public Instruction getRetourner() {
+        return null;
+    }
 }

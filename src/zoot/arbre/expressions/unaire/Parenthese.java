@@ -1,18 +1,19 @@
-package zoot.arbre.expressions;
+package zoot.arbre.expressions.unaire;
 
+import zoot.arbre.expressions.Expression;
 import zoot.tds.Type;
 
 import java.util.List;
 
-public class Non extends Expression{
+public class Parenthese extends Unaire {
     /**
      * Constructeur
      *
      * @param n
      * @param num
      */
-    protected Non(int n, int num) {
-        super(n, num);
+    public Parenthese(int n, int num,Expression e) {
+        super(n, num,e);
     }
 
     @Override

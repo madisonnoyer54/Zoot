@@ -24,7 +24,7 @@ public class TDS {
     private ArrayList<Integer>listnbParam;//listnbParam(0)=nbparametres fonction 1
 
     private ArrayList<Expression> listParam;
-
+    private  int num;
 
     private boolean dansAppel;
     private int compteurDeplaceParam;
@@ -42,6 +42,7 @@ public class TDS {
         dansParam = false;
         this.compteurNbFonctions = 0;
         this.listnbParam=new ArrayList<>();
+        num =0;
 
 
     }
@@ -236,6 +237,7 @@ public class TDS {
     public void sortieParam(){
         listnbParam.add(nbParam);
         dansParam = false;
+
     }
 
 
@@ -350,5 +352,10 @@ public class TDS {
     }
     public ArrayList<Integer> getNbParametres() {
         return listnbParam;
+    }
+
+    public int getIdEtiquette(){
+        num++;
+        return num ;
     }
 }
