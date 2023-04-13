@@ -18,6 +18,10 @@ public class TDS {
     private boolean estDansMain;
     private int compteParam;
     private boolean dansParam;
+    private int compteurNbFonctions;
+
+    private int nbParam;
+    private ArrayList<Integer>listnbParam;//listnbParam(0)=nbparametres fonction 1
 
     private ArrayList<Expression> listParam;
 
@@ -36,6 +40,8 @@ public class TDS {
         estDansMain = true;
         compteParam = 0;
         dansParam = false;
+        this.compteurNbFonctions = 0;
+        this.listnbParam=new ArrayList<>();
 
 
     }
@@ -186,18 +192,26 @@ public class TDS {
     public void entreeBloc(){
         if(estDansMain == true){
             this.blocs.add(new HashMap<>());
-
+            compteurNbFonctions++;
             this.noActuBloc = this.noActuBloc + 1;
             estDansMain = false;
-            compteParam =0;
             dansParam = true;
-
+            compteParam=0;
+            nbParam=0;
         }
+
+    }
+    public int getNbParam() {
+        return nbParam;
 
     }
 
     public int getCompteParam() {
             return compteParam;
+
+    }
+    public int getCompteurNbFonctions() {
+        return this.compteurNbFonctions;
 
     }
 
@@ -214,13 +228,14 @@ public class TDS {
         if(estDansMain == false && dansParam == true ){
 
             compteParam = compteParam +1;
+            nbParam++;
         }
 
     }
 
     public void sortieParam(){
+        listnbParam.add(nbParam);
         dansParam = false;
-
     }
 
 
@@ -332,5 +347,8 @@ public class TDS {
 
     public void setNoActuBloc(int noActuBloc) {
         this.noActuBloc = noActuBloc;
+    }
+    public ArrayList<Integer> getNbParametres() {
+        return listnbParam;
     }
 }

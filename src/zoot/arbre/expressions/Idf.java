@@ -44,6 +44,7 @@ public class Idf extends Expression {
     public String toMIPS() {
         String code="";
         ArrayList<HashMap<Entree, Symbole>> tds =  TDS.getInstance().getBlocs();
+        int nbFonctions = TDS.getInstance().getCompteurNbFonctions();
                 if (noBloc == 0) {//TODO:à tester
                     int deplacement = TDS.getInstance().getCompteurDeplace();
                     int deplacementTotal = deplacement - getSymbole().getDeplacement();
@@ -59,21 +60,35 @@ public class Idf extends Expression {
                                     if (Objects.equals(entree.getIdf(), variable)) {
                                         int deplacement = TDS.getInstance().getCompteurDeplace();
                                         int deplacementParam = deplacement - symbole.getDeplacement();
-                                        return "\tlw $v0," + deplacementParam + "($s7)\n";
+                                        return "\tlw $v0," + deplacementParam + "($s7) \n";
                                     }
                                 }
-                                if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
-                                    if (Objects.equals(entree.getIdf(), variable)) {
-                                        int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
-                                        int deplacement = getSymbole().getDeplacement();
-                                        int deplacementParam = zoneParam + deplacement;
-                                        return "\tlw $v0," + deplacementParam + "($s7)\n";
+                                if(nbFonctions<2) {
+                                    if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
+                                        if (Objects.equals(entree.getIdf(), variable)) {
+                                            System.out.println(TDS.getInstance().getNbParametres().get(0));
+                                            int zoneParam = 12 + TDS.getInstance().getCompteParam() * 4;
+                                            int deplacement = getSymbole().getDeplacement();
+                                            int deplacementParam = zoneParam + deplacement;
+                                            return "\tlw $v0," + deplacementParam + "($s7) TESSSSSSTTT\n"; //compteurparam incorrect à partir de 2 fonctions
+                                        }
+                                    }
+                                }
+                                else{
+                                    if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
+                                        if (Objects.equals(entree.getIdf(), variable)) {
+                                            int numFonction = entree.getNumBloc()-1;//on enleve le main
+                                            int zoneParam = 12 + TDS.getInstance().getNbParametres().get(numFonction) * 4;
+                                            int deplacement = getSymbole().getDeplacement();
+                                            int deplacementParam = zoneParam + deplacement;
+                                            return "\tlw $v0," + deplacementParam + "($s7) \n"; //compteurparam incorrect à partir de 2 fonctions
+                                        }
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
                 return code; //si aucun de tout ça on retourne rien à revoir?
         }
 

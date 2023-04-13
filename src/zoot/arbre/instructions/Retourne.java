@@ -66,7 +66,7 @@ public class Retourne extends Instruction{
                 if(entree.getNumBloc()!=0&& !TDS.getInstance().identifier(entree).estFonction()){
                     symboleVariable = (SymboleVariable) TDS.getInstance().identifier(entree);
                     if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()==0){//on retourne une variable locale
-                        if(Objects.equals(entree.getIdf(), e.getIdf())) { //TODO:REVOIR APRES AFFECTATION REGLEE
+                        if(Objects.equals(entree.getIdf(), e.getIdf())) {
                             deplacement = TDS.getInstance().getCompteurDeplace();
                             deplacementTotal = deplacement - symbole.getDeplacement();
                         }
@@ -76,7 +76,7 @@ public class Retourne extends Instruction{
                         if(Objects.equals(entree.getIdf(), e.getIdf())){
                             int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
                             deplacement = symbole.getDeplacement();
-                            deplacementTotal = zoneParam + deplacement; ;//TODO:revoir si pas mieux que hardcode 24
+                            deplacementTotal = zoneParam + deplacement;
                         }
                     }
                 }
@@ -96,7 +96,7 @@ public class Retourne extends Instruction{
           code = code+
                   "\tsw $v0, 12($s7)\n"+
                   "# Depile des variables\n"+
-                "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
+                  "\taddi $sp,$sp, "+nbVar+"\n"+ //OK
                   "# Récupère chaînage dynamique\n"+
                   "\tlw $s7, 4($sp)\n" +
                   "# Dépile chaînage dynamique\n"+
