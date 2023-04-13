@@ -65,8 +65,7 @@ public class Idf extends Expression {
                                 }
                                 if(nbFonctions<2) {
                                     if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
-                                        if (Objects.equals(entree.getIdf(), variable)) {
-                                            System.out.println(TDS.getInstance().getNbParametres().get(0));
+                                        if (Objects.equals(entree.getIdf(), variable)&&entree.getNumBloc()==noBloc) {
                                             int zoneParam = 12 + TDS.getInstance().getCompteParam() * 4;
                                             int deplacement = getSymbole().getDeplacement();
                                             int deplacementParam = zoneParam + deplacement;
@@ -76,11 +75,15 @@ public class Idf extends Expression {
                                 }
                                 else{
                                     if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
-                                        if (Objects.equals(entree.getIdf(), variable)) {
+                                        if (Objects.equals(entree.getIdf(), variable)&&entree.getNumBloc()==noBloc) {
                                             int numFonction = entree.getNumBloc()-1;//on enleve le main
                                             int zoneParam = 12 + TDS.getInstance().getNbParametres().get(numFonction) * 4;
                                             int deplacement = getSymbole().getDeplacement();
-                                            int deplacementParam = zoneParam + deplacement;
+                                            int deplacementParam = zoneParam;
+                                            if(numFonction==0) {
+                                                zoneParam = 12 + TDS.getInstance().getNbParametres().get(numFonction) * 4;
+                                                deplacementParam = zoneParam + deplacement;
+                                            }
                                             return "\tlw $v0," + deplacementParam + "($s7) \n"; //compteurparam incorrect à partir de 2 fonctions
                                         }
                                         }

@@ -41,6 +41,7 @@ public class Retourne extends Instruction{
         nbVar = -nbVar;
         int deplacement = 0;
         int deplacementTotal = 0;
+        int nbFonctions = TDS.getInstance().getCompteurNbFonctions();
         String registre = "$s7";//s7 par défaut
         //int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
         // depiler s7 et ra
@@ -72,11 +73,27 @@ public class Retourne extends Instruction{
                         }
 
                     }
-                    if(entree.getNumBloc()!=0 && symboleVariable.getNumVar()!=0){//on retourne un parametre
-                        if(Objects.equals(entree.getIdf(), e.getIdf())){
-                            int zoneParam = 12+TDS.getInstance().getCompteParam()*4;
-                            deplacement = symbole.getDeplacement();
-                            deplacementTotal = zoneParam + deplacement;
+                    if(nbFonctions<2) {
+                        if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//on retourne un parametre
+                            if (Objects.equals(entree.getIdf(), e.getIdf())) {
+                                int zoneParam = 12 + TDS.getInstance().getCompteParam() * 4;
+                                deplacement = symbole.getDeplacement();
+                                deplacementTotal = zoneParam + deplacement;
+                            }
+                        }
+                    }
+                    else{
+                        if (entree.getNumBloc() != 0 && symboleVariable.getNumVar() != 0) {//parametre
+                            if (Objects.equals(entree.getIdf(), e.getIdf())&&entree.getNumBloc()==num) {
+                                int numFonction = entree.getNumBloc()-1;//on enleve le main
+                                int zoneParam = 12 + TDS.getInstance().getNbParametres().get(numFonction) * 4;
+                                deplacement = symbole.getDeplacement();
+                                deplacementTotal = zoneParam;
+                                if(numFonction==0) {
+                                    zoneParam = 12 + TDS.getInstance().getNbParametres().get(numFonction) * 4;
+                                    deplacementTotal = zoneParam + deplacement;
+                                }
+                            }
                         }
                     }
                 }
