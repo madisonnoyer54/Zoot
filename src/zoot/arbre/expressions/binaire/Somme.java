@@ -51,15 +51,16 @@ public class Somme extends Binaire {
     public String toMIPS() {
         StringBuilder code = new StringBuilder();
 
-        String sbg =  e1.toMIPS() ;//expression gauche
+        String seg =  e1.toMIPS() ;//expression gauche
 
-        String sbd = e2.toMIPS() ;
+        String sed = e2.toMIPS() ;
 
-        code.append("#traitement operande gauche");
-        code.append(sbg);
+        code.append("#traitement de l'expression gauche\n");
+        code.append(seg);
         code.append("\tsw $v0, 0($sp)\n");
         code.append("\tadd $sp, $sp, -4 \n");
-        code.append(sbd);
+        code.append("#traitement de l'expression droite\n");
+        code.append(sed);
         code.append("\tadd $sp, $sp,4 \n");
         code.append("\tlw $t8, ($sp) \n");
 

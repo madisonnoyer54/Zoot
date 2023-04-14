@@ -51,7 +51,6 @@ public class Boucle extends Instruction{
 
     public String derouleMips(BlocDInstructions b){
         String code = "";
-        List<String> registres = new ArrayList<>();//à modifier
         for (Instruction instruction : b.getProgramme()) {
             code+=instruction.toMIPS();
         }
