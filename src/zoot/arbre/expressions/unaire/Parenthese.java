@@ -18,11 +18,12 @@ public class Parenthese extends Unaire {
 
     @Override
     public void verifier() {
+        e.verifier();
 
     }
 
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         return null;
     }
 
@@ -56,4 +57,13 @@ public class Parenthese extends Unaire {
         return 0;
     }
 
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "("+e+")";
+    }
 }

@@ -21,7 +21,7 @@ public class ConstanteEntiere extends Constante {
      * @return le mips
      */
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         String ConstanteEntiere = cste;
         String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
         return code;
@@ -64,5 +64,14 @@ public class ConstanteEntiere extends Constante {
         return 0;
     }
 
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
+    }
+
+    @Override
+    public boolean estBinaire() {
+        return false;
+    }
 }
 

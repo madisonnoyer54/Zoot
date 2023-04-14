@@ -57,8 +57,13 @@ public class Egale extends Binaire {
     }
 
     @Override
+    public boolean estBinaire() {
+        return true;
+    }
+
+    @Override
     public String toString() {
-        return null;
+        return e1 + "=="+e2;
     }
 
     @Override

@@ -58,9 +58,8 @@ public class Et extends Binaire {
 
     @Override
     public String toString() {
-        return null;
+        return e1 + "et"+e2;
     }
-
     @Override
     public String toMIPS() {
         return null;

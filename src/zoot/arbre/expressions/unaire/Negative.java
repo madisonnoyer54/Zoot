@@ -20,6 +20,7 @@ public class Negative extends Unaire {
 
     @Override
     public void verifier() {
+        e.verifier();
         if(this.e.estBool() ){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'opérateurs dois etre un entiers "));
 
@@ -27,7 +28,7 @@ public class Negative extends Unaire {
     }
 
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         return null;
     }
 
@@ -61,4 +62,13 @@ public class Negative extends Unaire {
         return 0;
     }
 
+    @Override
+    public String toMips(List<String> registres) {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "-"+e;
+    }
 }

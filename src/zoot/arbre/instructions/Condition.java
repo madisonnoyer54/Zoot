@@ -3,6 +3,9 @@ package zoot.arbre.instructions;
 import zoot.arbre.ArbreAbstrait;
 import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
+import zoot.arbre.expressions.binaire.Binaire;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.TDS;
 
 import java.util.List;

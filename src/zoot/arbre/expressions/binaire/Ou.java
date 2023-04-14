@@ -57,13 +57,15 @@ public class Ou extends Binaire {
         }
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
 
     @Override
     public String toMIPS() {
         return null;
+    }
+
+
+    @Override
+    public String toString() {
+        return e1 + "ou"+e2;
     }
 }

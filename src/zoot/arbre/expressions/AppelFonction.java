@@ -97,6 +97,11 @@ public class AppelFonction extends Expression{
         }
     }
 
+    @Override
+    public boolean estBinaire() {
+        return false;
+    }
+
     /**
      * Fonction toMips qui génère le code mips à chaque appel de fonction
      * @return String code mips
