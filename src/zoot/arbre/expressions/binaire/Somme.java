@@ -65,7 +65,7 @@ public class Somme extends Binaire {
         code.append("\tlw $t8, ($sp) \n");
 
 
-        code.append("# Resultat addition \n");
+        code.append("# Addition \n");
         code.append("\tadd $v0, $t8, $v0\n");
 
         return code.toString();
