@@ -53,4 +53,6 @@ public abstract class Expression extends ArbreAbstrait {
     public abstract String toMIPS();
 
     public abstract void verifier();
+
+    public abstract boolean estBinaire();
 }

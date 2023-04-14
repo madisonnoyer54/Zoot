@@ -58,7 +58,7 @@ public class Inferieur extends Binaire {
 
     @Override
     public String toString() {
-        return "";
+        return e1 + "<"+e2;
     }
 
     @Override
@@ -89,4 +89,9 @@ public class Inferieur extends Binaire {
 
         return code.toString();
     }
+    @Override
+    public boolean estBinaire() {
+        return true;
+    }
+
 }

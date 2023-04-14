@@ -58,9 +58,8 @@ public class Et extends Binaire {
 
     @Override
     public String toString() {
-        return null;
+        return e1 + "et"+e2;
     }
-
     @Override
     public String toMIPS() {
         StringBuilder code = new StringBuilder();
@@ -83,4 +82,9 @@ public class Et extends Binaire {
         code.append("\tand $v0,$v0,$t8 \n");
         return code.toString();
     }
+    @Override
+    public boolean estBinaire() {
+        return true;
+    }
+
 }

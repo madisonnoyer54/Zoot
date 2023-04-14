@@ -20,6 +20,7 @@ public class Negative extends Unaire {
 
     @Override
     public void verifier() {
+        e.verifier();
         if(this.e.estBool() ){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : L'opérateurs dois etre un entiers "));
 
@@ -77,4 +78,8 @@ public class Negative extends Unaire {
         return 0;
     }
 
+    @Override
+    public String toString() {
+        return "-"+e;
+    }
 }

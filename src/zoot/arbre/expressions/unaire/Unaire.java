@@ -14,4 +14,10 @@ public abstract class Unaire extends Expression {
         super(n, num);
         this.e =e;
     }
+
+    @Override
+    public boolean estBinaire() {
+        return false;
+    }
+
 }

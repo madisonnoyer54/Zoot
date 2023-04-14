@@ -57,10 +57,14 @@ public class Different extends Binaire {
     }
 
     @Override
-    public String toString() {
-        return null;
+    public boolean estBinaire() {
+        return true;
     }
 
+    @Override
+    public String toString() {
+        return e1 + "!="+e2;
+    }
     @Override
     public String toMIPS() {
         StringBuilder code = new StringBuilder();

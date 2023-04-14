@@ -18,6 +18,7 @@ public class Parenthese extends Unaire {
 
     @Override
     public void verifier() {
+        e.verifier();
 
     }
 
@@ -56,4 +57,9 @@ public class Parenthese extends Unaire {
         return 0;
     }
 
+
+    @Override
+    public String toString() {
+        return "("+e+")";
+    }
 }

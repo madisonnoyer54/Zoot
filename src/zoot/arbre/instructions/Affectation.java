@@ -148,4 +148,9 @@ public class Affectation extends Instruction{
     public Instruction getRetourner() {
         return null;
     }
+
+    @Override
+    public boolean estCondition() {
+        return false;
+    }
 }

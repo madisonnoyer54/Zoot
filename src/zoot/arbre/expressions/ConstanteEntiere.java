@@ -16,16 +16,19 @@ public class ConstanteEntiere extends Constante {
     }
 
 
+
+
     /**
      * Fonction toMips, traduction en mips
      * @return le mips
-     */
+     */  /*
     @Override
-    public String toMIPS() {
+    public String toMIPS(List<String> registres) {
         String ConstanteEntiere = cste;
         String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
         return code;
     }
+    */
 
 
     /**
@@ -64,5 +67,15 @@ public class ConstanteEntiere extends Constante {
         return 0;
     }
 
+    @Override
+    public String toMIPS() {
+        return null;
+    }
+
+
+    @Override
+    public boolean estBinaire() {
+        return false;
+    }
 }
 

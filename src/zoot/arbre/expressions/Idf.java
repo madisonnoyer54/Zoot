@@ -35,6 +35,11 @@ public class Idf extends Expression {
 
     }
 
+    @Override
+    public boolean estBinaire() {
+        return false;
+    }
+
 
     /**
      * Fonction toMips, traduction en mips

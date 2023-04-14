@@ -85,4 +85,9 @@ public class Multiplication extends Binaire {
 
         return code.toString();
     }
+    @Override
+    public boolean estBinaire() {
+        return true;
+    }
+
 }

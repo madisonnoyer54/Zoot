@@ -56,11 +56,11 @@ public class Ou extends Binaire {
 
         }
     }
-
     @Override
-    public String toString() {
-        return null;
+    public boolean estBinaire() {
+        return true;
     }
+
 
     @Override
     public String toMIPS() {
@@ -84,5 +84,11 @@ public class Ou extends Binaire {
         code.append("\tor $v0,$v0,$t8 \n");
 
         return code.toString();
+    }
+
+
+    @Override
+    public String toString() {
+        return e1 + "ou"+e2;
     }
 }
