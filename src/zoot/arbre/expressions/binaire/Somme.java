@@ -19,7 +19,7 @@ public class Somme extends Binaire {
 
     @Override
     public Type getType() {
-        return null;
+        return Type.ENTIER;
     }
 
     @Override

@@ -37,9 +37,9 @@ public class Affectation extends Instruction{
      */
     @Override
     public void verifier() {
+
         Symbole symbole = null;
         int taille;
-
 
         if (!exp.estFonction()){
             symbole =  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
@@ -60,10 +60,11 @@ public class Affectation extends Instruction{
         if (symbole != null){
 
             if(!variable.getType().concordance(exp.getType()) && ( variable.getNumBloc() == exp.getNumBloc() || variable.getNumBloc() == 0 )){
-
                 Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : L'affectation "+ variable.toString() +"=" + exp.toString() +" ne peux pas être effectué, car le type de la variable ("+ variable.toString()+") n'est pas de même type que l'expression (" + exp.toString()+")."));
             }
         }
+
+
 
     }
 

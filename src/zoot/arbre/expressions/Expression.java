@@ -22,6 +22,8 @@ public abstract class Expression extends ArbreAbstrait {
      */
     public abstract Type getType();
 
+
+
     /**
      * Getteur
      * @return booleen est une variable

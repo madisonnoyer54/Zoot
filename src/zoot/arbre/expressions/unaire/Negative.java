@@ -33,7 +33,7 @@ public class Negative extends Unaire {
 
     @Override
     public Type getType() {
-        return null;
+        return Type.ENTIER;
     }
 
     @Override

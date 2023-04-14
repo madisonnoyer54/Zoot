@@ -191,9 +191,13 @@ public class BlocDInstructions extends ArbreAbstrait {
         int finale = 0;
         for (Instruction instruction : programme) {
             if(instruction.estRetourner()){
-                finale =  instruction.noLigne;
+                finale = instruction.noLigne;
+            }
+            if(instruction.estBoucleOuCondition()){
+                finale = instruction.getRetourner().noLigne;
             }
         }
+
         return  finale;
     }
     @Override

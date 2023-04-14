@@ -33,7 +33,7 @@ public class Non extends Unaire{
 
     @Override
     public Type getType() {
-        return null;
+        return Type.BOOLEEN;
     }
 
     @Override
