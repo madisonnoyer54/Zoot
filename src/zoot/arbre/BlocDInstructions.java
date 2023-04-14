@@ -1,5 +1,6 @@
 package zoot.arbre;
 
+import zoot.arbre.instructions.Condition;
 import zoot.arbre.instructions.Instruction;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
@@ -71,8 +72,20 @@ public class BlocDInstructions extends ArbreAbstrait {
                 }
                 // Il contient un retourne, On verifie le type
                 else{
-                    if(!s.getType().concordance(s.getBlocDInstructions().getRetourner().getType())){
-                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(s.getBlocDInstructions().numLigneRetourner()+" : Le retourner de la fonction n'a pas le même type que la déclaration "));
+
+                        for (Instruction instruction : s.getBlocDInstructions().getProgramme()) {
+                            if(instruction.estCondition()){
+                                Condition c = (Condition) instruction;
+                                if( c.getSiBloc().contientRetourner()){
+                                    if(!s.getType().concordance(c.getSiBloc().getRetourner().getType())  ){
+                                        Analyse.getInstance().ajoute(new AnalyseSemantiqueException(c.getSiBloc().getRetourner().noLigne+" : Le retourner de la fonction n'a pas le même type que la déclaration "));
+                                    }
+                                }
+                            }
+
+                        }
+                        if(!s.getType().concordance(s.getBlocDInstructions().getRetourner().getType())){
+                            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(s.getBlocDInstructions().getRetourner().noLigne+" : Le retourner de la fonction n'a pas le même type que la déclaration "));
                     }
 
                 }

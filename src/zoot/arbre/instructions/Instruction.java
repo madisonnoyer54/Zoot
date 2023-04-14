@@ -27,4 +27,6 @@ public abstract class Instruction extends ArbreAbstrait {
     public abstract Boolean contientRetourner();
 
     public abstract Instruction getRetourner();
+    public abstract boolean estCondition();
+
 }

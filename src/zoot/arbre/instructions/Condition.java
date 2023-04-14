@@ -131,5 +131,16 @@ public class Condition extends Instruction{
         return  finale;
     }
 
+    @Override
+    public boolean estCondition() {
+        return true;
+    }
 
+    public BlocDInstructions getSiBloc() {
+        return siBloc;
+    }
+
+    public BlocDInstructions getSinonBloc() {
+        return sinonBloc;
+    }
 }

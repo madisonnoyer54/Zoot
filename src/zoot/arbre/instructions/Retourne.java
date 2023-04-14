@@ -154,6 +154,11 @@ public class Retourne extends Instruction{
         return null;
     }
 
+    @Override
+    public boolean estCondition() {
+        return false;
+    }
+
     /**
      * Fonction qui indique si Instruction estRetourne (vrai)
      * @return

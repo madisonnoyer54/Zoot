@@ -96,4 +96,9 @@ public class Boucle extends Instruction{
 
         return  finale;
     }
+
+    @Override
+    public boolean estCondition() {
+        return false;
+    }
 }
