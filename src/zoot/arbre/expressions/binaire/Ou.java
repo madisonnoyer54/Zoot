@@ -56,6 +56,10 @@ public class Ou extends Binaire {
 
         }
     }
+    @Override
+    public boolean estBinaire() {
+        return true;
+    }
 
 
     @Override

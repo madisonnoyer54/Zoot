@@ -65,4 +65,9 @@ public class Inferieur extends Binaire {
     public String toMIPS() {
         return null;
     }
+    @Override
+    public boolean estBinaire() {
+        return true;
+    }
+
 }

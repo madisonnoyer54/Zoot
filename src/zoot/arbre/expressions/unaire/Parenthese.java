@@ -22,10 +22,7 @@ public class Parenthese extends Unaire {
 
     }
 
-    @Override
-    public String toMIPS(List<String> registres) {
-        return null;
-    }
+
 
     @Override
     public Type getType() {
@@ -58,9 +55,10 @@ public class Parenthese extends Unaire {
     }
 
     @Override
-    public String toMips(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
+
 
     @Override
     public String toString() {

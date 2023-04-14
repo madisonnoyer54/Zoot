@@ -28,11 +28,6 @@ public class Non extends Unaire{
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
-        return null;
-    }
-
-    @Override
     public Type getType() {
         return Type.BOOLEEN;
     }
@@ -63,9 +58,11 @@ public class Non extends Unaire{
     }
 
     @Override
-    public String toMips(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
+
+
 
     @Override
     public String toString() {

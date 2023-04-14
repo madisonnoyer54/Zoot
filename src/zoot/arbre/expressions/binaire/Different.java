@@ -57,6 +57,11 @@ public class Different extends Binaire {
     }
 
     @Override
+    public boolean estBinaire() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return e1 + "!="+e2;
     }
