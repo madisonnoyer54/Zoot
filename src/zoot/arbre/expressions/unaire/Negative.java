@@ -28,7 +28,23 @@ public class Negative extends Unaire {
 
     @Override
     public String toMIPS() {
-        return null;
+        StringBuilder code = new StringBuilder("");
+
+
+
+        code.append("\tli $v0,0\n");
+
+        code.append("\tsw $v0, 0($sp)\n");
+
+        code.append("\tadd $sp, $sp, -4 \n");
+
+        code.append(e.toMIPS());
+        code.append("\tadd $sp, $sp,4 \n");
+        code.append("\tlw $t8, ($sp) \n");
+
+        code.append("# Mise au négatif - \n");
+        code.append("\tsub $v0, $t8, $v0\n");
+        return code.toString();
     }
 
     @Override

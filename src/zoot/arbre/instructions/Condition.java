@@ -46,8 +46,8 @@ public class Condition extends Instruction{
     public String toMIPS() {
         int num = TDS.getInstance().getIdEtiquette();
         String res = "#Condition\n";
-        //res += e.toMIPS(); produit des null pour le moment
-        res += "beq $v0 $zero sinon" + num + "\n";
+        res += e.toMIPS();
+        res += "beqz $v0, sinon" + num + "\n";
         if (siBloc != null)
             res += derouleMips(siBloc);
         res += "j finsi" + num + "\n";

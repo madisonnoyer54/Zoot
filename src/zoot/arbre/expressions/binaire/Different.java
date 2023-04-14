@@ -63,6 +63,30 @@ public class Different extends Binaire {
 
     @Override
     public String toMIPS() {
-        return null;
+        StringBuilder code = new StringBuilder();
+
+        code.append("# Ecriture != \n");
+
+        code.append("# Calcul de l'expression gauche\n");
+        code.append(e1.toMIPS());
+        code.append("\n");
+
+        code.append("# Empilement de l'expression gauche\n");
+        code.append("sw $v0, 0($sp)\n");
+        code.append("add $sp, $sp, -4\n");
+        code.append("\n");
+
+        code.append("# Calcul de l'expression droite\n");
+        code.append(e2.toMIPS());
+        code.append("\n");
+
+        code.append("# Dépilement de l'expression gauche\n");
+        code.append("add $sp, $sp, 4\n");
+        code.append("lw $t8, 0($sp)\n");
+        code.append("\n");
+
+        code.append("sne $v0, $v0, $t8\n");
+
+        return code.toString();
     }
 }
