@@ -49,11 +49,6 @@ public class Different extends Binaire {
     }
 
     @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
-
-    @Override
     public void verifier() {
         if(this.e1.getType() != e2.getType()){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une != doivent etre de même type "));
@@ -67,7 +62,7 @@ public class Different extends Binaire {
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
 }

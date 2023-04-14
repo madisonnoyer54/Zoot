@@ -34,21 +34,14 @@ public class ConstanteBooleenne extends Constante {
                 return 0;
         }
 
-        @Override
-        public String toMips(List<String> registres) {
-                return null;
-        }
-
-
         /**
          * Fonction toMips, traduction en mips si la constante vaut vrai on stock 1 sinon on stock 0
          * @return le code mips en string
          */
         @Override
-        public String toMIPS(List<String> registres) {
-            return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
+        public String toMIPS() {
+                return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
         }
-
 
         /**
          * Getteur
@@ -66,4 +59,5 @@ public class ConstanteBooleenne extends Constante {
         public boolean estVariable(){
             return false;
         }
-        }
+
+}

@@ -5,8 +5,6 @@ import zoot.arbre.expressions.AppelFonction;
 import zoot.arbre.expressions.Expression;
 import zoot.tds.*;
 
-import java.util.List;
-
 
 public class Ecrire extends Instruction {
 
@@ -55,11 +53,10 @@ public class Ecrire extends Instruction {
      * @return le mips en string
      */
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         StringBuilder code = new StringBuilder();
-
         code.append("# Ecrire "+exp.toString()+"\n"+
-                exp.toMIPS(registres)
+                exp.toMIPS()
                 +"\tmove $a0, $v0  # Copie de la valeur de v0 dans a0\n");
                 if (exp.estBool()||exp.getType().equals(Type.BOOLEEN)) {
                     code.append("\tbeq $zero, $a0, Sinon").append(this.numero).append("\n");

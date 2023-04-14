@@ -48,10 +48,6 @@ public class Ou extends Binaire {
         return 0;
     }
 
-    @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
 
     @Override
     public void verifier() {
@@ -67,7 +63,7 @@ public class Ou extends Binaire {
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
 }

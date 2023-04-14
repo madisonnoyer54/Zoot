@@ -41,7 +41,7 @@ public class Idf extends Expression {
      * @return le mips en string
      */
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         String code="";
         ArrayList<HashMap<Entree, Symbole>> tds =  TDS.getInstance().getBlocs();
         int nbFonctions = TDS.getInstance().getCompteurNbFonctions();
@@ -192,8 +192,4 @@ public class Idf extends Expression {
         return 0;
     }
 
-    @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
 }

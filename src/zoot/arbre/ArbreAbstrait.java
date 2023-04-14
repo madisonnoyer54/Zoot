@@ -1,7 +1,5 @@
 package zoot.arbre;
 
-import java.util.List;
-
 public abstract class ArbreAbstrait {
     
     // numéro de ligne du début de l'instruction
@@ -38,7 +36,7 @@ public abstract class ArbreAbstrait {
      * Fonction toMips, traduction en mips
      * @return
      */
-    public abstract String toMIPS(List<String> registres);
+    public abstract String toMIPS();
 
     public int getNumBloc() {
         return numBloc;

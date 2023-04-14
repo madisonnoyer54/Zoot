@@ -32,7 +32,7 @@ public class Retourne extends Instruction{
 
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         boolean retourParam = false;
         boolean retourVariableLocale = false;
         boolean retourVariableMain = false;
@@ -47,7 +47,7 @@ public class Retourne extends Instruction{
         // depiler s7 et ra
 
         if(!e.estVariable()) {//si c'est une fonction
-           code = code + e.toMIPS(registres);
+           code = code + e.toMIPS();
         }
         ArrayList<HashMap<Entree, Symbole>> tds =  TDS.getInstance().getBlocs();
         for (HashMap<Entree, Symbole> map : tds) {

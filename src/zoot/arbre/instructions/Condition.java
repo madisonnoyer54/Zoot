@@ -5,6 +5,7 @@ import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
 import zoot.tds.TDS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Condition extends Instruction{
@@ -43,7 +44,7 @@ public class Condition extends Instruction{
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         int num = TDS.getInstance().getIdEtiquette();
         String res = "#Condition\n";
         //res += e.toMIPS(); produit des null pour le moment
@@ -61,8 +62,9 @@ public class Condition extends Instruction{
 
     public String derouleMips(BlocDInstructions b){
         String code = "";
+        List<String> registres =new ArrayList<>(); //à modifier
         for (Instruction instruction : b.getProgramme()) {
-            code+=instruction.toMIPS(registres);
+            code+=instruction.toMIPS();
         }
         return code;
     }

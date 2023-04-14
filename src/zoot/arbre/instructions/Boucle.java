@@ -5,6 +5,7 @@ import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
 import zoot.tds.TDS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Boucle extends Instruction{
@@ -34,15 +35,15 @@ public class Boucle extends Instruction{
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         int num = TDS.getInstance().getIdEtiquette();
-        String res = e.toMIPS(registres);
+        String res = e.toMIPS();
         res += "#Boucle\n";
         res += "j condition" + num + "\n";
         res += "loop" + num + ":\n";
         res += derouleMips(blocDInstructions);
 
-        res += e.toMIPS(registres);
+        res += e.toMIPS();
         res += "condition" + num + ":";
         res += "bne $v0 $zero loop" + num + "\n";
 
@@ -51,8 +52,9 @@ public class Boucle extends Instruction{
 
     public String derouleMips(BlocDInstructions b){
         String code = "";
+        List<String> registres = new ArrayList<>();//à modifier
         for (Instruction instruction : b.getProgramme()) {
-            code+=instruction.toMIPS(registres);
+            code+=instruction.toMIPS();
         }
         return code;
     }

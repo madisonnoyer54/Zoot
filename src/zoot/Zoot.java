@@ -9,6 +9,8 @@ import zoot.exceptions.AnalyseException;
 import zoot.exceptions.AnalyseSemantiqueException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,7 +54,8 @@ public class Zoot {
 
             String nomSortie = nomFichier.replaceAll("[.]zoot", ".mips") ;
             PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie))) ;
-            flot.println(arbre.toMIPS(registres));
+            List<String> registres = new ArrayList<>();
+            flot.println(arbre.toMIPS());
             flot.close() ;
         }
         catch (FileNotFoundException ex) {

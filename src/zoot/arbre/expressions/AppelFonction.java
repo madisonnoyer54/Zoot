@@ -102,7 +102,7 @@ public class AppelFonction extends Expression{
      * @return String code mips
      */
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         String code = "\t# Appel de la fonction " + this.toString()+"\n";
         int nbparam = 0;
 
@@ -111,7 +111,7 @@ public class AppelFonction extends Expression{
             code = code+
                     "\t# Paramêtres de la fonction\n";
             for (Expression e : listParam) { //on calcule la valeur de chaque paramêtres passés
-                code = code + e.toMIPS(registres) +//OK
+                code = code + e.toMIPS() +//OK
                         "\tsw $v0, 0($sp) \n"+//OK
                         "\tadd $sp, $sp,-4 \n";//OK
             }
@@ -194,10 +194,6 @@ public class AppelFonction extends Expression{
         return 0;
     }
 
-    @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
 
     /**
      * Fonction toString retourne l'identifiant

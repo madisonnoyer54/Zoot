@@ -49,11 +49,6 @@ public class Multiplication extends Binaire {
     }
 
     @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
-
-    @Override
     public void verifier() {
         if(this.e1.estBool() || e2.estBool()){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une multiplication doivent etre des entiers "));
@@ -67,7 +62,7 @@ public class Multiplication extends Binaire {
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
 }

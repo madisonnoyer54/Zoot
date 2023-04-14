@@ -27,7 +27,7 @@ public class Non extends Unaire{
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
 
@@ -61,8 +61,4 @@ public class Non extends Unaire{
         return 0;
     }
 
-    @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
 }

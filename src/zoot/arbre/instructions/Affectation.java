@@ -9,7 +9,6 @@ import zoot.tds.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class Affectation extends Instruction{
@@ -74,7 +73,7 @@ public class Affectation extends Instruction{
      * @return le mips en string
      */
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         // On met dans v0
         String code = "";
         //SymboleVariable symbole = (SymboleVariable)  TDS.getInstance().identifier(new EntreeVariable(variable.toString(), noLigne,numBloc));
@@ -91,7 +90,7 @@ public class Affectation extends Instruction{
                         int deplacementTotal = deplacement - variable.getSymbole().getDeplacement();
                         //int deplacement = -(16 + variable.getSymbole().getDeplacement()); // 16 = case valeur de retour + case adresse retour + case chainage dynamique
                         code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" +
-                                exp.toMIPS(registres) +
+                                exp.toMIPS() +
                                 "\tsw $v0, " + deplacementTotal + "($s3)" + "\n\n";
                     }
                 }
@@ -102,7 +101,7 @@ public class Affectation extends Instruction{
                             int deplacement = TDS.getInstance().getCompteurDeplace();
                             int deplacementTotal = deplacement - symbole.getDeplacement();
                             code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
-                                    exp.toMIPS(registres) +
+                                    exp.toMIPS() +
                                     "\tsw $v0, " + deplacementTotal + "($s7)" + "\n\n";
                         }
 
@@ -112,7 +111,7 @@ public class Affectation extends Instruction{
                             int deplacement = TDS.getInstance().getCompteurDeplace();
                             int deplacementTotal = deplacement - symbole.getDeplacement();
                             code += "# Affectation (" + variable.toString() + " = " + exp.toString() + ")\n" + //TODO:A REVOIR LES CONDTIONS
-                                    exp.toMIPS(registres) +
+                                    exp.toMIPS() +
                                     "\tsw $v0, " +deplacementTotal + "($s7)" + "\n\n";
                         }
                     }

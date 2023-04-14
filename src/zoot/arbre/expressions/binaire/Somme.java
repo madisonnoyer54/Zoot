@@ -5,8 +5,6 @@ import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.Type;
 
-import java.util.List;
-
 public class Somme extends Binaire {
 
     /**
@@ -49,26 +47,26 @@ public class Somme extends Binaire {
         return 0;
     }
 
-    @Override
-    public String toMips(List<String> registres) {
-        StringBuilder code = new StringBuilder();
-        code.append(e1.toMIPS(registres));
-        //Si on a encore au moins 1 registre temporaire disponible, on l'utilise
-        if (registres.size() != 1) {
-            //On stocke le résultat dans un registre pour pouvoir réutiliser v0
-            code.append("\tmove ").append(registres.get(1)).append(", ").append(registres.get(0)).append("\n");
 
-            //code.append(e2.toMIPS(supprRegistreInutile(1, registres)));
-            //On ajoute les 2 entiers stockés dans les 2 registres, puis stocke le résultat de la somme de v0.
-            code.append("\tadd ").append(registres.get(0)).append(",").append(registres.get(0)).append(",").append(registres.get(1)).append("\n");
-        } else { //Sinon, on utilise la pile
-            code.append("\tsw $v0,($sp)\n");
-            code.append("\tadd $sp,$sp,-4\n");
-            code.append(e2.toMIPS(registres)).append("\n");
-            code.append("\tadd $sp,$sp,4\n");
-            code.append("\tlw $t8,($sp)\n");
-            code.append("\tadd $v0, $t8, $v0\n");
-        }
+    public String toMIPS() {
+        StringBuilder code = new StringBuilder();
+
+        String sbg =  e1.toMIPS() ;//expression gauche
+
+        String sbd = e2.toMIPS() ;
+
+        code.append("#traitement operande gauche");
+        code.append(sbg);
+        code.append("\tsw $v0, 0($sp)\n");
+        code.append("\tadd $sp, $sp, -4 \n");
+        code.append(sbd);
+        code.append("\tadd $sp, $sp,4 \n");
+        code.append("\tlw $t8, ($sp) \n");
+
+
+        code.append("# Resultat addition \n");
+        code.append("\tadd $v0, $t8, $v0\n");
+
         return code.toString();
     }
 
@@ -78,11 +76,6 @@ public class Somme extends Binaire {
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une somme doivent etre des entiers "));
 
         }
-    }
-
-    @Override
-    public String toMIPS(List<String> registres) {
-        return null;
     }
 
     @Override

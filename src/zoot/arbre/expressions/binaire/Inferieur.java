@@ -49,11 +49,6 @@ public class Inferieur extends Binaire {
     }
 
     @Override
-    public String toMips(List<String> registres) {
-        return null;
-    }
-
-    @Override
     public void verifier() {
         if(this.e1.estBool() || e2.estBool()){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne +" : Les opérateurs d'une < doivent etre des entiers "));
@@ -67,7 +62,7 @@ public class Inferieur extends Binaire {
     }
 
     @Override
-    public String toMIPS(List<String> registres) {
+    public String toMIPS() {
         return null;
     }
 }
