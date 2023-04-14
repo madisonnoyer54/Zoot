@@ -52,7 +52,7 @@ public class Zoot {
 
             String nomSortie = nomFichier.replaceAll("[.]zoot", ".mips") ;
             PrintWriter flot = new PrintWriter(new BufferedWriter(new FileWriter(nomSortie))) ;
-            flot.println(arbre.toMIPS(registres));
+          //  flot.println(arbre.toMIPS(registres));
             flot.close() ;
         }
         catch (FileNotFoundException ex) {

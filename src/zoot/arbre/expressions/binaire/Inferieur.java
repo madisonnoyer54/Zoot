@@ -20,7 +20,7 @@ public class Inferieur extends Binaire {
 
     @Override
     public Type getType() {
-        return null;
+        return Type.BOOLEEN;
     }
 
     @Override

@@ -33,6 +33,7 @@ public class Ecrire extends Instruction {
     public void verifier() {
         int taille;
         exp.verifier();
+
         if (!exp.estFonction()){
             Symbole symbole =  TDS.getInstance().identifier(new EntreeVariable(exp.getIdf(), noLigne,numBloc));
         }

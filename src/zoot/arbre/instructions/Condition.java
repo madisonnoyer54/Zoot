@@ -62,7 +62,7 @@ public class Condition extends Instruction{
     public String derouleMips(BlocDInstructions b){
         String code = "";
         for (Instruction instruction : b.getProgramme()) {
-            code+=instruction.toMIPS(registres);
+        //    code+=instruction.toMIPS(registres);
         }
         return code;
     }

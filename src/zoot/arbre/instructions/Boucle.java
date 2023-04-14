@@ -30,7 +30,11 @@ public class Boucle extends Instruction{
        //     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
 
         }
-        blocDInstructions.verifier();
+        // Les Instructions
+        for (Instruction instruction : blocDInstructions.getProgramme()) {
+            instruction.verifier();
+
+        }
     }
 
     @Override
@@ -52,7 +56,7 @@ public class Boucle extends Instruction{
     public String derouleMips(BlocDInstructions b){
         String code = "";
         for (Instruction instruction : b.getProgramme()) {
-            code+=instruction.toMIPS(registres);
+          //  code+=instruction.toMIPS(registres);
         }
         return code;
     }
