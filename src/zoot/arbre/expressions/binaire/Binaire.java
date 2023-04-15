@@ -20,8 +20,6 @@ public abstract class Binaire extends Expression {
     public abstract void verifier();
 
     public abstract String toString();
-    public int getNbErchov() {
-        return e1.getNombreDePlaces() == e2.getNombreDePlaces() ? e1.getNombreDePlaces() + 1 : Math.max(e1.getNombreDePlaces(), e2.getNombreDePlaces());
-    }
+
 
 }
