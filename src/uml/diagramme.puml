@@ -34,17 +34,19 @@ Analyse --"*" AnalyseSemantiqueException
 
 abstract class ArbreAbstrait {
    int noLigne
-   protected ArbreAbstrait(int n)
+   int numBloc
+   protected ArbreAbstrait(int n, int num)
    void verifier()
    String toMIPS()
 }
 
 class BlocDInstructions {
-   BlocDInstructions(int n)
+   BlocDInstructions(int n,int num)
    void ajouter(Instruction i)
    void verifier()
    String toMIPS()
    Boolean contientRetourner()
+   int numLigneRetourner()
 }
 class BlocFonctions {
 }
@@ -56,26 +58,61 @@ BlocMain -up-|> BlocDInstructions
 BlocDInstructions -up- "*" Instruction
 
 abstract class Instruction {
-   protected Instruction(int n)
-   boolean estRetourner()
+   protected Instruction(int n, int numbloc)
+   abstract boolean estRetourner()
+   abstract boolean estBoucleOuCondition();
+   abstract boolean estCondition();
 }
 
 Instruction -up-|> ArbreAbstrait
 class Ecrire {
-   Ecrire(int n)
+    int numero
+   Ecrire(Expression e, int n, int num)
    void verifier()
    String toMIPS()
    boolean estRetourner()
+   boolean estBoucleOuCondition()
+   Boolean contientRetourner()
+   boolean estCondition() 
 }
 class Retourne{
-   Retourne(Expression e, int n)
+   int num
+   Retourne(Expression e, int n, int num)
    void verifier()
    String toMIPS()
    boolean estRetourner()
 }
 
+class Boucle{
+ Boucle(int n, int numBloc, ArbreAbstrait a, Expression e) 
+ void verifier()
+ String toMIPS() 
+ String derouleMips(BlocDInstructions b)
+ boolean estRetourner()
+ boolean estBoucleOuCondition()
+  boolean contientRetourner()
+  boolean estCondition()
+}
+Boucle --"1" BlocDInstructions
+Boucle --"1" Expression
+
+class Condition{
+Condition(int n, int numBloc, Expression e, ArbreAbstrait a, ArbreAbstrait a1)
+void verifier() 
+ String toMIPS()
+ String derouleMips(BlocDInstructions b)
+ boolean estRetourner()
+ boolean estBoucleOuCondition()
+ Boolean contientRetourner()
+  boolean estCondition()
+}
+Condition --"2" BlocDInstructions
+Condition--"1" Expression
+
 Ecrire  -up-|> Instruction
 Retourne  -up-|> Instruction
+Boucle -up-|> Instruction
+Condition  -up-|> Instruction
 
 abstract class Expression {
    protected Expression(int n)
@@ -130,6 +167,140 @@ class AppelFonction {
    String getIdf()
 }
 AppelFonction  -up-|> Expression
+
+abstract class Binaire{
+ Binaire(int n, int num, Expression e1, Expression e2) 
+  abstract void verifier()
+}
+Binaire  -up-|> Expression
+Binaire --"2" Expression
+
+
+class Different{
+ Different(int n, int num, Expression e1, Expression e2)
+ boolean estBool()
+ boolean estFonction()
+ boolean estConstante()
+  void verifier()
+   boolean estBinaire()
+   String toString()
+   String toMIPS()
+}
+Different -up-|> Binaire
+
+class Egale{
+int numero
+Egale(int n, int num, Expression e1, Expression e2)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+boolean estBinaire()
+String toMIPS()
+
+}
+Egale -up-|> Binaire
+
+
+class Et{
+Et(int n, int num, Expression e1, Expression e2) 
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Et -up-|> Binaire
+
+class Iferieur{
+Inferieur(int n, int num, Expression e1, Expression e2) 
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Inferieur -up-|> Binaire
+
+class Multiplication{
+Multiplication(int n, int num, Expression e1, Expression e2)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Multiplication -up-|> Binaire
+
+class Ou{
+Ou(int n, int num, Expression e1, Expression e2)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Ou -up-|> Binaire
+
+
+class Somme{
+Somme(int n, int num, Expression e1, Expression e2)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Somme -up-|> Binaire
+
+
+abstract class Unaire{
+Unaire(int n, int num, Expression e)
+boolean estBinaire()
+}
+Unaire -up-|> Expression
+
+
+class Negative{
+ Negative(int n, int num,Expression e)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Negative -up-|> Unaire
+
+class Non{
+Non(int n, int num,Expression e)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Non -up-|> Unaire
+
+
+class Parenthese{
+ Parenthese(int n, int num,Expression e)
+boolean estBool()
+boolean estFonction()
+boolean estConstante()
+void verifier()
+String toMIPS()
+boolean estBinaire()
+}
+Parenthese -up-|> Unaire
+
+
 class TDS {
 int compteurDeplace
 int noActuBloc
