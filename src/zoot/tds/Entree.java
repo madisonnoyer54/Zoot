@@ -48,6 +48,10 @@ public abstract class Entree {
         return false;
     }
 
+    /**
+     * Getteur
+     * @return numBloc
+     */
     public int getNumBloc() {
         return numBloc;
     }

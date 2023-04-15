@@ -21,11 +21,12 @@ public class SymboleVariable extends Symbole{
         return false;
     }
 
+    /**
+     * Getteur
+     * @return numVar
+     */
     public int getNumVar() {
         return numVar;
     }
 
-    public void setNumVar(int numVar) {
-        this.numVar = numVar;
-    }
 }

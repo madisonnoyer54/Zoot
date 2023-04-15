@@ -173,6 +173,11 @@ public class BlocDInstructions extends ArbreAbstrait {
 
     }
 
+
+    /**
+     * FOnction qui retourne vrai si contient retourner, faux sinon
+     * @return
+     */
     public Boolean contientRetourner(){
         boolean finale = false;
         for (Instruction instruction : programme) {
@@ -186,6 +191,11 @@ public class BlocDInstructions extends ArbreAbstrait {
         return  finale;
     }
 
+
+    /**
+     * Fonction qui retourne le retourne
+     * @return le retourne
+     */
     public Instruction getRetourner(){
         Instruction re = null;
         for (Instruction instruction : programme) {
@@ -200,6 +210,10 @@ public class BlocDInstructions extends ArbreAbstrait {
         return re;
     }
 
+    /**
+     * FOnction qui retourne le num ligne du retourne
+     * @return numligne
+     */
     public int numLigneRetourner(){
         int finale = 0;
         for (Instruction instruction : programme) {
@@ -218,6 +232,10 @@ public class BlocDInstructions extends ArbreAbstrait {
         return programme.toString() ;
     }
 
+    /**
+     * Getteur
+     * @return liste d'instruction
+     */
     public ArrayList<Instruction> getProgramme() {
         return programme;
     }

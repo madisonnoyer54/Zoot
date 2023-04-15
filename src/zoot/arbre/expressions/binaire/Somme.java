@@ -48,6 +48,7 @@ public class Somme extends Binaire {
     }
 
 
+    @Override
     public String toMIPS() {
         StringBuilder code = new StringBuilder();
 

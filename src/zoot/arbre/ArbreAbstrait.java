@@ -38,10 +38,19 @@ public abstract class ArbreAbstrait {
      */
     public abstract String toMIPS();
 
+    /**
+     * Getteur
+     * @return numbloc
+     */
     public int getNumBloc() {
         return numBloc;
     }
 
+
+    /**
+     * Setteur
+     * @param numBloc
+     */
     public void setNumBloc(int numBloc) {
         this.numBloc = numBloc;
     }

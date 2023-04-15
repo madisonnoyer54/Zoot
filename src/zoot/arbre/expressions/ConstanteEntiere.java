@@ -15,22 +15,6 @@ public class ConstanteEntiere extends Constante {
         super(texte, n,num) ;
     }
 
-
-
-
-    /**
-     * Fonction toMips, traduction en mips
-     * @return le mips
-     */  /*
-    @Override
-    public String toMIPS(List<String> registres) {
-        String ConstanteEntiere = cste;
-        String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
-        return code;
-    }
-    */
-
-
     /**
      * Getteur
      * @return type de la constante

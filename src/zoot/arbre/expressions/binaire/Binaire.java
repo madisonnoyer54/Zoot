@@ -17,8 +17,16 @@ public abstract class Binaire extends Expression {
         this.e2 = e2;
     }
 
+    /**
+     * Fontion qui verifie
+     */
     public abstract void verifier();
 
+
+    /**
+     * FOnction qui affiche
+     * @return le string
+     */
     public abstract String toString();
 
 

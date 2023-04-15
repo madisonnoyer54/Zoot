@@ -202,20 +202,30 @@ public class TDS {
         }
 
     }
-    public int getNbParam() {
-        return nbParam;
 
-    }
-
+    /**
+     * Getteur
+     * @return nb param
+     */
     public int getCompteParam() {
             return compteParam;
 
     }
+
+    /**
+     * Getteur
+     * @return nb fontion
+     */
     public int getCompteurNbFonctions() {
         return this.compteurNbFonctions;
 
     }
 
+
+    /**
+     * Getteur
+     * @return compte param
+     */
     public int getCompteParam2() {
         if(dansParam){
             return compteParam;
@@ -223,6 +233,9 @@ public class TDS {
         return 0;
     }
 
+    /**
+     * Fonction qui acremente le param
+     */
     public void compteParamPlus1(){
 
         // Si on est dans une fonction on compte les param
@@ -234,6 +247,9 @@ public class TDS {
 
     }
 
+    /**
+     * Fonction sortie param
+     */
     public void sortieParam(){
         listnbParam.add(nbParam);
         dansParam = false;
@@ -332,6 +348,10 @@ public class TDS {
         return tableFonction;
     }
 
+    /**
+     * Getteur
+     * @return numero du bloc
+     */
     public int getNoActuBloc() {
         if(estDansMain == true){
             return 0;
@@ -339,21 +359,27 @@ public class TDS {
         return noActuBloc;
     }
 
+    /**
+     * Getteur
+     * @return liste blocs
+     */
     public ArrayList<HashMap<Entree, Symbole>> getBlocs() {
         return blocs;
     }
 
-    public void setBlocs(ArrayList<HashMap<Entree, Symbole>> blocs) {
-        this.blocs = blocs;
-    }
 
-    public void setNoActuBloc(int noActuBloc) {
-        this.noActuBloc = noActuBloc;
-    }
+    /**
+     * Getteur
+     * @return nombre de param
+     */
     public ArrayList<Integer> getNbParametres() {
         return listnbParam;
     }
 
+    /**
+     * Getteur
+     * @return etiquette
+     */
     public int getIdEtiquette(){
         num++;
         return num ;

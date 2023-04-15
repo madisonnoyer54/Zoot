@@ -11,9 +11,9 @@ import zoot.tds.TDS;
 import java.util.List;
 
 public class Condition extends Instruction{
-    BlocDInstructions siBloc;
-    BlocDInstructions sinonBloc;
-    Expression e;
+    private BlocDInstructions siBloc;
+    private BlocDInstructions sinonBloc;
+    private Expression e;
     /**
      * Constructeur
      *
@@ -62,6 +62,11 @@ public class Condition extends Instruction{
         return res;
     }
 
+    /**
+     * Fonction qui permet de derouler le mips des instruction
+     * @param b le bloc
+     * @return
+     */
     public String derouleMips(BlocDInstructions b){
         String code = "";
         for (Instruction instruction : b.getProgramme()) {
@@ -136,11 +141,12 @@ public class Condition extends Instruction{
         return true;
     }
 
+    /**
+     * Gettuer
+     * @return le bloc si
+     */
     public BlocDInstructions getSiBloc() {
         return siBloc;
     }
 
-    public BlocDInstructions getSinonBloc() {
-        return sinonBloc;
-    }
 }

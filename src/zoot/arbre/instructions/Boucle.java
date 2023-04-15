@@ -63,6 +63,11 @@ public class Boucle extends Instruction{
 
     }
 
+    /**
+     * Fonction qui permet d'ecrire le toMips des instruction dans le bloc
+     * @param b le bloc
+     * @return
+     */
     public String derouleMips(BlocDInstructions b){
         String code = "";
         for (Instruction instruction : b.getProgramme()) {

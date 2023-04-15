@@ -14,13 +14,14 @@ public class EntreeFonction extends Entree{
         this.nbParam =nbParam;
     }
 
+    /**
+     * Getteur
+     * @return nombre de param
+     */
     public int getNbParam() {
         return nbParam;
     }
 
-    public void setNbParam(int nbParam) {
-        this.nbParam = nbParam;
-    }
 
     /**
      * Getteur

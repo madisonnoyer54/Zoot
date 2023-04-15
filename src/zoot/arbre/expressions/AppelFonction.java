@@ -219,6 +219,10 @@ public class AppelFonction extends Expression{
 
     }
 
+    /**
+     * Getteur
+     * @return liste des parametres
+     */
     public ArrayList<Expression> getListParam() {
         return listParam;
     }

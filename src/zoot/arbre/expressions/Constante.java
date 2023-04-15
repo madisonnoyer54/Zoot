@@ -46,14 +46,13 @@ public abstract class Constante extends Expression {
     public String getIdf() {
         return null;
     }
-    /**
-     * Fonction qui permet de savoir si l'expression est une variable
-     * @return vrai si c'est une variable, faux sinon
-     */
+
+    @Override
     public boolean estVariable(){
         return false;
     }
 
+    @Override
     public boolean estConstante(){
         return true;
     }

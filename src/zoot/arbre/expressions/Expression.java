@@ -44,15 +44,43 @@ public abstract class Expression extends ArbreAbstrait {
      */
     public abstract boolean estFonction();
 
+
+    /**
+     * Getteur
+     * @return IDF
+     */
     public abstract String getIdf();
 
+    /**
+     * Fonction qui return true si c'est une constente faux sinon
+     * @return
+     */
     public abstract boolean estConstante();
 
+
+    /**
+     * Getteur
+     * @return nombre de place
+     */
     public  abstract int getNombreDePlaces();
 
+
+    /**
+     * Fonction du mips
+     * @return le mips
+     */
     public abstract String toMIPS();
 
+
+    /**
+     * Fonction qui verifie le code
+     */
     public abstract void verifier();
 
+
+    /**
+     * Fonction qui retourne vrai si l'expression est binaire, faux sinon
+     * @return
+     */
     public abstract boolean estBinaire();
 }

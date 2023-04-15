@@ -44,11 +44,6 @@ public class ConstanteBooleenne extends Constante {
                 return false;
         }
 
-
-
-
-
-
         /**
          * Getteur
          * @return type de la constante

@@ -76,8 +76,6 @@ public class Non extends Unaire{
         return 0;
     }
 
-
-
     @Override
     public String toString() {
         return  "non"+e;
