@@ -3,7 +3,10 @@ package zoot.arbre.instructions;
 import zoot.arbre.ArbreAbstrait;
 import zoot.arbre.BlocDInstructions;
 import zoot.arbre.expressions.Expression;
+import zoot.exceptions.Analyse;
+import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.TDS;
+import zoot.tds.Type;
 
 import java.util.List;
 
@@ -26,17 +29,20 @@ public class Boucle extends Instruction{
     @Override
     public void verifier() {
         // Les Instructions
-        /*
+
         for (Instruction instruction : blocDInstructions.getProgramme()) {
             instruction.verifier();
 
         }
-        if(!(this.e.estBool() && this.e != null)){
-       //     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
+        /*
+        if(e.getType().equals(Type.ENTIER)){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
 
         }
 
          */
+
+
 
     }
 
