@@ -25,12 +25,19 @@ public class Boucle extends Instruction{
 
     @Override
     public void verifier() {
-        this.e.verifier();
+        // Les Instructions
+        /*
+        for (Instruction instruction : blocDInstructions.getProgramme()) {
+            instruction.verifier();
+
+        }
         if(!(this.e.estBool() && this.e != null)){
        //     Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
 
         }
-        blocDInstructions.verifier();
+
+         */
+
     }
 
     @Override
@@ -47,6 +54,9 @@ public class Boucle extends Instruction{
         res += "bne $v0 $zero loop" + num + "\n";
 
         return res;
+
+
+
     }
 
     public String derouleMips(BlocDInstructions b){
