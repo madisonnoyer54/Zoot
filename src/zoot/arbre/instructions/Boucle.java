@@ -2,6 +2,7 @@ package zoot.arbre.instructions;
 
 import zoot.arbre.ArbreAbstrait;
 import zoot.arbre.BlocDInstructions;
+import zoot.arbre.FabriqueNumero;
 import zoot.arbre.expressions.Expression;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
@@ -13,6 +14,7 @@ import java.util.List;
 public class Boucle extends Instruction{
     private BlocDInstructions blocDInstructions;
     private Expression e;
+    private int numero;
     /**
      * Constructeur
      *
@@ -23,7 +25,7 @@ public class Boucle extends Instruction{
         super(n, numBloc);
         this.e = e;
         blocDInstructions = (BlocDInstructions) a;
-
+        this.numero = FabriqueNumero.getInstance().genererNombre();
     }
 
     @Override
@@ -48,20 +50,16 @@ public class Boucle extends Instruction{
 
     @Override
     public String toMIPS() {
-        int num = TDS.getInstance().getIdEtiquette();
-        String res = e.toMIPS();
-        res += "#Boucle\n";
-        res += "j condition" + num + "\n";
-        res += "loop" + num + ":\n";
-        res += derouleMips(blocDInstructions);
-
-        res += e.toMIPS();
-        res += "condition" + num + ":";
-        res += "bne $v0 $zero loop" + num + "\n";
-
-        return res;
-
-
+        StringBuilder sb=new StringBuilder();
+        sb.append("Boucle").append(numero).append(":\n");
+        sb.append(derouleMips(blocDInstructions));
+        sb.append(e.toMIPS());
+        sb.append("\n# Initialiser $t8 avec la valeur vrai\n");
+        sb.append("\tla $t8, vraiAff\n");
+        sb.append("\tbeq $t8, $v0, FinBoucle").append(numero).append("\n");
+        sb.append("\tj Boucle").append(numero).append("\n");
+        sb.append("FinBoucle").append(numero).append(": \n");
+        return sb.toString();
 
     }
 
