@@ -1,5 +1,6 @@
 package zoot.arbre.expressions.unaire;
 
+import zoot.arbre.FabriqueNumero;
 import zoot.arbre.expressions.Expression;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;

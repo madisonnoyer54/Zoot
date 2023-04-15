@@ -74,7 +74,7 @@ public class Idf extends Expression {
                                             int zoneParam = 12 + TDS.getInstance().getCompteParam() * 4;
                                             int deplacement = getSymbole().getDeplacement();
                                             int deplacementParam = zoneParam + deplacement;
-                                            return "\tlw $v0," + deplacementParam + "($s7) TESSSSSSTTT\n"; //compteurparam incorrect à partir de 2 fonctions
+                                            return "\tlw $v0," + deplacementParam + "($s7)\n"; //compteurparam incorrect à partir de 2 fonctions
                                         }
                                     }
                                 }

@@ -36,7 +36,7 @@ public class ConstanteBooleenne extends Constante {
 
         @Override
         public String toMIPS() {
-                return null;
+                return "\tli $v0, " + (this.cste.equals("vrai") ? "1" : "0") +"\n";
         }
 
         @Override

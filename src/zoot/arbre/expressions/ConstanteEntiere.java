@@ -69,7 +69,9 @@ public class ConstanteEntiere extends Constante {
 
     @Override
     public String toMIPS() {
-        return null;
+        String ConstanteEntiere = cste;
+        String code = "\tli $v0,"+ ConstanteEntiere+"  # On stock dans  v0\n";
+        return code;
     }
 
 
