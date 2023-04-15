@@ -112,6 +112,11 @@ INST    ::=
                 // CONDITION REVOIR
                 SI EXP:e LALORS:l SINON LINST:li FINSI
                 {:RESULT = new Condition(eleft + 1, TDS.getInstance().getNoActuBloc(),e,(ArbreAbstrait)l,li);:}
+
+                |
+                 // CONDITION REVOIR
+                SI EXP:e LALORS:l FINSI
+                {:RESULT = new Condition(eleft + 1, TDS.getInstance().getNoActuBloc(),e,(ArbreAbstrait)l,null);:}
                 ;
 
 LALORS ::= ALORS LINST:li

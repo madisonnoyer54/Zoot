@@ -7,6 +7,7 @@ import zoot.arbre.expressions.binaire.Binaire;
 import zoot.exceptions.Analyse;
 import zoot.exceptions.AnalyseSemantiqueException;
 import zoot.tds.TDS;
+import zoot.tds.Type;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class Condition extends Instruction{
     public void verifier() {
         if(e!=null){
             e.verifier();
+
             if(!e.estBool()){
                // Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
             }
@@ -42,6 +44,11 @@ public class Condition extends Instruction{
                     sinonBloc.verifier();
                 }
             }
+        }
+
+        if(e.getType().equals(Type.ENTIER)){
+            Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
+
         }
     }
 
@@ -89,22 +96,27 @@ public class Condition extends Instruction{
     public Boolean contientRetourner(){
         boolean finale = false;
         boolean finale2 = false;
-        for (Instruction instruction : siBloc.getProgramme()) {
-            if(instruction.estRetourner()){
-                finale =  true;
-            }
-            if(instruction.estBoucleOuCondition()){
-                instruction.contientRetourner();
-            }
-        }
-        for (Instruction instruction : sinonBloc.getProgramme()) {
-            if (instruction.estRetourner()) {
-                finale2 = true;
-            }
-            if (instruction.estBoucleOuCondition()) {
-                instruction.contientRetourner();
+        if(siBloc!= null){
+            for (Instruction instruction : siBloc.getProgramme()) {
+                if(instruction.estRetourner()){
+                    finale =  true;
+                }
+                if(instruction.estBoucleOuCondition()){
+                    instruction.contientRetourner();
+                }
             }
         }
+        if(sinonBloc != null){
+            for (Instruction instruction : sinonBloc.getProgramme()) {
+                if (instruction.estRetourner()) {
+                    finale2 = true;
+                }
+                if (instruction.estBoucleOuCondition()) {
+                    instruction.contientRetourner();
+                }
+            }
+        }
+
         if(finale == true && finale2 == true){
             finale =true;
         }else{

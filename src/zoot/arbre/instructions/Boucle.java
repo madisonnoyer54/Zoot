@@ -36,13 +36,13 @@ public class Boucle extends Instruction{
             instruction.verifier();
 
         }
-        /*
+
         if(e.getType().equals(Type.ENTIER)){
             Analyse.getInstance().ajoute(new AnalyseSemantiqueException(noLigne+" : l'expression doit etre de type boolean"));
 
         }
 
-         */
+
 
 
 

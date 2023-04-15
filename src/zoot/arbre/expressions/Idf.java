@@ -166,7 +166,7 @@ public class Idf extends Expression {
      */
     @Override
     public boolean estBool() {
-        return (getSymbole().getType().getType().equals("booleen"));
+        return (getSymbole().getType().equals(Type.BOOLEEN));
     }
 
     /**

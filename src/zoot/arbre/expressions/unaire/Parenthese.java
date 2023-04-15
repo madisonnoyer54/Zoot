@@ -29,7 +29,7 @@ public class Parenthese extends Unaire {
 
     @Override
     public Type getType() {
-        return null;
+        return e.getType();
     }
 
     @Override

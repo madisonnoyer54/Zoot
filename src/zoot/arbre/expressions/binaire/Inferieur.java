@@ -25,7 +25,7 @@ public class Inferieur extends Binaire {
 
     @Override
     public boolean estBool() {
-        return false;
+        return true;
     }
 
     @Override
